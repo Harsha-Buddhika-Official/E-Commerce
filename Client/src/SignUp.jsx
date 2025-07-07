@@ -43,54 +43,57 @@ export default function SignUp() {
 
         {/* Form */}
         <div className="space-y-6">
+        {/* firstName and lastName */}
+          <div className='flex space-x-4'>
           {/* First Name */}
-          <div >
-            <div className="relative">
+            <div className='flex-1'>
+                <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <User className="h-5 w-5 text-white/50" />
+                    </div>
+                    <input
+                    type="text"
+                    placeholder="First Name"
+                    className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                    {...register('firstName', { 
+                        required: 'First name is required',
+                        minLength: { value: 2, message: 'First name must be at least 2 characters' }
+                    })}
+                    />
+                </div>
+
+                {errors.firstName && (
+                <div className="flex items-center mt-1 text-red-400 text-sm">
+                    <AlertCircle className="w-4 h-4 mr-1" />
+                    {errors.firstName.message}
+                </div>
+                )}
+            </div>
+
+            {/* Last Name */}
+            <div className='flex-1'>
+                <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <User className="h-5 w-5 text-white/50" />
+                    <User className="h-5 w-5 text-white/50" />
                 </div>
                 <input
-                type="text"
-                placeholder="First Name"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                {...register('firstName', { 
-                    required: 'First name is required',
-                    minLength: { value: 2, message: 'First name must be at least 2 characters' }
-                })}
+                    type="text"
+                    placeholder="Last Name"
+                    className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                    {...register('lastName', { 
+                    required: 'Last name is required',
+                    minLength: { value: 2, message: 'Last name must be at least 2 characters' }
+                    })}
                 />
+                </div>
+
+                {errors.lastName && (
+                <div className="flex items-center mt-1 text-red-400 text-sm">
+                    <AlertCircle className="w-4 h-4 mr-1" />
+                    {errors.lastName.message}
+                </div>
+                )}
             </div>
-
-            {errors.firstName && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
-                <AlertCircle className="w-4 h-4 mr-1" />
-                {errors.firstName.message}
-              </div>
-            )}
-          </div>
-
-          {/* Last Name */}
-          <div>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <User className="h-5 w-5 text-white/50" />
-              </div>
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                {...register('lastName', { 
-                  required: 'Last name is required',
-                  minLength: { value: 2, message: 'Last name must be at least 2 characters' }
-                })}
-              />
-            </div>
-
-            {errors.lastName && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
-                <AlertCircle className="w-4 h-4 mr-1" />
-                {errors.lastName.message}
-              </div>
-            )}
           </div>
 
           {/* Email */}
