@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { 
-  User, 
-  Mail, 
-  Lock, 
-  Eye, 
-  EyeOff, 
-  Phone, 
-  ShoppingBag, 
-  Sparkles,
-  AlertCircle
-} from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Phone, ShoppingBag, AlertCircle} from 'lucide-react';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
