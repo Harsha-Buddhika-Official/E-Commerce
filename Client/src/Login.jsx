@@ -26,7 +26,7 @@ export default function Login() {
 
   const onSubmit = (data) => {
     console.log('Login submitted:', data);
-    setIsLoggedIn(true);
+    // TODO: Add backend integration here later
   };
 
   return (
@@ -177,7 +177,7 @@ export default function Login() {
         <div className="mt-8 text-center">
           <p className="text-white/70">
             Don't have an account?{' '}
-            <Link to="/SignUp" className="text-emerald-300 hover:text-emerald-200 font-semibold transition-colors">
+            <Link to="/SignUp" className="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
               Sign up now
             </Link>
           </p>
