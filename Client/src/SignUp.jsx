@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { User, Mail, Lock, Eye, EyeOff, Phone, ShoppingBag, AlertCircle} from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -276,9 +277,9 @@ export default function SignUp() {
         <div className="mt-6 text-center">
           <p className="text-white/70">
             Already have an account?{' '}
-            <a href="#" className="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
+            <Link to={"/Login"} className="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
               Sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>

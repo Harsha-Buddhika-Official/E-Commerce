@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { 
   Mail, 
   Lock, 
@@ -29,19 +30,19 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-blue-900 to-purple-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       <div className="relative z-10 bg-white/10 backdrop-blur-lg rounded-3xl p-8 max-w-md w-full border border-white/20 shadow-2xl">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
-            <div className="bg-gradient-to-r from-emerald-600 to-blue-600 p-3 rounded-2xl">
+            <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-3 rounded-2xl">
               <ShoppingBag className="w-8 h-8 text-white" />
             </div>
           </div>
@@ -59,7 +60,7 @@ export default function Login() {
             <input
               type="email"
               placeholder="Email Address"
-              className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+              className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
               {...register('email', { 
                 required: 'Email is required',
                 pattern: {
@@ -84,7 +85,7 @@ export default function Login() {
             <input
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
-              className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+              className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
               {...register('password', { 
                 required: 'Password is required',
                 minLength: { value: 6, message: 'Password must be at least 6 characters' }
@@ -117,7 +118,7 @@ export default function Login() {
                 id="remember"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-4 h-4 text-emerald-600 bg-white/10 border-white/20 rounded focus:ring-emerald-500 focus:ring-2"
+                className="w-4 h-4 text-purple-600 bg-white/10 border-white/20 rounded focus:ring-purple-500 focus:ring-2"
               />
               <label htmlFor="remember" className="text-sm text-white/70">
                 Remember me
@@ -125,7 +126,7 @@ export default function Login() {
             </div>
             <a 
               href="#" 
-              className="text-sm text-emerald-300 hover:text-emerald-200 transition-colors"
+              className="text-sm text-purple-300 hover:text-purple-200 transition-colors"
             >
               Forgot password?
             </a>
@@ -135,7 +136,7 @@ export default function Login() {
           <button
             type="button"
             onClick={handleSubmit(onSubmit)}
-            className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
           >
             <div className="flex items-center justify-center">
               Sign In
@@ -149,17 +150,17 @@ export default function Login() {
               <div className="w-full border-t border-white/20"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gradient-to-br from-emerald-900 via-blue-900 to-purple-900 text-white/70">
+              <span className="px-2 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white/70">
                 Or continue with
               </span>
             </div>
           </div>
 
           {/* Social Login Options */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="w-full">
             <button
               type="button"
-              className="flex items-center justify-center px-4 py-2 border border-white/20 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 group"
+              className="w-full flex items-center justify-center px-4 py-3 border border-white/20 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 group"
             >
               <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -169,13 +170,6 @@ export default function Login() {
               </svg>
               <span className="ml-2 text-white text-sm">Google</span>
             </button>
-            <button
-              type="button"
-              className="flex items-center justify-center px-4 py-2 border border-white/20 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300 group"
-            >
-              <Fingerprint className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-              <span className="ml-2 text-white text-sm">Biometric</span>
-            </button>
           </div>
         </div>
 
@@ -183,9 +177,9 @@ export default function Login() {
         <div className="mt-8 text-center">
           <p className="text-white/70">
             Don't have an account?{' '}
-            <a href="#" className="text-emerald-300 hover:text-emerald-200 font-semibold transition-colors">
+            <Link to="/SignUp" className="text-emerald-300 hover:text-emerald-200 font-semibold transition-colors">
               Sign up now
-            </a>
+            </Link>
           </p>
         </div>
 
