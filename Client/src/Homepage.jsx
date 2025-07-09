@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingBag, Search, User, Heart, ShoppingCart, Star, ArrowRight, TrendingUp, Zap, Gift, Truck, Shield, Headphones, Menu, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 export default function Homepage() {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [likedProducts, setLikedProducts] = useState(new Set());
   const [cartItems, setCartItems] = useState(0);
+  // For now, we'll use a simple state to track login status
+  // In a real app, this would come from a context or authentication service
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   const heroSlides = [
     {
@@ -110,6 +115,14 @@ export default function Homepage() {
     setCartItems(prev => prev + 1);
   };
 
+  const handleUserClick = () => {
+    if (isUserLoggedIn) {
+      navigate('/dashboard');
+    } else {
+      navigate('/login');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -148,8 +161,18 @@ export default function Homepage() {
 
             {/* User Actions */}
             <div className="flex items-center space-x-4">
-              <button className="p-2 text-gray-700 hover:text-purple-600 transition-colors">
+              <button 
+                className="p-2 text-gray-700 hover:text-purple-600 transition-colors"
+                onClick={handleUserClick}
+              >
                 <User className="w-5 h-5" />
+              </button>
+              {/* Temporary login toggle for testing - remove in production */}
+              <button 
+                className="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors"
+                onClick={() => setIsUserLoggedIn(!isUserLoggedIn)}
+              >
+                {isUserLoggedIn ? 'Logout' : 'Login'}
               </button>
               <button className="p-2 text-gray-700 hover:text-purple-600 transition-colors">
                 <Heart className="w-5 h-5" />
