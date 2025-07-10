@@ -1,9 +1,19 @@
-import React from 'react';
-import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+
+  const categories = [
+    { name: "Electronics", icon: "📱" },
+    { name: "Fashion", icon: "👗" },
+    { name: "Home & Garden", icon: "🏡" },
+    { name: "Sports", icon: "⚽" },
+    { name: "Beauty", icon: "💄" },
+    { name: "Books", icon: "📚" }
+  ];
 
   const handleUserClick = () => {
     if (isUserLoggedIn) {
@@ -45,9 +55,38 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
           </div>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-7">
             <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Categories</a>
+            
+            {/* Categories Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                className="flex items-center text-gray-700 hover:text-purple-600 transition-colors"
+                onBlur={() => setTimeout(() => setIsCategoriesOpen(false), 150)}
+              >
+                Categories
+                <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${isCategoriesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Dropdown Menu */}
+              {isCategoriesOpen && (
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden">
+                  {categories.map((category, index) => (
+                    <a
+                      key={index}
+                      href="#"
+                      className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-colors border-b border-gray-100 last:border-b-0"
+                      onClick={() => setIsCategoriesOpen(false)}
+                    >
+                      <span className="text-lg mr-3">{category.icon}</span>
+                      <span>{category.name}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+            
             <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Deals</a>
             <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">About</a>
           </div>
@@ -118,7 +157,22 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
               
               {/* Mobile Navigation Links */}
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">Home</a>
-              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">Categories</a>
+              
+              {/* Mobile Categories */}
+              <div className="space-y-1">
+                <div className="px-3 py-2 text-gray-500 text-sm font-medium">Categories</div>
+                {categories.map((category, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="flex items-center px-6 py-2 text-gray-700 hover:text-purple-600 transition-colors"
+                  >
+                    <span className="text-lg mr-3">{category.icon}</span>
+                    <span>{category.name}</span>
+                  </a>
+                ))}
+              </div>
+              
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">Deals</a>
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">About</a>
               
