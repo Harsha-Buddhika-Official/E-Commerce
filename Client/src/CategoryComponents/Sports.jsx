@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ProductGrid from '../Components/ProductGrid';
+import { sportsProducts } from '../Components/data';
 
 export default function Sports() {
   const [sortBy, setSortBy] = useState('featured');
@@ -24,64 +25,6 @@ export default function Sports() {
     console.log('Added to cart:', product);
     // Add cart functionality here
   };
-
-  const sportsProducts = [
-    {
-      id: 401,
-      name: "Professional Soccer Ball",
-      price: 29.99,
-      originalPrice: 39.99,
-      rating: 4.8,
-      reviews: 1847,
-      image: "⚽",
-      badge: "FIFA Approved",
-      category: "Sports"
-    },
-    {
-      id: 402,
-      name: "Yoga Mat Premium",
-      price: 49.99,
-      originalPrice: 69.99,
-      rating: 4.9,
-      reviews: 2341,
-      image: "🧘",
-      badge: "Eco-Friendly",
-      category: "Sports"
-    },
-    {
-      id: 403,
-      name: "Basketball Shoes Pro",
-      price: 149.99,
-      originalPrice: 199.99,
-      rating: 4.7,
-      reviews: 923,
-      image: "🏀",
-      badge: "Performance",
-      category: "Sports"
-    },
-    {
-      id: 404,
-      name: "Swimming Goggles",
-      price: 19.99,
-      originalPrice: 29.99,
-      rating: 4.6,
-      reviews: 1456,
-      image: "🏊",
-      badge: "Anti-Fog",
-      category: "Sports"
-    },
-    {
-      id: 405,
-      name: "Dumbbells Set",
-      price: 89.99,
-      originalPrice: 119.99,
-      rating: 4.8,
-      reviews: 756,
-      image: "🏋️",
-      badge: "Adjustable",
-      category: "Sports"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">

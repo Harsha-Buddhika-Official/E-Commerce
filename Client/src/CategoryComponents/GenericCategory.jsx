@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ProductGrid from '../Components/ProductGrid';
+import { generateDefaultProducts } from '../Components/data';
 
 export default function GenericCategory({ categoryName, categoryIcon, categoryColor, products }) {
   const [sortBy, setSortBy] = useState('featured');
@@ -24,44 +25,7 @@ export default function GenericCategory({ categoryName, categoryIcon, categoryCo
     // Add cart functionality here
   };
 
-  // Default products if none provided
-  const defaultProducts = [
-    {
-      id: 600,
-      name: `Premium ${categoryName} Item`,
-      price: 49.99,
-      originalPrice: 69.99,
-      rating: 4.7,
-      reviews: 1234,
-      image: categoryIcon,
-      badge: "Featured",
-      category: categoryName
-    },
-    {
-      id: 601,
-      name: `Professional ${categoryName} Set`,
-      price: 89.99,
-      originalPrice: 119.99,
-      rating: 4.8,
-      reviews: 892,
-      image: categoryIcon,
-      badge: "Professional",
-      category: categoryName
-    },
-    {
-      id: 602,
-      name: `Essential ${categoryName} Kit`,
-      price: 29.99,
-      originalPrice: 39.99,
-      rating: 4.6,
-      reviews: 1567,
-      image: categoryIcon,
-      badge: "Bestseller",
-      category: categoryName
-    }
-  ];
-
-  const displayProducts = products || defaultProducts;
+  const displayProducts = products || generateDefaultProducts(categoryName, categoryIcon);
 
   return (
     <div className="min-h-screen bg-gray-50">

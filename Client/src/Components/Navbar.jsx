@@ -1,23 +1,11 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
+import { categories } from './data';
 
 export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-
-  const categories = [
-    { name: "Electronics", icon: "📱", path: "/category/electronics" },
-    { name: "Fashion", icon: "👗", path: "/category/fashion" },
-    { name: "Home & Garden", icon: "🏡", path: "/category/home-and-garden" },
-    { name: "Sports", icon: "⚽", path: "/category/sports" },
-    { name: "Beauty", icon: "💄", path: "/category/beauty" },
-    { name: "Books", icon: "📚", path: "/category/books" },
-    { name: "Toys & Games", icon: "🎮", path: "/category/toys-and-games" },
-    { name: "Automotive", icon: "🚗", path: "/category/automotive" },
-    { name: "Health & Wellness", icon: "💊", path: "/category/health-and-wellness" },
-    { name: "Food & Beverages", icon: "🍔", path: "/category/food-and-beverages" }
-  ];
 
   const handleUserClick = () => {
     if (isUserLoggedIn) {

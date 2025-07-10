@@ -1,52 +1,6 @@
 import React from 'react';
 import Products from './Products';
-
-export const featuredProducts = [
-  {
-    id: 1,
-    name: "Wireless Earbuds Pro",
-    price: 159.99,
-    originalPrice: 199.99,
-    rating: 4.8,
-    reviews: 2847,
-    image: "🎧",
-    badge: "Best Seller",
-    category: "Electronics"
-  },
-  {
-    id: 2,
-    name: "Designer Sneakers",
-    price: 89.99,
-    originalPrice: 120.00,
-    rating: 4.6,
-    reviews: 1523,
-    image: "👟",
-    badge: "New",
-    category: "Fashion"
-  },
-  {
-    id: 3,
-    name: "Smart Watch Series X",
-    price: 299.99,
-    originalPrice: 399.99,
-    rating: 4.9,
-    reviews: 3241,
-    image: "⌚",
-    badge: "Hot Deal",
-    category: "Electronics"
-  },
-  {
-    id: 4,
-    name: "Minimalist Backpack",
-    price: 79.99,
-    originalPrice: 99.99,
-    rating: 4.7,
-    reviews: 892,
-    image: "🎒",
-    badge: "Trending",
-    category: "Accessories"
-  }
-];
+import { allProducts } from './data';
 
 const FeaturedProducts = ({ likedProducts, toggleLike, addToCart, cartItems, isUserLoggedIn, handleUserClick }) => {
   return (
@@ -59,7 +13,7 @@ const FeaturedProducts = ({ likedProducts, toggleLike, addToCart, cartItems, isU
           </p>
         </div>
         <Products 
-          products={featuredProducts}
+          products={allProducts}
           likedProducts={likedProducts}
           toggleLike={toggleLike}
           addToCart={addToCart}

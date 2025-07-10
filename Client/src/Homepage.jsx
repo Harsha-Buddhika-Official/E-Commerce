@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Component Imports
 import Navbar from './Components/Navbar';
-import HeroSlider from './Components/HeroSlider';
+import Slides from './Components/Slides';
 import FeaturesBar from './Components/FeaturesBar';
 import Categories from './Components/Categories';
 import FeaturedProducts from './Components/FeaturedProducts';
@@ -19,34 +19,10 @@ export default function Homepage() {
   const [likedProducts, setLikedProducts] = useState(new Set());
   const [cartItems, setCartItems] = useState(0);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
-  const heroSlides = [
-    {
-      title: "Summer Collection 2025",
-      subtitle: "Discover the latest trends",
-      description: "Fresh styles that make you stand out",
-      bgColor: "from-pink-600 to-purple-600",
-      image: "🌸"
-    },
-    {
-      title: "Tech Essentials",
-      subtitle: "Power up your lifestyle",
-      description: "Cutting-edge gadgets for modern living",
-      bgColor: "from-blue-600 to-cyan-600",
-      image: "⚡"
-    },
-    {
-      title: "Home & Living",
-      subtitle: "Transform your space",
-      description: "Beautiful designs for every room",
-      bgColor: "from-emerald-600 to-teal-600",
-      image: "🏠"
-    }
-  ];
   
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+      setCurrentSlide((prev) => (prev + 1) % 3); // 3 slides total
     }, 5000);
     return () => clearInterval(timer);
   }, []);
@@ -88,8 +64,7 @@ export default function Homepage() {
 
       {/* Hero Section */}
       <div>
-        <HeroSlider
-          slides={heroSlides}
+        <Slides
           currentSlide={currentSlide}
           setCurrentSlide={setCurrentSlide}
           toggleLike={toggleLike}

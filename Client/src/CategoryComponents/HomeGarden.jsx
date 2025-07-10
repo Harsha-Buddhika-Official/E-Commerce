@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ProductGrid from '../Components/ProductGrid';
+import { homeGardenProducts } from '../Components/data';
 
 export default function HomeGarden() {
   const [sortBy, setSortBy] = useState('featured');
@@ -24,76 +25,6 @@ export default function HomeGarden() {
     console.log('Added to cart:', product);
     // Add cart functionality here
   };
-
-  // Sample home & garden products
-  const homeGardenProducts = [
-    {
-      id: 301,
-      name: "Smart LED Light Bulbs",
-      price: 24.99,
-      originalPrice: 34.99,
-      rating: 4.7,
-      reviews: 1456,
-      image: "💡",
-      badge: "Smart Home",
-      category: "Home & Garden"
-    },
-    {
-      id: 302,
-      name: "Indoor Plant Collection",
-      price: 49.99,
-      originalPrice: 69.99,
-      rating: 4.8,
-      reviews: 892,
-      image: "🪴",
-      badge: "Air Purifying",
-      category: "Home & Garden"
-    },
-    {
-      id: 303,
-      name: "Ceramic Dinner Set",
-      price: 129.99,
-      originalPrice: 179.99,
-      rating: 4.6,
-      reviews: 634,
-      image: "🍽️",
-      badge: "Premium",
-      category: "Home & Garden"
-    },
-    {
-      id: 304,
-      name: "Garden Tool Set",
-      price: 89.99,
-      originalPrice: 119.99,
-      rating: 4.5,
-      reviews: 1023,
-      image: "🔧",
-      badge: "Professional",
-      category: "Home & Garden"
-    },
-    {
-      id: 305,
-      name: "Cozy Throw Pillows",
-      price: 39.99,
-      originalPrice: 59.99,
-      rating: 4.9,
-      reviews: 2134,
-      image: "🛋️",
-      badge: "Bestseller",
-      category: "Home & Garden"
-    },
-    {
-      id: 306,
-      name: "Outdoor Solar Lights",
-      price: 69.99,
-      originalPrice: 99.99,
-      rating: 4.4,
-      reviews: 756,
-      image: "🌞",
-      badge: "Eco-Friendly",
-      category: "Home & Garden"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">

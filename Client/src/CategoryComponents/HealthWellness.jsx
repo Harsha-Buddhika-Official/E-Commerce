@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ProductGrid from '../Components/ProductGrid';
+import { healthWellnessProducts } from '../Components/data';
 
 export default function HealthWellness() {
   const [likedProducts, setLikedProducts] = useState(new Set());
@@ -23,97 +24,6 @@ export default function HealthWellness() {
     console.log('Added to cart:', product);
     // Add cart functionality here
   };
-
-  const healthWellnessProducts = [
-    {
-      id: 801,
-      name: "Smart Fitness Tracker",
-      price: 89.99,
-      originalPrice: 129.99,
-      rating: 4.6,
-      reviews: 1847,
-      image: "📟",
-      badge: "Best Seller",
-      category: "Health & Wellness"
-    },
-    {
-      id: 802,
-      name: "Yoga Mat Premium",
-      price: 49.99,
-      originalPrice: 69.99,
-      rating: 4.8,
-      reviews: 2341,
-      image: "🧘",
-      badge: "Eco-Friendly",
-      category: "Health & Wellness"
-    },
-    {
-      id: 803,
-      name: "Protein Powder Blend",
-      price: 39.99,
-      originalPrice: 54.99,
-      rating: 4.7,
-      reviews: 923,
-      image: "🥤",
-      badge: "Organic",
-      category: "Health & Wellness"
-    },
-    {
-      id: 804,
-      name: "Essential Oil Diffuser",
-      price: 79.99,
-      originalPrice: 99.99,
-      rating: 4.9,
-      reviews: 1456,
-      image: "🌿",
-      badge: "Aromatherapy",
-      category: "Health & Wellness"
-    },
-    {
-      id: 805,
-      name: "Digital Blood Pressure Monitor",
-      price: 69.99,
-      originalPrice: 89.99,
-      rating: 4.5,
-      reviews: 756,
-      image: "🩺",
-      badge: "Clinically Tested",
-      category: "Health & Wellness"
-    },
-    {
-      id: 806,
-      name: "Massage Gun Pro",
-      price: 159.99,
-      originalPrice: 199.99,
-      rating: 4.8,
-      reviews: 1234,
-      image: "💆",
-      badge: "Recovery",
-      category: "Health & Wellness"
-    },
-    {
-      id: 807,
-      name: "Vitamin D3 Supplements",
-      price: 24.99,
-      originalPrice: 34.99,
-      rating: 4.6,
-      reviews: 892,
-      image: "💊",
-      badge: "Doctor Recommended",
-      category: "Health & Wellness"
-    },
-    {
-      id: 808,
-      name: "Smart Water Bottle",
-      price: 59.99,
-      originalPrice: 79.99,
-      rating: 4.4,
-      reviews: 567,
-      image: "💧",
-      badge: "Hydration Tracker",
-      category: "Health & Wellness"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">

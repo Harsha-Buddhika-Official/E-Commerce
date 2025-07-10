@@ -1,14 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-export default function HeroSlider({ slides }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
+export default function HeroSlider({ slides, currentSlide, setCurrentSlide }) {
 
   return (
     <section className="relative h-96 md:h-[500px] overflow-hidden">

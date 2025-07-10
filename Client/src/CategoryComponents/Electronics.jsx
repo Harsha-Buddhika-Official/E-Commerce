@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ProductGrid from '../Components/ProductGrid';
+import { electronicsProducts } from '../Components/data';
 
 export default function Electronics() {
   const [likedProducts, setLikedProducts] = useState(new Set());
@@ -23,75 +24,6 @@ export default function Electronics() {
     console.log('Added to cart:', product);
     // Add cart functionality here
   };
-
-  const electronicsProducts = [
-    {
-      id: 1,
-      name: "Wireless Earbuds Pro",
-      price: 159.99,
-      originalPrice: 199.99,
-      rating: 4.8,
-      reviews: 2847,
-      image: "🎧",
-      badge: "Best Seller",
-      category: "Electronics"
-    },
-    {
-      id: 2,
-      name: "Smart Watch Series X",
-      price: 299.99,
-      originalPrice: 399.99,
-      rating: 4.9,
-      reviews: 3241,
-      image: "⌚",
-      badge: "Hot Deal",
-      category: "Electronics"
-    },
-    {
-      id: 3,
-      name: "Gaming Laptop Ultra",
-      price: 1299.99,
-      originalPrice: 1599.99,
-      rating: 4.9,
-      reviews: 1847,
-      image: "💻",
-      badge: "Gaming",
-      category: "Electronics"
-    },
-    {
-      id: 4,
-      name: "4K Webcam Pro",
-      price: 199.99,
-      originalPrice: 249.99,
-      rating: 4.7,
-      reviews: 923,
-      image: "📹",
-      badge: "Professional",
-      category: "Electronics"
-    },
-    {
-      id: 5,
-      name: "Wireless Charger Pad",
-      price: 39.99,
-      originalPrice: 59.99,
-      rating: 4.5,
-      reviews: 1456,
-      image: "🔌",
-      badge: "Convenient",
-      category: "Electronics"
-    },
-    {
-      id: 6,
-      name: "Bluetooth Speaker",
-      price: 79.99,
-      originalPrice: 99.99,
-      rating: 4.7,
-      reviews: 892,
-      image: "🔊",
-      badge: "Trending",
-      category: "Electronics"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">

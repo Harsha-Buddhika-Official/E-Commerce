@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import ProductGrid from '../Components/ProductGrid';
+import { beautyProducts } from '../Components/data';
 
 export default function Beauty() {
   const [sortBy, setSortBy] = useState('featured');
@@ -24,53 +25,6 @@ export default function Beauty() {
     console.log('Added to cart:', product);
     // Add cart functionality here
   };
-
-  const beautyProducts = [
-    {
-      id: 501,
-      name: "Luxury Lipstick Set",
-      price: 59.99,
-      originalPrice: 79.99,
-      rating: 4.9,
-      reviews: 2847,
-      image: "💄",
-      badge: "Bestseller",
-      category: "Beauty"
-    },
-    {
-      id: 502,
-      name: "Skincare Routine Kit",
-      price: 129.99,
-      originalPrice: 179.99,
-      rating: 4.8,
-      reviews: 1634,
-      image: "🧴",
-      badge: "Dermatologist Approved",
-      category: "Beauty"
-    },
-    {
-      id: 503,
-      name: "Professional Makeup Brushes",
-      price: 89.99,
-      originalPrice: 119.99,
-      rating: 4.7,
-      reviews: 892,
-      image: "🖌️",
-      badge: "Professional",
-      category: "Beauty"
-    },
-    {
-      id: 504,
-      name: "Perfume Collection",
-      price: 149.99,
-      originalPrice: 199.99,
-      rating: 4.6,
-      reviews: 1245,
-      image: "🌸",
-      badge: "Limited Edition",
-      category: "Beauty"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
