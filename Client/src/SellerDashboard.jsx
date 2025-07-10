@@ -1,0 +1,296 @@
+import React, { useState } from 'react';
+import { 
+  Store, 
+  TrendingUp, 
+  Package, 
+  ShoppingCart, 
+  DollarSign, 
+  Users, 
+  BarChart3, 
+  Plus,
+  Eye,
+  Edit,
+  Trash2,
+  Bell,
+  Settings,
+  LogOut,
+  Search,
+  Filter
+} from 'lucide-react';
+
+export default function SellerDashboard() {
+  const [activeTab, setActiveTab] = useState('overview');
+
+  // Mock data - replace with actual data from your backend
+  const stats = {
+    totalSales: 25420,
+    totalOrders: 156,
+    totalProducts: 48,
+    totalCustomers: 234
+  };
+
+  const recentOrders = [
+    { id: '#ORD-001', customer: 'John Doe', product: 'Wireless Headphones', amount: 99.99, status: 'completed' },
+    { id: '#ORD-002', customer: 'Jane Smith', product: 'Smart Watch', amount: 299.99, status: 'pending' },
+    { id: '#ORD-003', customer: 'Mike Johnson', product: 'Bluetooth Speaker', amount: 59.99, status: 'shipped' },
+  ];
+
+  const products = [
+    { id: 1, name: 'Wireless Headphones', price: 99.99, stock: 25, status: 'active' },
+    { id: 2, name: 'Smart Watch', price: 299.99, stock: 12, status: 'active' },
+    { id: 3, name: 'Bluetooth Speaker', price: 59.99, stock: 0, status: 'out_of_stock' },
+  ];
+
+  const renderContent = () => {
+    switch(activeTab) {
+      case 'overview':
+        return (
+          <div className="space-y-6">
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-white/70 text-sm">Total Sales</p>
+                    <p className="text-2xl font-bold text-white">${stats.totalSales.toLocaleString()}</p>
+                  </div>
+                  <DollarSign className="w-8 h-8 text-emerald-400" />
+                </div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-white/70 text-sm">Total Orders</p>
+                    <p className="text-2xl font-bold text-white">{stats.totalOrders}</p>
+                  </div>
+                  <ShoppingCart className="w-8 h-8 text-blue-400" />
+                </div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-white/70 text-sm">Products</p>
+                    <p className="text-2xl font-bold text-white">{stats.totalProducts}</p>
+                  </div>
+                  <Package className="w-8 h-8 text-purple-400" />
+                </div>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-white/70 text-sm">Customers</p>
+                    <p className="text-2xl font-bold text-white">{stats.totalCustomers}</p>
+                  </div>
+                  <Users className="w-8 h-8 text-cyan-400" />
+                </div>
+              </div>
+            </div>
+
+            {/* Recent Orders */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+              <h3 className="text-xl font-semibold text-white mb-4">Recent Orders</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-white/20">
+                      <th className="text-left text-white/70 pb-3">Order ID</th>
+                      <th className="text-left text-white/70 pb-3">Customer</th>
+                      <th className="text-left text-white/70 pb-3">Product</th>
+                      <th className="text-left text-white/70 pb-3">Amount</th>
+                      <th className="text-left text-white/70 pb-3">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentOrders.map((order, index) => (
+                      <tr key={index} className="border-b border-white/10">
+                        <td className="py-3 text-white">{order.id}</td>
+                        <td className="py-3 text-white">{order.customer}</td>
+                        <td className="py-3 text-white">{order.product}</td>
+                        <td className="py-3 text-white">${order.amount}</td>
+                        <td className="py-3">
+                          <span className={`px-2 py-1 rounded-full text-xs ${
+                            order.status === 'completed' ? 'bg-green-500/20 text-green-400' :
+                            order.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400' :
+                            'bg-blue-500/20 text-blue-400'
+                          }`}>
+                            {order.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        );
+      
+      case 'products':
+        return (
+          <div className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-white">Products</h2>
+              <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg flex items-center">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Product
+              </button>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-white/20">
+                      <th className="text-left text-white/70 pb-3">Product</th>
+                      <th className="text-left text-white/70 pb-3">Price</th>
+                      <th className="text-left text-white/70 pb-3">Stock</th>
+                      <th className="text-left text-white/70 pb-3">Status</th>
+                      <th className="text-left text-white/70 pb-3">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {products.map((product) => (
+                      <tr key={product.id} className="border-b border-white/10">
+                        <td className="py-3 text-white">{product.name}</td>
+                        <td className="py-3 text-white">${product.price}</td>
+                        <td className="py-3 text-white">{product.stock}</td>
+                        <td className="py-3">
+                          <span className={`px-2 py-1 rounded-full text-xs ${
+                            product.status === 'active' ? 'bg-green-500/20 text-green-400' :
+                            'bg-red-500/20 text-red-400'
+                          }`}>
+                            {product.status === 'active' ? 'Active' : 'Out of Stock'}
+                          </span>
+                        </td>
+                        <td className="py-3">
+                          <div className="flex space-x-2">
+                            <button className="text-blue-400 hover:text-blue-300">
+                              <Eye className="w-4 h-4" />
+                            </button>
+                            <button className="text-yellow-400 hover:text-yellow-300">
+                              <Edit className="w-4 h-4" />
+                            </button>
+                            <button className="text-red-400 hover:text-red-300">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        );
+      
+      default:
+        return <div className="text-white">Content for {activeTab}</div>;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900">
+      {/* Header */}
+      <header className="bg-white/10 backdrop-blur-lg border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Store className="w-8 h-8 text-emerald-400 mr-3" />
+              <h1 className="text-xl font-bold text-white">Seller Dashboard</h1>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button className="text-white/70 hover:text-white">
+                <Bell className="w-5 h-5" />
+              </button>
+              <button className="text-white/70 hover:text-white">
+                <Settings className="w-5 h-5" />
+              </button>
+              <button className="text-white/70 hover:text-white">
+                <LogOut className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="flex">
+        {/* Sidebar */}
+        <aside className="w-64 bg-white/5 backdrop-blur-lg border-r border-white/20 min-h-screen">
+          <nav className="mt-8">
+            <div className="px-4">
+              <button
+                onClick={() => setActiveTab('overview')}
+                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                  activeTab === 'overview' 
+                    ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <BarChart3 className="w-5 h-5 mr-3" />
+                Overview
+              </button>
+              
+              <button
+                onClick={() => setActiveTab('products')}
+                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                  activeTab === 'products' 
+                    ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <Package className="w-5 h-5 mr-3" />
+                Products
+              </button>
+              
+              <button
+                onClick={() => setActiveTab('orders')}
+                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                  activeTab === 'orders' 
+                    ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <ShoppingCart className="w-5 h-5 mr-3" />
+                Orders
+              </button>
+              
+              <button
+                onClick={() => setActiveTab('customers')}
+                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                  activeTab === 'customers' 
+                    ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <Users className="w-5 h-5 mr-3" />
+                Customers
+              </button>
+              
+              <button
+                onClick={() => setActiveTab('analytics')}
+                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                  activeTab === 'analytics' 
+                    ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <TrendingUp className="w-5 h-5 mr-3" />
+                Analytics
+              </button>
+            </div>
+          </nav>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 p-8">
+          {renderContent()}
+        </main>
+      </div>
+    </div>
+  );
+}
