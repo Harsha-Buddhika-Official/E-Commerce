@@ -1,84 +1,75 @@
 import React from 'react';
-import { ArrowRight, Heart, ShoppingCart, Star } from 'lucide-react';
+import Products from './Products';
 
-export default function FeaturedProducts({ products, likedProducts, toggleLike, addToCart }) {
+export const featuredProducts = [
+  {
+    id: 1,
+    name: "Wireless Earbuds Pro",
+    price: 159.99,
+    originalPrice: 199.99,
+    rating: 4.8,
+    reviews: 2847,
+    image: "🎧",
+    badge: "Best Seller",
+    category: "Electronics"
+  },
+  {
+    id: 2,
+    name: "Designer Sneakers",
+    price: 89.99,
+    originalPrice: 120.00,
+    rating: 4.6,
+    reviews: 1523,
+    image: "👟",
+    badge: "New",
+    category: "Fashion"
+  },
+  {
+    id: 3,
+    name: "Smart Watch Series X",
+    price: 299.99,
+    originalPrice: 399.99,
+    rating: 4.9,
+    reviews: 3241,
+    image: "⌚",
+    badge: "Hot Deal",
+    category: "Electronics"
+  },
+  {
+    id: 4,
+    name: "Minimalist Backpack",
+    price: 79.99,
+    originalPrice: 99.99,
+    rating: 4.7,
+    reviews: 892,
+    image: "🎒",
+    badge: "Trending",
+    category: "Accessories"
+  }
+];
+
+const FeaturedProducts = ({ likedProducts, toggleLike, addToCart, cartItems, isUserLoggedIn, handleUserClick }) => {
   return (
-    <section className="py-12 bg-white">
+    <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Featured Products</h2>
-            <p className="text-gray-600">Hand-picked favorites just for you</p>
-          </div>
-          <button className="flex items-center text-purple-600 hover:text-purple-700 font-medium">
-            View All
-            <ArrowRight className="w-4 h-4 ml-1" />
-          </button>
+        <div className="text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900">Featured Products</h2>
+          <p className="mt-4 text-lg text-gray-500">
+            Discover our most popular items loved by customers like you
+          </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group"
-            >
-              <div className="relative">
-                <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                  <span className="text-6xl">{product.image}</span>
-                </div>
-                <div className="absolute top-3 left-3">
-                  <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                    {product.badge}
-                  </span>
-                </div>
-                <button
-                  onClick={() => toggleLike(product.id)}
-                  className="absolute top-3 right-3 p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
-                >
-                  <Heart
-                    className={`w-4 h-4 ${
-                      likedProducts.has(product.id) ? 'text-red-500 fill-current' : 'text-gray-400'
-                    }`}
-                  />
-                </button>
-              </div>
-              
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">
-                    {product.category}
-                  </span>
-                  <div className="flex items-center">
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <span className="text-sm text-gray-600 ml-1">
-                      {product.rating} ({product.reviews})
-                    </span>
-                  </div>
-                </div>
-                
-                <h3 className="font-semibold text-gray-900 mb-2">{product.name}</h3>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-xl font-bold text-gray-900">
-                      ${product.price}
-                    </span>
-                    <span className="text-sm text-gray-500 line-through">
-                      ${product.originalPrice}
-                    </span>
-                  </div>
-                  <button
-                    onClick={addToCart}
-                    className="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-lg transition-colors transform hover:scale-105"
-                  >
-                    <ShoppingCart className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Products 
+          products={featuredProducts}
+          likedProducts={likedProducts}
+          toggleLike={toggleLike}
+          addToCart={addToCart}
+          cartItems={cartItems}
+          isUserLoggedIn={isUserLoggedIn}
+          handleUserClick={handleUserClick}
+        />
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default FeaturedProducts;

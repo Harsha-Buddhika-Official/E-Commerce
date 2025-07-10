@@ -5,7 +5,6 @@ import Login from './Login'
 import Dashboard from './Dashboard'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Homepage from './Homepage'
-import Temp from './temp'
 
 function App() {
 
@@ -17,7 +16,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path='/' element={<Homepage/>} />
-          <Route path='*' element={<Temp/>} />
         </Routes>
       </BrowserRouter>
     </>

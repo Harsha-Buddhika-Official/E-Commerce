@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ShoppingBag, Search, User, Heart, ShoppingCart, Star, ArrowRight, TrendingUp, Zap, Gift, Truck, Shield, Headphones, Menu, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 // Component Imports
 import Navbar from './Components/Navbar';
@@ -41,54 +40,7 @@ export default function Homepage() {
       image: "🏠"
     }
   ];
-
-  const featuredProducts = [
-    {
-      id: 1,
-      name: "Wireless Earbuds Pro",
-      price: 159.99,
-      originalPrice: 199.99,
-      rating: 4.8,
-      reviews: 2847,
-      image: "🎧",
-      badge: "Best Seller",
-      category: "Electronics"
-    },
-    {
-      id: 2,
-      name: "Designer Sneakers",
-      price: 89.99,
-      originalPrice: 120.00,
-      rating: 4.6,
-      reviews: 1523,
-      image: "👟",
-      badge: "New",
-      category: "Fashion"
-    },
-    {
-      id: 3,
-      name: "Smart Watch Series X",
-      price: 299.99,
-      originalPrice: 399.99,
-      rating: 4.9,
-      reviews: 3241,
-      image: "⌚",
-      badge: "Hot Deal",
-      category: "Electronics"
-    },
-    {
-      id: 4,
-      name: "Minimalist Backpack",
-      price: 79.99,
-      originalPrice: 99.99,
-      rating: 4.7,
-      reviews: 892,
-      image: "🎒",
-      badge: "Trending",
-      category: "Accessories"
-    }
-  ];
-
+  
   const categories = [
     { name: "Electronics", icon: "📱", color: "from-blue-500 to-purple-500" },
     { name: "Fashion", icon: "👗", color: "from-pink-500 to-rose-500" },
@@ -159,7 +111,6 @@ export default function Homepage() {
       {/* Featured Products */}
       <div>
         <FeaturedProducts
-          products={featuredProducts}
           likedProducts={likedProducts}
           toggleLike={toggleLike}
           addToCart={addToCart}
