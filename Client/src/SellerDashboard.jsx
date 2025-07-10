@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store, TrendingUp, mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft } from 'lucide-react';
+import { Store, TrendingUp, Mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft } from 'lucide-react';
 
 export default function SellerDashboard() {
   const navigate = useNavigate();

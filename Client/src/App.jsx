@@ -23,12 +23,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={<Homepage/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/User-dashboard" element={<UserDashboard />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
           <Route path="/add-product" element={<AddProduct />} />
-          <Route path='/' element={<Homepage/>} />
           <Route path='/categories' element={<CategoriesPage/>} />
           <Route path='/category/electronics' element={<Electronics/>} />
           <Route path='/category/fashion' element={<Fashion/>} />
