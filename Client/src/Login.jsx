@@ -1,19 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { 
-  Mail, 
-  Lock, 
-  Eye, 
-  EyeOff, 
-  ShoppingBag, 
-  Store,
-  CheckCircle,
-  AlertCircle,
-  ArrowRight,
-  Users,
-  Briefcase
-} from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ShoppingBag, Store, CheckCircle, AlertCircle, ArrowRight, Users, Briefcase } from 'lucide-react';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);

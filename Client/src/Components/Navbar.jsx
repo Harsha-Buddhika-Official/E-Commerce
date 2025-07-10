@@ -53,13 +53,13 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
           </div>
 
           {/* User Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 ml-3">
             <button 
               className="p-2 text-gray-700 hover:text-purple-600 transition-colors"
               onClick={handleUserClick}
               title={isUserLoggedIn ? 'Go to Dashboard' : 'Login'}
             >
-              <User className="w-5 h-5" />
+              <User className="w-5 h-5 " />
             </button>
             
             {/* Show Login button only when user is not logged in */}
