@@ -1,13 +1,21 @@
 import React from 'react';
 import { Heart, ShoppingCart, Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductGrid({ products, likedProducts, toggleLike, addToCart }) {
+  const navigate = useNavigate();
+
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {products.map((product) => (
         <div
           key={product.id}
-          className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group"
+          className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer"
+          onClick={() => handleProductClick(product.id)}
         >
           <div className="relative">
             <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
@@ -19,7 +27,10 @@ export default function ProductGrid({ products, likedProducts, toggleLike, addTo
               </span>
             </div>
             <button
-              onClick={() => toggleLike(product.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleLike(product.id);
+              }}
               className="absolute top-3 right-3 p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
             >
               <Heart
@@ -55,7 +66,10 @@ export default function ProductGrid({ products, likedProducts, toggleLike, addTo
                 </span>
               </div>
               <button
-                onClick={() => addToCart(product)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addToCart(product);
+                }}
                 className="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-lg transition-colors transform hover:scale-105"
               >
                 <ShoppingCart className="w-4 h-4" />

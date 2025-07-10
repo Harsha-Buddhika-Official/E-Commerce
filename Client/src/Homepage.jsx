@@ -77,12 +77,7 @@ export default function Homepage() {
       <div>
         <FeaturesBar/>
       </div>
-
-      {/* Categories */}
-      <div>
-        <Categories categories={categories} />
-      </div>
-
+      
       {/* Featured Products */}
       <div>
         <FeaturedProducts

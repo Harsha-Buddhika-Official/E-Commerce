@@ -23,10 +23,22 @@ export default function AddProduct() {
     weight: '',
     dimensions: { length: '', width: '', height: '' },
     tags: [],
-    images: []
+    images: [],
+    features: [],
+    specifications: {},
+    colors: [],
+    sizes: [],
+    badge: '',
+    originalPrice: '',
+    stockCount: ''
   });
   
   const [newTag, setNewTag] = useState('');
+  const [newFeature, setNewFeature] = useState('');
+  const [newSpecKey, setNewSpecKey] = useState('');
+  const [newSpecValue, setNewSpecValue] = useState('');
+  const [newColor, setNewColor] = useState('');
+  const [newSize, setNewSize] = useState('');
   const [dragActive, setDragActive] = useState(false);
 
   const categories = [
@@ -75,6 +87,86 @@ export default function AddProduct() {
     setFormData(prev => ({
       ...prev,
       tags: prev.tags.filter(tag => tag !== tagToRemove)
+    }));
+  };
+
+  // Feature handlers
+  const handleAddFeature = () => {
+    if (newFeature.trim() && !formData.features.includes(newFeature.trim())) {
+      setFormData(prev => ({
+        ...prev,
+        features: [...prev.features, newFeature.trim()]
+      }));
+      setNewFeature('');
+    }
+  };
+
+  const handleRemoveFeature = (featureToRemove) => {
+    setFormData(prev => ({
+      ...prev,
+      features: prev.features.filter(feature => feature !== featureToRemove)
+    }));
+  };
+
+  // Specification handlers
+  const handleAddSpecification = () => {
+    if (newSpecKey.trim() && newSpecValue.trim()) {
+      setFormData(prev => ({
+        ...prev,
+        specifications: {
+          ...prev.specifications,
+          [newSpecKey.trim()]: newSpecValue.trim()
+        }
+      }));
+      setNewSpecKey('');
+      setNewSpecValue('');
+    }
+  };
+
+  const handleRemoveSpecification = (keyToRemove) => {
+    setFormData(prev => {
+      const newSpecs = { ...prev.specifications };
+      delete newSpecs[keyToRemove];
+      return {
+        ...prev,
+        specifications: newSpecs
+      };
+    });
+  };
+
+  // Color handlers
+  const handleAddColor = () => {
+    if (newColor.trim() && !formData.colors.includes(newColor.trim())) {
+      setFormData(prev => ({
+        ...prev,
+        colors: [...prev.colors, newColor.trim()]
+      }));
+      setNewColor('');
+    }
+  };
+
+  const handleRemoveColor = (colorToRemove) => {
+    setFormData(prev => ({
+      ...prev,
+      colors: prev.colors.filter(color => color !== colorToRemove)
+    }));
+  };
+
+  // Size handlers
+  const handleAddSize = () => {
+    if (newSize.trim() && !formData.sizes.includes(newSize.trim())) {
+      setFormData(prev => ({
+        ...prev,
+        sizes: [...prev.sizes, newSize.trim()]
+      }));
+      setNewSize('');
+    }
+  };
+
+  const handleRemoveSize = (sizeToRemove) => {
+    setFormData(prev => ({
+      ...prev,
+      sizes: prev.sizes.filter(size => size !== sizeToRemove)
     }));
   };
 
@@ -248,6 +340,21 @@ export default function AddProduct() {
 
               <div>
                 <label className="block text-white/70 text-sm font-medium mb-2">
+                  Original Price
+                </label>
+                <input
+                  type="number"
+                  name="originalPrice"
+                  value={formData.originalPrice}
+                  onChange={handleInputChange}
+                  step="0.01"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  placeholder="0.00"
+                />
+              </div>
+
+              <div>
+                <label className="block text-white/70 text-sm font-medium mb-2">
                   Stock Quantity *
                 </label>
                 <input
@@ -258,6 +365,20 @@ export default function AddProduct() {
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="0"
                   required
+                />
+              </div>
+
+              <div>
+                <label className="block text-white/70 text-sm font-medium mb-2">
+                  Stock Count (Available)
+                </label>
+                <input
+                  type="number"
+                  name="stockCount"
+                  value={formData.stockCount}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  placeholder="0"
                 />
               </div>
 
@@ -277,17 +398,23 @@ export default function AddProduct() {
 
               <div>
                 <label className="block text-white/70 text-sm font-medium mb-2">
-                  Weight (kg)
+                  Badge
                 </label>
-                <input
-                  type="number"
-                  name="weight"
-                  value={formData.weight}
+                <select
+                  name="badge"
+                  value={formData.badge}
                   onChange={handleInputChange}
-                  step="0.01"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                  placeholder="0.00"
-                />
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                >
+                  <option value="">No Badge</option>
+                  <option value="Best Seller" className="bg-gray-800">Best Seller</option>
+                  <option value="Hot Deal" className="bg-gray-800">Hot Deal</option>
+                  <option value="New" className="bg-gray-800">New</option>
+                  <option value="Trending" className="bg-gray-800">Trending</option>
+                  <option value="Gaming" className="bg-gray-800">Gaming</option>
+                  <option value="Professional" className="bg-gray-800">Professional</option>
+                  <option value="Limited Edition" className="bg-gray-800">Limited Edition</option>
+                </select>
               </div>
             </div>
           </div>
@@ -382,6 +509,238 @@ export default function AddProduct() {
               >
                 <Plus className="w-4 h-4" />
               </button>
+            </div>
+          </div>
+
+          {/* Product Features */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h2 className="text-xl font-semibold text-white mb-6">Product Features</h2>
+            
+            <div className="flex flex-wrap gap-2 mb-4">
+              {formData.features.map((feature, index) => (
+                <span
+                  key={index}
+                  className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm flex items-center"
+                >
+                  {feature}
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveFeature(feature)}
+                    className="ml-2 text-blue-400 hover:text-blue-300"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              ))}
+            </div>
+
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={newFeature}
+                onChange={(e) => setNewFeature(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddFeature())}
+                className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="Add a feature..."
+              />
+              <button
+                type="button"
+                onClick={handleAddFeature}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Product Specifications */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h2 className="text-xl font-semibold text-white mb-6">Specifications</h2>
+            
+            <div className="space-y-3 mb-4">
+              {Object.entries(formData.specifications).map(([key, value]) => (
+                <div key={key} className="flex items-center justify-between bg-white/5 rounded-lg p-3">
+                  <div className="flex-1">
+                    <span className="text-white/70 font-medium">{key}:</span>
+                    <span className="text-white ml-2">{value}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveSpecification(key)}
+                    className="text-red-400 hover:text-red-300 ml-2"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <input
+                type="text"
+                value={newSpecKey}
+                onChange={(e) => setNewSpecKey(e.target.value)}
+                className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="Specification name..."
+              />
+              <input
+                type="text"
+                value={newSpecValue}
+                onChange={(e) => setNewSpecValue(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddSpecification())}
+                className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="Specification value..."
+              />
+            </div>
+            <button
+              type="button"
+              onClick={handleAddSpecification}
+              className="mt-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors w-full"
+            >
+              <Plus className="w-4 h-4 inline mr-2" />
+              Add Specification
+            </button>
+          </div>
+
+          {/* Colors & Sizes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Colors */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+              <h2 className="text-xl font-semibold text-white mb-6">Available Colors</h2>
+              
+              <div className="flex flex-wrap gap-2 mb-4">
+                {formData.colors.map((color, index) => (
+                  <span
+                    key={index}
+                    className="bg-indigo-600/20 text-indigo-400 px-3 py-1 rounded-full text-sm flex items-center"
+                  >
+                    {color}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveColor(color)}
+                      className="ml-2 text-indigo-400 hover:text-indigo-300"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={newColor}
+                  onChange={(e) => setNewColor(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddColor())}
+                  className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  placeholder="Add a color..."
+                />
+                <button
+                  type="button"
+                  onClick={handleAddColor}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Sizes */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+              <h2 className="text-xl font-semibold text-white mb-6">Available Sizes</h2>
+              
+              <div className="flex flex-wrap gap-2 mb-4">
+                {formData.sizes.map((size, index) => (
+                  <span
+                    key={index}
+                    className="bg-orange-600/20 text-orange-400 px-3 py-1 rounded-full text-sm flex items-center"
+                  >
+                    {size}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveSize(size)}
+                      className="ml-2 text-orange-400 hover:text-orange-300"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={newSize}
+                  onChange={(e) => setNewSize(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddSize())}
+                  className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  placeholder="Add a size..."
+                />
+                <button
+                  type="button"
+                  onClick={handleAddSize}
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Details */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <h2 className="text-xl font-semibold text-white mb-6">Product Details</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-white/70 text-sm font-medium mb-2">
+                  Weight (kg)
+                </label>
+                <input
+                  type="number"
+                  name="weight"
+                  value={formData.weight}
+                  onChange={handleInputChange}
+                  step="0.01"
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  placeholder="0.00"
+                />
+              </div>
+
+              <div>
+                <label className="block text-white/70 text-sm font-medium mb-2">
+                  Dimensions (L × W × H cm)
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  <input
+                    type="number"
+                    name="dimensions.length"
+                    value={formData.dimensions.length}
+                    onChange={handleInputChange}
+                    step="0.1"
+                    className="w-full px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                    placeholder="Length"
+                  />
+                  <input
+                    type="number"
+                    name="dimensions.width"
+                    value={formData.dimensions.width}
+                    onChange={handleInputChange}
+                    step="0.1"
+                    className="w-full px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                    placeholder="Width"
+                  />
+                  <input
+                    type="number"
+                    name="dimensions.height"
+                    value={formData.dimensions.height}
+                    onChange={handleInputChange}
+                    step="0.1"
+                    className="w-full px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                    placeholder="Height"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 

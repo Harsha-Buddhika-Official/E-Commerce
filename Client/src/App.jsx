@@ -8,6 +8,7 @@ import AddProduct from './AddProduct'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
+import ProductPage from './ProductPage'
 import Electronics from './CategoryComponents/Electronics'
 import Fashion from './CategoryComponents/Fashion'
 import HomeGarden from './CategoryComponents/HomeGarden'
@@ -29,6 +30,7 @@ function App() {
           <Route path="/User-dashboard" element={<UserDashboard />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
           <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/product/:id" element={<ProductPage />} />
           <Route path='/categories' element={<CategoriesPage/>} />
           <Route path='/category/electronics' element={<Electronics/>} />
           <Route path='/category/fashion' element={<Fashion/>} />
