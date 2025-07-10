@@ -7,10 +7,15 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
 
   const handleUserClick = () => {
     if (isUserLoggedIn) {
-      navigate('/dashboard');
+      navigate('/User-dashboard');
     } else {
       navigate('/login');
     }
+  };
+
+  const handleLogout = () => {
+    setIsUserLoggedIn(false);
+    // You can add additional logout logic here (clear tokens, etc.)
   };
 
   return (
@@ -52,16 +57,31 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             <button 
               className="p-2 text-gray-700 hover:text-purple-600 transition-colors"
               onClick={handleUserClick}
+              title={isUserLoggedIn ? 'Go to Dashboard' : 'Login'}
             >
               <User className="w-5 h-5" />
             </button>
-            {/* Temporary login toggle for testing - remove in production */}
-            <button 
-              className="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors"
-              onClick={() => setIsUserLoggedIn(!isUserLoggedIn)}
-            >
-              {isUserLoggedIn ? 'Logout' : 'Login'}
-            </button>
+            
+            {/* Show Login button only when user is not logged in */}
+            {!isUserLoggedIn && (
+              <button 
+                className="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                onClick={() => navigate('/login')}
+              >
+                Login
+              </button>
+            )}
+            
+            {/* Show Logout button only when user is logged in */}
+            {isUserLoggedIn && (
+              <button 
+                className="px-4 py-2 text-sm bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            )}
+            
             <button className="p-2 text-gray-700 hover:text-purple-600 transition-colors">
               <Heart className="w-5 h-5" />
             </button>
@@ -81,6 +101,54 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+              {/* Mobile Search */}
+              <div className="relative mb-3">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
+              
+              {/* Mobile Navigation Links */}
+              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">Home</a>
+              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">Categories</a>
+              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">Deals</a>
+              <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">About</a>
+              
+              {/* Mobile Login/Logout */}
+              <div className="pt-2 border-t border-gray-200 mt-3">
+                {!isUserLoggedIn ? (
+                  <button 
+                    className="w-full px-3 py-2 text-left bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                    onClick={() => {
+                      navigate('/login');
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Login
+                  </button>
+                ) : (
+                  <button 
+                    className="w-full px-3 py-2 text-left bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+                    onClick={() => {
+                      handleLogout();
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Logout
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

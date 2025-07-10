@@ -15,11 +15,14 @@ import {
   Settings,
   LogOut,
   Search,
-  Filter
+  Filter,
+  Menu,
+  ChevronLeft
 } from 'lucide-react';
 
 export default function SellerDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Mock data - replace with actual data from your backend
   const stats = {
@@ -204,6 +207,12 @@ export default function SellerDashboard() {
             </div>
             
             <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                className="text-white/70 hover:text-white lg:hidden"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
               <button className="text-white/70 hover:text-white">
                 <Bell className="w-5 h-5" />
               </button>
@@ -220,67 +229,86 @@ export default function SellerDashboard() {
 
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-64 bg-white/5 backdrop-blur-lg border-r border-white/20 min-h-screen">
-          <nav className="mt-8">
-            <div className="px-4">
+        <aside className={`${sidebarCollapsed ? 'w-16' : 'w-64'} bg-white/5 backdrop-blur-lg border-r border-white/20 min-h-screen transition-all duration-300 ease-in-out flex flex-col`}>
+          {/* Sidebar Toggle Button */}
+          <div className={`flex ${sidebarCollapsed ? 'justify-center' : 'justify-end'} p-4`}>
+            <button
+              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+              className="text-white/70 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10"
+            >
+              {sidebarCollapsed ? (
+                <Menu className="w-5 h-5" />
+              ) : (
+                <ChevronLeft className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+          
+          <nav className="flex-1">
+            <div className={`${sidebarCollapsed ? 'px-2' : 'px-4'}`}>
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                className={`w-full flex items-center ${sidebarCollapsed ? 'px-2 justify-center' : 'px-4'} py-3 rounded-lg mb-2 transition-colors ${
                   activeTab === 'overview' 
                     ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
                     : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
+                title={sidebarCollapsed ? 'Overview' : ''}
               >
-                <BarChart3 className="w-5 h-5 mr-3" />
-                Overview
+                <BarChart3 className={`w-5 h-5 flex-shrink-0 ${!sidebarCollapsed ? 'mr-3' : ''}`} />
+                {!sidebarCollapsed && <span>Overview</span>}
               </button>
               
               <button
                 onClick={() => setActiveTab('products')}
-                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                className={`w-full flex items-center ${sidebarCollapsed ? 'px-2 justify-center' : 'px-4'} py-3 rounded-lg mb-2 transition-colors ${
                   activeTab === 'products' 
                     ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
                     : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
+                title={sidebarCollapsed ? 'Products' : ''}
               >
-                <Package className="w-5 h-5 mr-3" />
-                Products
+                <Package className={`w-5 h-5 flex-shrink-0 ${!sidebarCollapsed ? 'mr-3' : ''}`} />
+                {!sidebarCollapsed && <span>Products</span>}
               </button>
               
               <button
                 onClick={() => setActiveTab('orders')}
-                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                className={`w-full flex items-center ${sidebarCollapsed ? 'px-2 justify-center' : 'px-4'} py-3 rounded-lg mb-2 transition-colors ${
                   activeTab === 'orders' 
                     ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
                     : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
+                title={sidebarCollapsed ? 'Orders' : ''}
               >
-                <ShoppingCart className="w-5 h-5 mr-3" />
-                Orders
+                <ShoppingCart className={`w-5 h-5 flex-shrink-0 ${!sidebarCollapsed ? 'mr-3' : ''}`} />
+                {!sidebarCollapsed && <span>Orders</span>}
               </button>
               
               <button
                 onClick={() => setActiveTab('customers')}
-                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                className={`w-full flex items-center ${sidebarCollapsed ? 'px-2 justify-center' : 'px-4'} py-3 rounded-lg mb-2 transition-colors ${
                   activeTab === 'customers' 
                     ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
                     : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
+                title={sidebarCollapsed ? 'Customers' : ''}
               >
-                <Users className="w-5 h-5 mr-3" />
-                Customers
+                <Users className={`w-5 h-5 flex-shrink-0 ${!sidebarCollapsed ? 'mr-3' : ''}`} />
+                {!sidebarCollapsed && <span>Customers</span>}
               </button>
               
               <button
                 onClick={() => setActiveTab('analytics')}
-                className={`w-full flex items-center px-4 py-3 text-left rounded-lg mb-2 transition-colors ${
+                className={`w-full flex items-center ${sidebarCollapsed ? 'px-2 justify-center' : 'px-4'} py-3 rounded-lg mb-2 transition-colors ${
                   activeTab === 'analytics' 
                     ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
                     : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
+                title={sidebarCollapsed ? 'Analytics' : ''}
               >
-                <TrendingUp className="w-5 h-5 mr-3" />
-                Analytics
+                <TrendingUp className={`w-5 h-5 flex-shrink-0 ${!sidebarCollapsed ? 'mr-3' : ''}`} />
+                {!sidebarCollapsed && <span>Analytics</span>}
               </button>
             </div>
           </nav>

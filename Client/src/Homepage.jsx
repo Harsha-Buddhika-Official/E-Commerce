@@ -75,7 +75,7 @@ export default function Homepage() {
 
   const handleUserClick = () => {
     if (isUserLoggedIn) {
-      navigate('/dashboard');
+      navigate('/User-dashboard');
     } else {
       navigate('/login');
     }
@@ -84,7 +84,13 @@ export default function Homepage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <Navbar/>
+      <Navbar 
+        isUserLoggedIn={isUserLoggedIn}
+        setIsUserLoggedIn={setIsUserLoggedIn}
+        cartItems={cartItems}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
 
       {/* Hero Section */}
       <div>
