@@ -1,0 +1,10 @@
+// Export all category components for easy importing
+export { default as Electronics } from './Electronics';
+export { default as Fashion } from './Fashion';
+export { default as HomeGarden } from './HomeGarden';
+export { default as Sports } from './Sports';
+export { default as Beauty } from './Beauty';
+export { default as Books } from './Books';
+export { default as ToysGames } from './ToysGames';
+export { default as HealthWellness } from './HealthWellness';
+export { default as GenericCategory } from './GenericCategory';

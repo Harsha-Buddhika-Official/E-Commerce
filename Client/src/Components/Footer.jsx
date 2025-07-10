@@ -35,6 +35,12 @@ export default function Footer() {
               <li><a href="#" className="hover:text-white transition-colors">Fashion</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Home & Garden</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Sports</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Beauty</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Books</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Toys & Games</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Automotive</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Health & Wellness</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Food & Beverages</a></li>
             </ul>
           </div>
           

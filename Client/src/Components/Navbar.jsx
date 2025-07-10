@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   const categories = [
-    { name: "Electronics", icon: "📱" },
-    { name: "Fashion", icon: "👗" },
-    { name: "Home & Garden", icon: "🏡" },
-    { name: "Sports", icon: "⚽" },
-    { name: "Beauty", icon: "💄" },
-    { name: "Books", icon: "📚" }
+    { name: "Electronics", icon: "📱", path: "/category/electronics" },
+    { name: "Fashion", icon: "👗", path: "/category/fashion" },
+    { name: "Home & Garden", icon: "🏡", path: "/category/home-and-garden" },
+    { name: "Sports", icon: "⚽", path: "/category/sports" },
+    { name: "Beauty", icon: "💄", path: "/category/beauty" },
+    { name: "Books", icon: "📚", path: "/category/books" },
+    { name: "Toys & Games", icon: "🎮", path: "/category/toys-and-games" },
+    { name: "Automotive", icon: "🚗", path: "/category/automotive" },
+    { name: "Health & Wellness", icon: "💊", path: "/category/health-and-wellness" },
+    { name: "Food & Beverages", icon: "🍔", path: "/category/food-and-beverages" }
   ];
 
   const handleUserClick = () => {
@@ -34,12 +38,12 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center">
+            <Link to="/" className="flex items-center">
               <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-2 rounded-xl">
                 <ShoppingBag className="w-6 h-6 text-white" />
               </div>
               <span className="ml-2 text-xl font-bold text-gray-900">ShopVibe</span>
-            </div>
+            </Link>
           </div>
 
           {/* Search Bar */}
@@ -56,7 +60,7 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-7">
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
+            <Link to="/" className="text-gray-700 hover:text-purple-600 transition-colors">Home</Link>
             
             {/* Categories Dropdown */}
             <div className="relative">
@@ -72,16 +76,24 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
               {/* Dropdown Menu */}
               {isCategoriesOpen && (
                 <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden">
+                  <Link
+                    to="/categories"
+                    className="flex items-center px-4 py-3 text-purple-600 font-semibold hover:bg-purple-50 transition-colors border-b border-gray-100"
+                    onClick={() => setIsCategoriesOpen(false)}
+                  >
+                    <span className="text-lg mr-3">📋</span>
+                    <span>All Categories</span>
+                  </Link>
                   {categories.map((category, index) => (
-                    <a
+                    <Link
                       key={index}
-                      href="#"
+                      to={category.path}
                       className="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-colors border-b border-gray-100 last:border-b-0"
                       onClick={() => setIsCategoriesOpen(false)}
                     >
                       <span className="text-lg mr-3">{category.icon}</span>
                       <span>{category.name}</span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}

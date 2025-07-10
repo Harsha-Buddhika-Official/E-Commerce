@@ -1,26 +1,9 @@
 import React, { useState } from 'react';
-import { 
-  Store, 
-  TrendingUp, 
-  Package, 
-  ShoppingCart, 
-  DollarSign, 
-  Users, 
-  BarChart3, 
-  Plus,
-  Eye,
-  Edit,
-  Trash2,
-  Bell,
-  Settings,
-  LogOut,
-  Search,
-  Filter,
-  Menu,
-  ChevronLeft
-} from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Store, TrendingUp, mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft } from 'lucide-react';
 
 export default function SellerDashboard() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
@@ -136,7 +119,10 @@ export default function SellerDashboard() {
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold text-white">Products</h2>
-              <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg flex items-center">
+              <button 
+                onClick={() => navigate('/add-product')}
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors"
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Product
               </button>

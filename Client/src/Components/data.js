@@ -75,5 +75,9 @@ export const categories = [
   { name: "Home & Garden", icon: "🏡", color: "from-green-500 to-emerald-500" },
   { name: "Sports", icon: "⚽", color: "from-orange-500 to-red-500" },
   { name: "Beauty", icon: "💄", color: "from-purple-500 to-pink-500" },
-  { name: "Books", icon: "📚", color: "from-indigo-500 to-blue-500" }
+  { name: "Books", icon: "📚", color: "from-indigo-500 to-blue-500" },
+  { name: "Toys & Games", icon: "🎮", color: "from-yellow-500 to-orange-500" },
+  { name: "Automotive", icon: "🚗", color: "from-gray-500 to-slate-500" },
+  { name: "Health & Wellness", icon: "💊", color: "from-green-500 to-teal-500" },
+  { name: "Food & Beverages", icon: "🍔", color: "from-red-500 to-pink-500" }
 ];

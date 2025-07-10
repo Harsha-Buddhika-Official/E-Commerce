@@ -9,6 +9,9 @@ import Categories from './Components/Categories';
 import FeaturedProducts from './Components/FeaturedProducts';
 import Footer from './Components/Footer';
 
+// Data Imports
+import { categories } from './Components/data';
+
 export default function Homepage() {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,15 +44,6 @@ export default function Homepage() {
     }
   ];
   
-  const categories = [
-    { name: "Electronics", icon: "📱", color: "from-blue-500 to-purple-500" },
-    { name: "Fashion", icon: "👗", color: "from-pink-500 to-rose-500" },
-    { name: "Home & Garden", icon: "🏡", color: "from-green-500 to-emerald-500" },
-    { name: "Sports", icon: "⚽", color: "from-orange-500 to-red-500" },
-    { name: "Beauty", icon: "💄", color: "from-purple-500 to-pink-500" },
-    { name: "Books", icon: "📚", color: "from-indigo-500 to-blue-500" }
-  ];
-
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
