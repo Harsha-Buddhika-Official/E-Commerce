@@ -20,6 +20,7 @@ export default function AddProduct() {
     specifications: {},
     colors: [],
     sizes: [],
+    // badge: '',
     originalPrice: '',
     stockCount: ''
   });
