@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  Upload, 
-  Image as ImageIcon, 
-  Save, 
-  X,
-  Plus,
-  Minus
-} from 'lucide-react';
+import { ArrowLeft, Image as ImageIcon, Save, X, Plus } from 'lucide-react';
 
 export default function AddProduct() {
   const navigate = useNavigate();
@@ -227,12 +219,12 @@ export default function AddProduct() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900">
       {/* Header */}
-      <header className="bg-white/10 backdrop-blur-lg border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="border-b bg-white/10 backdrop-blur-lg border-white/20">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center h-16">
             <button
               onClick={() => navigate('/seller-dashboard')}
-              className="flex items-center text-white/70 hover:text-white transition-colors mr-4"
+              className="flex items-center mr-4 transition-colors text-white/70 hover:text-white"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Dashboard
@@ -243,15 +235,15 @@ export default function AddProduct() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto p-6">
+      <main className="max-w-4xl p-6 mx-auto">
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-            <h2 className="text-xl font-semibold text-white mb-6">Basic Information</h2>
+          <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+            <h2 className="mb-6 text-xl font-semibold text-white">Basic Information</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Product Name *
                 </label>
                 <input
@@ -259,21 +251,21 @@ export default function AddProduct() {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="Enter product name"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Category *
                 </label>
                 <select
                   name="category"
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   required
                 >
                   <option value="">Select a category</option>
@@ -286,7 +278,7 @@ export default function AddProduct() {
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Description *
                 </label>
                 <textarea
@@ -294,7 +286,7 @@ export default function AddProduct() {
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                  className="w-full px-4 py-3 text-white border rounded-lg resize-none bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="Describe your product..."
                   required
                 />
@@ -303,12 +295,12 @@ export default function AddProduct() {
           </div>
 
           {/* Pricing & Inventory */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-            <h2 className="text-xl font-semibold text-white mb-6">Pricing & Inventory</h2>
+          <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+            <h2 className="mb-6 text-xl font-semibold text-white">Pricing & Inventory</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Price *
                 </label>
                 <input
@@ -317,14 +309,14 @@ export default function AddProduct() {
                   value={formData.price}
                   onChange={handleInputChange}
                   step="0.01"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="0.00"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Compare Price
                 </label>
                 <input
@@ -333,13 +325,13 @@ export default function AddProduct() {
                   value={formData.comparePrice}
                   onChange={handleInputChange}
                   step="0.01"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="0.00"
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Original Price
                 </label>
                 <input
@@ -348,13 +340,13 @@ export default function AddProduct() {
                   value={formData.originalPrice}
                   onChange={handleInputChange}
                   step="0.01"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="0.00"
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Stock Quantity *
                 </label>
                 <input
@@ -362,14 +354,14 @@ export default function AddProduct() {
                   name="stock"
                   value={formData.stock}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="0"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Stock Count (Available)
                 </label>
                 <input
@@ -377,13 +369,13 @@ export default function AddProduct() {
                   name="stockCount"
                   value={formData.stockCount}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="0"
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   SKU
                 </label>
                 <input
@@ -391,20 +383,20 @@ export default function AddProduct() {
                   name="sku"
                   value={formData.sku}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="Product SKU"
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Badge
                 </label>
                 <select
                   name="badge"
                   value={formData.badge}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 >
                   <option value="">No Badge</option>
                   <option value="Best Seller" className="bg-gray-800">Best Seller</option>
@@ -420,8 +412,8 @@ export default function AddProduct() {
           </div>
 
           {/* Product Images */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-            <h2 className="text-xl font-semibold text-white mb-6">Product Images</h2>
+          <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+            <h2 className="mb-6 text-xl font-semibold text-white">Product Images</h2>
             
             {/* Image Upload Area */}
             <div
@@ -431,10 +423,10 @@ export default function AddProduct() {
               onDragOver={handleDrag}
               onDrop={handleDrop}
             >
-              <ImageIcon className="w-12 h-12 text-white/50 mx-auto mb-4" />
-              <p className="text-white/70 mb-2">Drag and drop images here, or</p>
+              <ImageIcon className="w-12 h-12 mx-auto mb-4 text-white/50" />
+              <p className="mb-2 text-white/70">Drag and drop images here, or</p>
               <label className="cursor-pointer">
-                <span className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors">
+                <span className="px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700">
                   Browse Files
                 </span>
                 <input
@@ -445,23 +437,23 @@ export default function AddProduct() {
                   className="hidden"
                 />
               </label>
-              <p className="text-white/50 text-sm mt-2">PNG, JPG, WEBP up to 10MB</p>
+              <p className="mt-2 text-sm text-white/50">PNG, JPG, WEBP up to 10MB</p>
             </div>
 
             {/* Image Preview */}
             {formData.images.length > 0 && (
-              <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 gap-4 mt-6 md:grid-cols-4">
                 {formData.images.map((image) => (
                   <div key={image.id} className="relative group">
                     <img
                       src={image.url}
                       alt={image.name}
-                      className="w-full h-32 object-cover rounded-lg border border-white/20"
+                      className="object-cover w-full h-32 border rounded-lg border-white/20"
                     />
                     <button
                       type="button"
                       onClick={() => removeImage(image.id)}
-                      className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="absolute p-1 text-white transition-opacity bg-red-500 rounded-full opacity-0 top-2 right-2 hover:bg-red-600 group-hover:opacity-100"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -472,14 +464,14 @@ export default function AddProduct() {
           </div>
 
           {/* Tags */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-            <h2 className="text-xl font-semibold text-white mb-6">Product Tags</h2>
+          <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+            <h2 className="mb-6 text-xl font-semibold text-white">Product Tags</h2>
             
             <div className="flex flex-wrap gap-2 mb-4">
               {formData.tags.map((tag, index) => (
                 <span
                   key={index}
-                  className="bg-emerald-600/20 text-emerald-400 px-3 py-1 rounded-full text-sm flex items-center"
+                  className="flex items-center px-3 py-1 text-sm rounded-full bg-emerald-600/20 text-emerald-400"
                 >
                   {tag}
                   <button
@@ -499,13 +491,13 @@ export default function AddProduct() {
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTag())}
-                className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 placeholder="Add a tag..."
               />
               <button
                 type="button"
                 onClick={handleAddTag}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg transition-colors"
+                className="px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
               >
                 <Plus className="w-4 h-4" />
               </button>
@@ -513,14 +505,14 @@ export default function AddProduct() {
           </div>
 
           {/* Product Features */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-            <h2 className="text-xl font-semibold text-white mb-6">Product Features</h2>
+          <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+            <h2 className="mb-6 text-xl font-semibold text-white">Product Features</h2>
             
             <div className="flex flex-wrap gap-2 mb-4">
               {formData.features.map((feature, index) => (
                 <span
                   key={index}
-                  className="bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full text-sm flex items-center"
+                  className="flex items-center px-3 py-1 text-sm text-blue-400 rounded-full bg-blue-600/20"
                 >
                   {feature}
                   <button
@@ -540,13 +532,13 @@ export default function AddProduct() {
                 value={newFeature}
                 onChange={(e) => setNewFeature(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddFeature())}
-                className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 placeholder="Add a feature..."
               />
               <button
                 type="button"
                 onClick={handleAddFeature}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                className="px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
               >
                 <Plus className="w-4 h-4" />
               </button>
@@ -554,20 +546,20 @@ export default function AddProduct() {
           </div>
 
           {/* Product Specifications */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-            <h2 className="text-xl font-semibold text-white mb-6">Specifications</h2>
+          <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+            <h2 className="mb-6 text-xl font-semibold text-white">Specifications</h2>
             
-            <div className="space-y-3 mb-4">
+            <div className="mb-4 space-y-3">
               {Object.entries(formData.specifications).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between bg-white/5 rounded-lg p-3">
+                <div key={key} className="flex items-center justify-between p-3 rounded-lg bg-white/5">
                   <div className="flex-1">
-                    <span className="text-white/70 font-medium">{key}:</span>
-                    <span className="text-white ml-2">{value}</span>
+                    <span className="font-medium text-white/70">{key}:</span>
+                    <span className="ml-2 text-white">{value}</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleRemoveSpecification(key)}
-                    className="text-red-400 hover:text-red-300 ml-2"
+                    className="ml-2 text-red-400 hover:text-red-300"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -575,12 +567,12 @@ export default function AddProduct() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
               <input
                 type="text"
                 value={newSpecKey}
                 onChange={(e) => setNewSpecKey(e.target.value)}
-                className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 placeholder="Specification name..."
               />
               <input
@@ -588,31 +580,31 @@ export default function AddProduct() {
                 value={newSpecValue}
                 onChange={(e) => setNewSpecValue(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddSpecification())}
-                className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                className="px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 placeholder="Specification value..."
               />
             </div>
             <button
               type="button"
               onClick={handleAddSpecification}
-              className="mt-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors w-full"
+              className="w-full px-4 py-2 mt-2 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
             >
-              <Plus className="w-4 h-4 inline mr-2" />
+              <Plus className="inline w-4 h-4 mr-2" />
               Add Specification
             </button>
           </div>
 
           {/* Colors & Sizes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Colors */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-              <h2 className="text-xl font-semibold text-white mb-6">Available Colors</h2>
+            <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+              <h2 className="mb-6 text-xl font-semibold text-white">Available Colors</h2>
               
               <div className="flex flex-wrap gap-2 mb-4">
                 {formData.colors.map((color, index) => (
                   <span
                     key={index}
-                    className="bg-indigo-600/20 text-indigo-400 px-3 py-1 rounded-full text-sm flex items-center"
+                    className="flex items-center px-3 py-1 text-sm text-indigo-400 rounded-full bg-indigo-600/20"
                   >
                     {color}
                     <button
@@ -632,13 +624,13 @@ export default function AddProduct() {
                   value={newColor}
                   onChange={(e) => setNewColor(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddColor())}
-                  className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="Add a color..."
                 />
                 <button
                   type="button"
                   onClick={handleAddColor}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors"
+                  className="px-4 py-2 text-white transition-colors bg-indigo-600 rounded-lg hover:bg-indigo-700"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -646,14 +638,14 @@ export default function AddProduct() {
             </div>
 
             {/* Sizes */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-              <h2 className="text-xl font-semibold text-white mb-6">Available Sizes</h2>
+            <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+              <h2 className="mb-6 text-xl font-semibold text-white">Available Sizes</h2>
               
               <div className="flex flex-wrap gap-2 mb-4">
                 {formData.sizes.map((size, index) => (
                   <span
                     key={index}
-                    className="bg-orange-600/20 text-orange-400 px-3 py-1 rounded-full text-sm flex items-center"
+                    className="flex items-center px-3 py-1 text-sm text-orange-400 rounded-full bg-orange-600/20"
                   >
                     {size}
                     <button
@@ -673,13 +665,13 @@ export default function AddProduct() {
                   value={newSize}
                   onChange={(e) => setNewSize(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddSize())}
-                  className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="flex-1 px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="Add a size..."
                 />
                 <button
                   type="button"
                   onClick={handleAddSize}
-                  className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-colors"
+                  className="px-4 py-2 text-white transition-colors bg-orange-600 rounded-lg hover:bg-orange-700"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -688,12 +680,12 @@ export default function AddProduct() {
           </div>
 
           {/* Product Details */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-            <h2 className="text-xl font-semibold text-white mb-6">Product Details</h2>
+          <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+            <h2 className="mb-6 text-xl font-semibold text-white">Product Details</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Weight (kg)
                 </label>
                 <input
@@ -702,13 +694,13 @@ export default function AddProduct() {
                   value={formData.weight}
                   onChange={handleInputChange}
                   step="0.01"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-4 py-3 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                   placeholder="0.00"
                 />
               </div>
 
               <div>
-                <label className="block text-white/70 text-sm font-medium mb-2">
+                <label className="block mb-2 text-sm font-medium text-white/70">
                   Dimensions (L × W × H cm)
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -718,7 +710,7 @@ export default function AddProduct() {
                     value={formData.dimensions.length}
                     onChange={handleInputChange}
                     step="0.1"
-                    className="w-full px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                    className="w-full px-3 py-3 text-sm text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     placeholder="Length"
                   />
                   <input
@@ -727,7 +719,7 @@ export default function AddProduct() {
                     value={formData.dimensions.width}
                     onChange={handleInputChange}
                     step="0.1"
-                    className="w-full px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                    className="w-full px-3 py-3 text-sm text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     placeholder="Width"
                   />
                   <input
@@ -736,7 +728,7 @@ export default function AddProduct() {
                     value={formData.dimensions.height}
                     onChange={handleInputChange}
                     step="0.1"
-                    className="w-full px-3 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-sm"
+                    className="w-full px-3 py-3 text-sm text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     placeholder="Height"
                   />
                 </div>
@@ -749,13 +741,13 @@ export default function AddProduct() {
             <button
               type="button"
               onClick={() => navigate('/seller-dashboard')}
-              className="px-6 py-3 border border-white/20 text-white/70 hover:text-white hover:border-white/40 rounded-lg transition-colors"
+              className="px-6 py-3 transition-colors border rounded-lg border-white/20 text-white/70 hover:text-white hover:border-white/40"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-lg flex items-center transition-colors"
+              className="flex items-center px-6 py-3 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
             >
               <Save className="w-4 h-4 mr-2" />
               Save Product
