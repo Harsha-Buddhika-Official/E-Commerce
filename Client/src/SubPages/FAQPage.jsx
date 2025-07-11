@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import Navbar from './MainComponents/Navbar';
-import Footer from './MainComponents/Footer';
+import Navbar from '../MainComponents/Navbar';
+import Footer from '../MainComponents/Footer';
 
 // FAQ Item component with toggle functionality
 const FAQItem = ({ question, answer }) => {

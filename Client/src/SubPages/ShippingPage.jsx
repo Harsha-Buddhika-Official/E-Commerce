@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './MainComponents/Navbar';
-import Footer from './MainComponents/Footer';
+import Navbar from '../MainComponents/Navbar';
+import Footer from '../MainComponents/Footer';
 import { Link } from 'react-router-dom';
 
 export default function ShippingPage() {

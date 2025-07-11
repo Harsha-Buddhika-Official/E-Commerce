@@ -11,10 +11,10 @@ import ProductPage from './ProductPage'
 import CartPage from './ClientComponents/CartPage'
 import WishlistPage from './ClientComponents/WishlistPage'
 import AboutPage from './AboutPage'
-import ContactPage from './ContactPage'
-import FAQPage from './FAQPage'
-import ShippingPage from './ShippingPage'
-import PolicyPages from './PolicyPages'
+import ContactPage from './SubPages/ContactPage'
+import FAQPage from './SubPages/FAQPage'
+import ShippingPage from './SubPages/ShippingPage'
+import PolicyPages from './SubPages/PolicyPages'
 import {
   Electronics,
   Fashion,
