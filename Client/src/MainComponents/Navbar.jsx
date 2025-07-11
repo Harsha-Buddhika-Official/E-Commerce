@@ -124,14 +124,14 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             <button className="p-2 text-gray-700 hover:text-purple-600 transition-colors">
               <Heart className="w-5 h-5" />
             </button>
-            <button className="p-2 text-gray-700 hover:text-purple-600 transition-colors relative">
+            <Link to="/cart" className="p-2 text-gray-700 hover:text-purple-600 transition-colors relative">
               <ShoppingCart className="w-5 h-5" />
               {cartItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {cartItems}
                 </span>
               )}
-            </button>
+            </Link>
             <button 
               className="md:hidden p-2 text-gray-700"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -175,6 +175,21 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
               
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">Deals</a>
               <a href="#" className="block px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors">About</a>
+              
+              {/* Mobile Cart Link */}
+              <Link 
+                to="/cart"
+                className="flex items-center px-3 py-2 text-gray-700 hover:text-purple-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <ShoppingCart className="w-5 h-5 mr-2" />
+                <span>Cart</span>
+                {cartItems > 0 && (
+                  <span className="ml-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItems}
+                  </span>
+                )}
+              </Link>
               
               {/* Mobile Login/Logout */}
               <div className="pt-2 border-t border-gray-200 mt-3">

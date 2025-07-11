@@ -8,6 +8,7 @@ import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
 import ProductPage from './ProductPage'
+import CartPage from './CartPage'
 import {
   Electronics,
   Fashion,
@@ -45,6 +46,7 @@ function App() {
           <Route path='/category/automotive' element={<Automotive/>} />
           <Route path='/category/health-and-wellness' element={<HealthWellness/>} />
           <Route path='/category/food-and-beverages' element={<FoodBeverages/>} />
+          <Route path='/cart' element={<CartPage />} />
         </Routes>
       </BrowserRouter>
     </>
