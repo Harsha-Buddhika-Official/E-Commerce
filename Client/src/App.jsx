@@ -9,6 +9,7 @@ import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
 import ProductPage from './ProductPage'
 import CartPage from './CartPage'
+import WishlistPage from './WishlistPage'
 import {
   Electronics,
   Fashion,
@@ -47,6 +48,7 @@ function App() {
           <Route path='/category/health-and-wellness' element={<HealthWellness/>} />
           <Route path='/category/food-and-beverages' element={<FoodBeverages/>} />
           <Route path='/cart' element={<CartPage />} />
+          <Route path='/wishlist' element={<WishlistPage />} />
         </Routes>
       </BrowserRouter>
     </>

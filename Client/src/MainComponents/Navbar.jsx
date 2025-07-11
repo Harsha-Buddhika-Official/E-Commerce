@@ -121,9 +121,9 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
               </button>
             )}
             
-            <button className="p-2 text-gray-700 hover:text-purple-600 transition-colors">
+            <Link to="/wishlist" className="p-2 text-gray-700 hover:text-purple-600 transition-colors relative">
               <Heart className="w-5 h-5" />
-            </button>
+            </Link>
             <Link to="/cart" className="p-2 text-gray-700 hover:text-purple-600 transition-colors relative">
               <ShoppingCart className="w-5 h-5" />
               {cartItems > 0 && (
