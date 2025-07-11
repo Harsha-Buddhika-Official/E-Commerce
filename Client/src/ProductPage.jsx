@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Star, Heart, Share2, ShoppingCart, CreditCard, Truck, Shield, RotateCcw, Package, MapPin, Clock, User, Store, ArrowLeft } from 'lucide-react';
 import { allProducts } from './Components/data';
-import Navbar from './Components/Navbar';
+import Navbar from './MainComponents/Navbar';
 
 export default function ProductPage() {
   const { id } = useParams();

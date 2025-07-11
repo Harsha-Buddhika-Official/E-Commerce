@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { categories } from './Components/data';
-import Navbar from './Components/Navbar';
-import Footer from './Components/Footer';
+import Navbar from './MainComponents/Navbar';
+import Footer from './MainComponents/Footer';
 
 export default function CategoriesPage() {
   return (

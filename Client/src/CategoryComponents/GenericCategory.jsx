@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
+import Navbar from '../MainComponents/Navbar';
+import Footer from '../MainComponents/Footer';
 import ProductGrid from '../Components/ProductGrid';
 import { generateDefaultProducts } from '../Components/data';
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
+import Navbar from '../MainComponents/Navbar';
+import Footer from '../MainComponents/Footer';
 import ProductGrid from '../Components/ProductGrid';
 import CategorySwitcher from '../Components/CategorySwitcher';
 import { getProductsByCategory, getCategoryInfo, generateDefaultProducts } from '../Components/data';
