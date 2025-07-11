@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './MainComponents/Navbar';
-import Footer from './MainComponents/Footer';
+import Navbar from '../MainComponents/Navbar';
+import Footer from '../MainComponents/Footer';
 import { User, ShoppingBag, Clock, Phone, Mail, MapPin } from 'lucide-react';
 
 export default function AboutPage() {
@@ -68,9 +68,9 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-purple-600 to-blue-500 h-80">
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
+        <div className="relative flex flex-col justify-center h-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">About ShopVibe</h1>
-          <p className="mt-6 max-w-3xl text-xl text-gray-100">
+          <p className="max-w-3xl mt-6 text-xl text-gray-100">
             Transforming online shopping with curated quality products, fast delivery, and exceptional customer service.
           </p>
         </div>
@@ -78,11 +78,11 @@ export default function AboutPage() {
       
       {/* Our Story Section */}
       <div className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
               <h2 className="text-3xl font-extrabold text-gray-900">Our Story</h2>
-              <div className="mt-6 text-lg text-gray-600 space-y-6">
+              <div className="mt-6 space-y-6 text-lg text-gray-600">
                 <p>
                   Founded in 2020, ShopVibe was born from a simple idea: online shopping should be just as enjoyable as visiting a physical store, with the added benefits of convenience and a wider selection.
                 </p>
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg shadow-lg">
+            <div className="overflow-hidden rounded-lg shadow-lg aspect-w-16 aspect-h-9">
               <img 
                 src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=800&q=80" 
                 alt="Team meeting" 
@@ -107,7 +107,7 @@ export default function AboutPage() {
       
       {/* Our Values Section */}
       <div className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900">Our Values</h2>
             <p className="mt-4 text-lg text-gray-600">
@@ -115,9 +115,9 @@ export default function AboutPage() {
             </p>
           </div>
           
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="grid gap-8 mt-12 md:grid-cols-3">
             {values.map((value, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-8 text-center">
+              <div key={index} className="p-8 text-center bg-white rounded-lg shadow-md">
                 <div className="flex justify-center mb-4">
                   {value.icon}
                 </div>
@@ -131,7 +131,7 @@ export default function AboutPage() {
       
       {/* Meet the Team Section */}
       <div className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900">Meet Our Team</h2>
             <p className="mt-4 text-lg text-gray-600">
@@ -139,9 +139,9 @@ export default function AboutPage() {
             </p>
           </div>
           
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-4">
             {team.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
+              <div key={index} className="overflow-hidden transition-transform bg-white rounded-lg shadow-md hover:scale-105">
                 <div className="aspect-w-1 aspect-h-1">
                   <img 
                     src={member.image} 
@@ -162,31 +162,31 @@ export default function AboutPage() {
       
       {/* Contact Section */}
       <div className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
             <h2 className="text-3xl font-extrabold text-gray-900">Get In Touch</h2>
             <p className="mt-4 text-lg text-gray-600">
               Have questions or feedback? We'd love to hear from you.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
-              <Phone className="w-10 h-10 text-purple-600 mb-4" />
+              <Phone className="w-10 h-10 mb-4 text-purple-600" />
               <h3 className="text-lg font-medium text-gray-900">Call Us</h3>
               <p className="mt-2 text-gray-600">+1 (555) 123-4567</p>
               <p className="mt-1 text-gray-600">Mon-Fri, 9am-6pm EST</p>
             </div>
             
             <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
-              <Mail className="w-10 h-10 text-purple-600 mb-4" />
+              <Mail className="w-10 h-10 mb-4 text-purple-600" />
               <h3 className="text-lg font-medium text-gray-900">Email Us</h3>
               <p className="mt-2 text-gray-600">support@shopvibe.com</p>
               <p className="mt-1 text-gray-600">We respond within 24 hours</p>
             </div>
             
             <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
-              <MapPin className="w-10 h-10 text-purple-600 mb-4" />
+              <MapPin className="w-10 h-10 mb-4 text-purple-600" />
               <h3 className="text-lg font-medium text-gray-900">Visit Us</h3>
               <p className="mt-2 text-gray-600">123 E-Commerce Street</p>
               <p className="mt-1 text-gray-600">New York, NY 10001</p>
