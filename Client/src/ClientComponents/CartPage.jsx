@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Navbar from './MainComponents/Navbar';
-import Footer from './MainComponents/Footer';
+import Navbar from '../MainComponents/Navbar';
+import Footer from '../MainComponents/Footer';
 
 export default function CartPage({ isUserLoggedIn, setIsUserLoggedIn }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

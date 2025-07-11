@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, Trash2, Star } from 'lucide-react';
-import Navbar from './MainComponents/Navbar';
-import { allProducts } from './Components/data';
+import Navbar from '../MainComponents/Navbar';
+import { allProducts } from '../Components/data';
 
 export default function WishlistPage() {
   const navigate = useNavigate();

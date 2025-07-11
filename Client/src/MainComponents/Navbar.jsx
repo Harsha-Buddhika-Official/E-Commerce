@@ -88,7 +88,9 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             </div>
             
             <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">Deals</a>
-            <a href="#" className="text-gray-700 hover:text-purple-600 transition-colors">About</a>
+            <Link to="/about" className="text-gray-700 hover:text-purple-600 transition-colors">About</Link>
+            <Link to="/contact" className="text-gray-700 hover:text-purple-600 transition-colors">Contact</Link>
+            <Link to="/faq" className="text-gray-700 hover:text-purple-600 transition-colors">FAQ</Link>
           </div>
 
           {/* User Actions */}

@@ -33,41 +33,41 @@ export default function SellerDashboard() {
         return (
           <div className="space-y-6">
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+              <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-white/70 text-sm">Total Sales</p>
+                    <p className="text-sm text-white/70">Total Sales</p>
                     <p className="text-2xl font-bold text-white">${stats.totalSales.toLocaleString()}</p>
                   </div>
                   <DollarSign className="w-8 h-8 text-emerald-400" />
                 </div>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+              <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-white/70 text-sm">Total Orders</p>
+                    <p className="text-sm text-white/70">Total Orders</p>
                     <p className="text-2xl font-bold text-white">{stats.totalOrders}</p>
                   </div>
                   <ShoppingCart className="w-8 h-8 text-blue-400" />
                 </div>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+              <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-white/70 text-sm">Products</p>
+                    <p className="text-sm text-white/70">Products</p>
                     <p className="text-2xl font-bold text-white">{stats.totalProducts}</p>
                   </div>
                   <Package className="w-8 h-8 text-purple-400" />
                 </div>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+              <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-white/70 text-sm">Customers</p>
+                    <p className="text-sm text-white/70">Customers</p>
                     <p className="text-2xl font-bold text-white">{stats.totalCustomers}</p>
                   </div>
                   <Users className="w-8 h-8 text-cyan-400" />
@@ -76,17 +76,17 @@ export default function SellerDashboard() {
             </div>
 
             {/* Recent Orders */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-              <h3 className="text-xl font-semibold text-white mb-4">Recent Orders</h3>
+            <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
+              <h3 className="mb-4 text-xl font-semibold text-white">Recent Orders</h3>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-white/20">
-                      <th className="text-left text-white/70 pb-3">Order ID</th>
-                      <th className="text-left text-white/70 pb-3">Customer</th>
-                      <th className="text-left text-white/70 pb-3">Product</th>
-                      <th className="text-left text-white/70 pb-3">Amount</th>
-                      <th className="text-left text-white/70 pb-3">Status</th>
+                      <th className="pb-3 text-left text-white/70">Order ID</th>
+                      <th className="pb-3 text-left text-white/70">Customer</th>
+                      <th className="pb-3 text-left text-white/70">Product</th>
+                      <th className="pb-3 text-left text-white/70">Amount</th>
+                      <th className="pb-3 text-left text-white/70">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -117,27 +117,27 @@ export default function SellerDashboard() {
       case 'products':
         return (
           <div className="space-y-6">
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold text-white">Products</h2>
               <button 
                 onClick={() => navigate('/add-product')}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors"
+                className="flex items-center px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Product
               </button>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-white/20">
-                      <th className="text-left text-white/70 pb-3">Product</th>
-                      <th className="text-left text-white/70 pb-3">Price</th>
-                      <th className="text-left text-white/70 pb-3">Stock</th>
-                      <th className="text-left text-white/70 pb-3">Status</th>
-                      <th className="text-left text-white/70 pb-3">Actions</th>
+                      <th className="pb-3 text-left text-white/70">Product</th>
+                      <th className="pb-3 text-left text-white/70">Price</th>
+                      <th className="pb-3 text-left text-white/70">Stock</th>
+                      <th className="pb-3 text-left text-white/70">Status</th>
+                      <th className="pb-3 text-left text-white/70">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -184,11 +184,11 @@ export default function SellerDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900">
       {/* Header */}
-      <header className="bg-white/10 backdrop-blur-lg border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <header className="border-b bg-white/10 backdrop-blur-lg border-white/20">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <Store className="w-8 h-8 text-emerald-400 mr-3" />
+              <Store className="w-8 h-8 mr-3 text-emerald-400" />
               <h1 className="text-xl font-bold text-white">Seller Dashboard</h1>
             </div>
             
@@ -220,7 +220,7 @@ export default function SellerDashboard() {
           <div className={`flex ${sidebarCollapsed ? 'justify-center' : 'justify-end'} p-4`}>
             <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="text-white/70 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10"
+              className="p-1 transition-colors rounded-lg text-white/70 hover:text-white hover:bg-white/10"
             >
               {sidebarCollapsed ? (
                 <Menu className="w-5 h-5" />

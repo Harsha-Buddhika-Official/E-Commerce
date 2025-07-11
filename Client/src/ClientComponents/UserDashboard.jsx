@@ -139,19 +139,19 @@ export default function Dashboard() {
   const renderOverview = () => (
     <div className="space-y-6">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 rounded-2xl p-8 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32"></div>
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
+      <div className="relative p-8 overflow-hidden text-white bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 rounded-2xl">
+        <div className="absolute top-0 right-0 w-64 h-64 translate-x-32 -translate-y-32 rounded-full bg-white/10"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 -translate-x-24 translate-y-24 rounded-full bg-white/5"></div>
         <div className="relative z-10">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-3xl font-bold mb-2">Welcome back, {user.name}! 👋</h2>
-              <p className="text-blue-100 text-lg">Ready to continue your shopping journey?</p>
+              <h2 className="mb-2 text-3xl font-bold">Welcome back, {user.name}! 👋</h2>
+              <p className="text-lg text-blue-100">Ready to continue your shopping journey?</p>
             </div>
             <div className="text-right">
-              <div className="flex items-center space-x-2 mb-2">
+              <div className="flex items-center mb-2 space-x-2">
                 <Award className="w-6 h-6 text-yellow-400" />
-                <span className="font-bold text-2xl">{user.loyaltyPoints}</span>
+                <span className="text-2xl font-bold">{user.loyaltyPoints}</span>
               </div>
               <p className="text-blue-100">Loyalty Points</p>
             </div>
@@ -160,55 +160,55 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-green-500/20 rounded-xl">
-              <TrendingUp className="w-7 h-7 text-green-400" />
+              <TrendingUp className="text-green-400 w-7 h-7" />
             </div>
             <span className="text-3xl font-bold">${user.totalSpent}</span>
           </div>
-          <h3 className="text-white/90 font-semibold text-lg">Total Spent</h3>
+          <h3 className="text-lg font-semibold text-white/90">Total Spent</h3>
           <p className="text-white/70">Since {user.memberSince}</p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+        <div className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-blue-500/20 rounded-xl">
-              <Package className="w-7 h-7 text-blue-400" />
+              <Package className="text-blue-400 w-7 h-7" />
             </div>
             <span className="text-3xl font-bold">{user.totalOrders}</span>
           </div>
-          <h3 className="text-white/90 font-semibold text-lg">Total Orders</h3>
+          <h3 className="text-lg font-semibold text-white/90">Total Orders</h3>
           <p className="text-white/70">All time purchases</p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+        <div className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-yellow-500/20 rounded-xl">
-              <Gift className="w-7 h-7 text-yellow-400" />
+              <Gift className="text-yellow-400 w-7 h-7" />
             </div>
             <span className="text-3xl font-bold">{user.loyaltyPoints}</span>
           </div>
-          <h3 className="text-white/90 font-semibold text-lg">Reward Points</h3>
+          <h3 className="text-lg font-semibold text-white/90">Reward Points</h3>
           <p className="text-white/70">Available to redeem</p>
         </div>
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+      <div className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-xl font-semibold">Recent Orders</h3>
           <button 
             onClick={() => setActiveTab('orders')}
-            className="text-blue-300 hover:text-blue-200 font-medium transition-colors"
+            className="font-medium text-blue-300 transition-colors hover:text-blue-200"
           >
             View All
           </button>
         </div>
         <div className="space-y-4">
           {recentOrders.slice(0, 3).map((order) => (
-            <div key={order.id} className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/10">
+            <div key={order.id} className="flex items-center justify-between p-4 border bg-white/5 rounded-xl border-white/10">
               <div className="flex items-center space-x-4">
                 <div className="text-3xl">{order.image}</div>
                 <div>
@@ -217,7 +217,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <span className="font-bold text-xl text-white">${order.total}</span>
+                <span className="text-xl font-bold text-white">${order.total}</span>
                 <span className={`px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1 ${getStatusColor(order.status)}`}>
                   {getStatusIcon(order.status)}
                   <span className="capitalize">{order.status}</span>
@@ -235,7 +235,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-white">Your Orders</h2>
         <div className="flex space-x-2">
-          <select className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white backdrop-blur-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <select className="px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 backdrop-blur-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option className="bg-gray-800">All Orders</option>
             <option className="bg-gray-800">Delivered</option>
             <option className="bg-gray-800">Shipped</option>
@@ -246,12 +246,12 @@ export default function Dashboard() {
 
       <div className="space-y-4">
         {recentOrders.map((order) => (
-          <div key={order.id} className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+          <div key={order.id} className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-4">
                 <div className="text-4xl">{order.image}</div>
                 <div>
-                  <h3 className="font-semibold text-white text-lg">{order.id}</h3>
+                  <h3 className="text-lg font-semibold text-white">{order.id}</h3>
                   <p className="text-white/70">Placed on {order.date}</p>
                 </div>
               </div>
@@ -266,10 +266,10 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               <p className="text-white/70">{order.items} items</p>
               <div className="flex space-x-2">
-                <button className="px-4 py-2 text-blue-300 hover:text-blue-200 font-medium transition-colors">
+                <button className="px-4 py-2 font-medium text-blue-300 transition-colors hover:text-blue-200">
                   View Details
                 </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700">
                   Track Order
                 </button>
               </div>
@@ -287,24 +287,24 @@ export default function Dashboard() {
         <p className="text-white/70">{wishlistItems.length} items</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {wishlistItems.map((item) => (
-          <div key={item.id} className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+          <div key={item.id} className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
             <div className="flex items-center justify-between mb-4">
               <div className="text-5xl">{item.image}</div>
-              <button className="p-2 text-red-400 hover:text-red-300 transition-colors">
+              <button className="p-2 text-red-400 transition-colors hover:text-red-300">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <h3 className="font-semibold text-white mb-2 text-lg">{item.name}</h3>
-            <p className="text-2xl font-bold text-white mb-4">${item.price}</p>
+            <h3 className="mb-2 text-lg font-semibold text-white">{item.name}</h3>
+            <p className="mb-4 text-2xl font-bold text-white">${item.price}</p>
             <div className="flex items-center justify-between">
               <span className={`text-sm font-medium ${item.inStock ? 'text-green-400' : 'text-red-400'}`}>
                 {item.inStock ? 'In Stock' : 'Out of Stock'}
               </span>
               <button 
                 disabled={!item.inStock}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed"
+                className="px-4 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed"
               >
                 Add to Cart
               </button>
@@ -321,31 +321,31 @@ export default function Dashboard() {
         <h2 className="text-2xl font-bold text-white">Your Addresses</h2>
         <button 
           onClick={() => setShowAddAddress(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="flex items-center px-4 py-2 space-x-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
         >
           <Plus className="w-4 h-4" />
           <span>Add Address</span>
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {addresses.map((address) => (
-          <div key={address.id} className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+          <div key={address.id} className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
-                <div className="p-2 bg-blue-500/20 rounded-lg">
+                <div className="p-2 rounded-lg bg-blue-500/20">
                   {address.type === 'Home' ? <Home className="w-4 h-4 text-blue-400" /> : <Building className="w-4 h-4 text-blue-400" />}
                 </div>
                 <span className="font-semibold text-white">{address.type}</span>
                 {address.isDefault && (
-                  <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Default</span>
+                  <span className="px-2 py-1 text-xs text-green-400 rounded-full bg-green-500/20">Default</span>
                 )}
               </div>
               <div className="flex space-x-2">
-                <button className="p-2 text-white/70 hover:text-white transition-colors">
+                <button className="p-2 transition-colors text-white/70 hover:text-white">
                   <Edit3 className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-red-400 hover:text-red-300 transition-colors">
+                <button className="p-2 text-red-400 transition-colors hover:text-red-300">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
@@ -365,7 +365,7 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-white">Payment Methods</h2>
-        <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+        <button className="flex items-center px-4 py-2 space-x-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700">
           <Plus className="w-4 h-4" />
           <span>Add Card</span>
         </button>
@@ -373,10 +373,10 @@ export default function Dashboard() {
 
       <div className="space-y-4">
         {paymentMethods.map((method) => (
-          <div key={method.id} className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+          <div key={method.id} className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="p-3 bg-blue-500/20 rounded-lg">
+                <div className="p-3 rounded-lg bg-blue-500/20">
                   <CreditCard className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
@@ -384,14 +384,14 @@ export default function Dashboard() {
                   <p className="text-white/70">Expires {method.expiry}</p>
                 </div>
                 {method.isDefault && (
-                  <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Default</span>
+                  <span className="px-3 py-1 text-xs text-green-400 rounded-full bg-green-500/20">Default</span>
                 )}
               </div>
               <div className="flex space-x-2">
-                <button className="p-2 text-white/70 hover:text-white transition-colors">
+                <button className="p-2 transition-colors text-white/70 hover:text-white">
                   <Edit3 className="w-4 h-4" />
                 </button>
-                <button className="p-2 text-red-400 hover:text-red-300 transition-colors">
+                <button className="p-2 text-red-400 transition-colors hover:text-red-300">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>
@@ -406,68 +406,68 @@ export default function Dashboard() {
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-white">Account Settings</h2>
       
-      <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 text-white">
+      <div className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-white">Profile Information</h3>
           <button 
             onClick={() => setIsEditing(!isEditing)}
-            className="flex items-center space-x-2 px-4 py-2 text-blue-300 hover:text-blue-200 transition-colors"
+            className="flex items-center px-4 py-2 space-x-2 text-blue-300 transition-colors hover:text-blue-200"
           >
             <Edit3 className="w-4 h-4" />
             <span>{isEditing ? 'Cancel' : 'Edit'}</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-white/70 mb-2">Full Name</label>
+            <label className="block mb-2 text-sm font-medium text-white/70">Full Name</label>
             <input
               type="text"
               value={user.name}
               disabled={!isEditing}
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
+              className="w-full px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-white/70 mb-2">Email Address</label>
+            <label className="block mb-2 text-sm font-medium text-white/70">Email Address</label>
             <input
               type="email"
               value={user.email}
               disabled={!isEditing}
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
+              className="w-full px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-white/70 mb-2">Phone Number</label>
+            <label className="block mb-2 text-sm font-medium text-white/70">Phone Number</label>
             <input
               type="tel"
               value={user.phone}
               disabled={!isEditing}
-              className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
+              className="w-full px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-white/70 mb-2">Member Since</label>
+            <label className="block mb-2 text-sm font-medium text-white/70">Member Since</label>
             <input
               type="text"
               value={user.memberSince}
               disabled
-              className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white/70"
+              className="w-full px-4 py-2 border rounded-lg bg-white/5 border-white/10 text-white/70"
             />
           </div>
         </div>
 
         {isEditing && (
-          <div className="mt-6 flex space-x-4">
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <div className="flex mt-6 space-x-4">
+            <button className="px-6 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700">
               Save Changes
             </button>
             <button 
               onClick={() => setIsEditing(false)}
-              className="px-6 py-2 border border-white/20 text-white/70 rounded-lg hover:bg-white/10 transition-colors"
+              className="px-6 py-2 transition-colors border rounded-lg border-white/20 text-white/70 hover:bg-white/10"
             >
               Cancel
             </button>
@@ -492,11 +492,11 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-indigo-900 to-cyan-900">
       {/* Header */}
-      <header className="bg-white/10 backdrop-blur-lg border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="border-b bg-white/10 backdrop-blur-lg border-white/20">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-2 rounded-xl">
+              <div className="p-2 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl">
                 <ShoppingBag className="w-6 h-6 text-white" />
               </div>
               <span className="ml-3 text-xl font-bold text-white">ShopVibe</span>
@@ -509,7 +509,7 @@ export default function Dashboard() {
                   <p className="text-sm text-white/70">Premium Member</p>
                 </div>
               </div>
-              <button className="p-2 text-white/70 hover:text-white transition-colors">
+              <button className="p-2 transition-colors text-white/70 hover:text-white">
                 <LogOut className="w-5 h-5" />
               </button>
             </div>
@@ -517,13 +517,13 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex gap-8">
           {/* Sidebar */}
-          <div className="w-64 flex-shrink-0">
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl">
+          <div className="flex-shrink-0 w-64">
+            <div className="border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
               <div className="p-6">
-                <div className="flex items-center space-x-3 mb-6">
+                <div className="flex items-center mb-6 space-x-3">
                   <div className="text-4xl">{user.avatar}</div>
                   <div>
                     <p className="font-semibold text-white">{user.name}</p>
