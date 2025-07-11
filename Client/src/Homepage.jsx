@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Component Imports
-import Navbar from './Components/Navbar';
-import Slides from './Components/Slides';
-import FeaturesBar from './Components/FeaturesBar';
+import Navbar from './MainComponents/Navbar';
+import Slides from './MainComponents/Slides';
+import FeaturesBar from './MainComponents/FeaturesBar';
 import Categories from './Components/Categories';
-import FeaturedProducts from './Components/FeaturedProducts';
-import Footer from './Components/Footer';
+import FeaturedProducts from './MainComponents/FeaturedProducts';
+import Footer from './MainComponents/Footer';
 
 // Data Imports
 import { categories } from './Components/data';

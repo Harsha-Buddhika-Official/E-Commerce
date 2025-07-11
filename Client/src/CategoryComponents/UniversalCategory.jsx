@@ -77,9 +77,9 @@ export default function UniversalCategory() {
 
   if (!categoryData) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Category Not Found</h1>
+          <h1 className="mb-4 text-2xl font-bold text-gray-900">Category Not Found</h1>
           <p className="text-gray-600">The category you're looking for doesn't exist.</p>
         </div>
       </div>
@@ -92,11 +92,11 @@ export default function UniversalCategory() {
       
       {/* Category Hero */}
       <div className={`bg-gradient-to-br ${categoryData.color} text-white py-16`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-center mb-6">
-            <span className="text-8xl mr-6">{categoryData.icon}</span>
+            <span className="mr-6 text-8xl">{categoryData.icon}</span>
             <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">{categoryData.name}</h1>
+              <h1 className="mb-4 text-4xl font-bold md:text-5xl">{categoryData.name}</h1>
               <p className="text-xl opacity-90">
                 Discover amazing {categoryData.name.toLowerCase()} products
               </p>
@@ -106,11 +106,11 @@ export default function UniversalCategory() {
       </div>
 
       {/* Products Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Category Switcher */}
         <CategorySwitcher currentCategory={categoryData.name} />
         
-        <div className="flex flex-wrap gap-4 items-center justify-between mb-8">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <div className="flex gap-4">
             <select
               value={sortBy}
@@ -138,9 +138,9 @@ export default function UniversalCategory() {
             addToCart={addToCart}
           />
         ) : (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">{categoryData.icon}</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+          <div className="py-12 text-center">
+            <div className="mb-4 text-6xl">{categoryData.icon}</div>
+            <h3 className="mb-2 text-xl font-semibold text-gray-900">No products found</h3>
             <p className="text-gray-600">Check back soon for new {categoryData.name.toLowerCase()} products!</p>
           </div>
         )}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
-import { categories } from './data';
+import { categories } from '../Components/data';
 
 export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();

@@ -32,21 +32,21 @@ export default function GenericCategory({ categoryName, categoryIcon, categoryCo
       <Navbar />
       
       <div className={`bg-gradient-to-br ${categoryColor} text-white py-16`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-center mb-6">
-            <span className="text-8xl mr-6">{categoryIcon}</span>
+            <span className="mr-6 text-8xl">{categoryIcon}</span>
             <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">{categoryName}</h1>
+              <h1 className="mb-4 text-4xl font-bold md:text-5xl">{categoryName}</h1>
               <p className="text-xl opacity-90">
-                Discover amazing {categoryName.toLowerCase()} products
+                Discover amazing {categoryName.toLowerCase()}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-wrap gap-4 items-center justify-between mb-8">
+      <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <div className="flex gap-4">
             <select 
               value={sortBy} 

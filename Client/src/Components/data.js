@@ -3,21 +3,21 @@ export const heroSlides = [
     title: "Summer Collection 2025",
     subtitle: "Discover the latest trends",
     description: "Fresh styles that make you stand out",
-    bgColor: "from-pink-600 to-purple-600",
+    bgColor: "bg-purple-600",
     image: "🌸"
   },
   {
     title: "Tech Essentials",
     subtitle: "Power up your lifestyle",
     description: "Cutting-edge gadgets for modern living",
-    bgColor: "from-blue-600 to-cyan-600",
+    bgColor: "bg-blue-600",
     image: "⚡"
   },
   {
     title: "Home & Living",
     subtitle: "Transform your space",
     description: "Beautiful designs for every room",
-    bgColor: "from-emerald-600 to-teal-600",
+    bgColor: "bg-emerald-600",
     image: "🏠"
   }
 ];
@@ -1714,6 +1714,8 @@ export const beautyProducts = getProductsByCategory("Beauty");
 export const booksProducts = getProductsByCategory("Books");
 export const toysGamesProducts = getProductsByCategory("Toys & Games");
 export const healthWellnessProducts = getProductsByCategory("Health & Wellness");
+export const automotiveProducts = getProductsByCategory("Automotive");
+export const foodBeveragesProducts = getProductsByCategory("Food & Beverages");
 
 export const sellerProducts = [
   { id: 1, name: 'Wireless Headphones', price: 99.99, stock: 25, status: 'active' },

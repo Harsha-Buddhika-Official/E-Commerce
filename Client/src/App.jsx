@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import SignUp from './SignUp'
 import Login from './Login'
@@ -9,14 +8,18 @@ import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
 import ProductPage from './ProductPage'
-import Electronics from './CategoryComponents/Electronics'
-import Fashion from './CategoryComponents/Fashion'
-import HomeGarden from './CategoryComponents/HomeGarden'
-import Sports from './CategoryComponents/Sports'
-import Beauty from './CategoryComponents/Beauty'
-import Books from './CategoryComponents/Books'
-import ToysGames from './CategoryComponents/ToysGames'
-import GenericCategory from './CategoryComponents/GenericCategory'
+import {
+  Electronics,
+  Fashion,
+  HomeGarden,
+  Sports,
+  Beauty,
+  Books,
+  ToysGames,
+  Automotive,
+  HealthWellness,
+  FoodBeverages
+} from './CategoryComponents/AllCategories'
 
 function App() {
 
@@ -39,9 +42,9 @@ function App() {
           <Route path='/category/beauty' element={<Beauty/>} />
           <Route path='/category/books' element={<Books/>} />
           <Route path='/category/toys-and-games' element={<ToysGames/>} />
-          <Route path='/category/automotive' element={<GenericCategory categoryName="Automotive" categoryIcon="🚗" categoryColor="from-gray-500 to-slate-500" />} />
-          <Route path='/category/health-and-wellness' element={<GenericCategory categoryName="Health & Wellness" categoryIcon="💊" categoryColor="from-green-500 to-teal-500" />} />
-          <Route path='/category/food-and-beverages' element={<GenericCategory categoryName="Food & Beverages" categoryIcon="🍔" categoryColor="from-red-500 to-pink-500" />} />
+          <Route path='/category/automotive' element={<Automotive/>} />
+          <Route path='/category/health-and-wellness' element={<HealthWellness/>} />
+          <Route path='/category/food-and-beverages' element={<FoodBeverages/>} />
         </Routes>
       </BrowserRouter>
     </>

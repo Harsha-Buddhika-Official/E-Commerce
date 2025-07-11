@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import Products from './Products';
-import { allProducts } from './data';
+import Products from '../Components/Products';
+import { allProducts } from '../Components/data';
 
 const FeaturedProducts = ({ likedProducts, toggleLike, addToCart, cartItems, isUserLoggedIn, handleUserClick }) => {
   // Shuffle products to show mixed categories instead of grouped by category
