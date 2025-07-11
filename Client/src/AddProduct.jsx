@@ -20,7 +20,6 @@ export default function AddProduct() {
     specifications: {},
     colors: [],
     sizes: [],
-    badge: '',
     originalPrice: '',
     stockCount: ''
   });
@@ -388,7 +387,7 @@ export default function AddProduct() {
                 />
               </div>
 
-              <div>
+              {/* <div>
                 <label className="block mb-2 text-sm font-medium text-white/70">
                   Badge
                 </label>
@@ -407,7 +406,7 @@ export default function AddProduct() {
                   <option value="Professional" className="bg-gray-800">Professional</option>
                   <option value="Limited Edition" className="bg-gray-800">Limited Edition</option>
                 </select>
-              </div>
+              </div> */}
             </div>
           </div>
 

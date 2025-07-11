@@ -18,7 +18,7 @@ export default function ProductGrid({ products, likedProducts, toggleLike, addTo
           onClick={() => handleProductClick(product.id)}
         >
           <div className="relative">
-            <div className="flex items-center justify-center h-48 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+            <div className="flex items-center justify-center h-48 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
               <img 
                 src={product.thumbnailImage} 
                 alt={product.name}

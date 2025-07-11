@@ -11,28 +11,16 @@ export default function AboutPage() {
   // Team members data
   const team = [
     {
-      name: 'Sarah Johnson',
+      name: 'Harsha Buddhika',
       role: 'Founder & CEO',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&q=80',
-      bio: 'With over 15 years in retail technology, Sarah founded ShopVibe with a vision to transform online shopping into a more personalized experience.'
+      image: 'https://scontent.fcmb2-2.fna.fbcdn.net/v/t39.30808-6/490946775_3982422118739189_5378580226479708071_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEYozjRbENPJodUxLKz9Mq3o53iXIgh2x-jneJciCHbHzNxJqtc2vOWua5EeAnXeiIlrGPynMyEnyibRds8-e62&_nc_ohc=wA8WzlCyx6IQ7kNvwGibgJA&_nc_oc=Adm4EZlodPIMCRbFNIky2guZ0nt6W0Pa-k-ouQZqmJvNchEEIyUlPhRjg9PCRvTDsVM&_nc_zt=23&_nc_ht=scontent.fcmb2-2.fna&_nc_gid=_IP4aRTvkj-ydSmA7pdSnA&oh=00_AfSz1ZnMUCHmAsT2mOk5v6yjYGjje95CTEk19P2H3_dLcA&oe=687704B6',
+      bio: 'With over 15 years in retail technology, Harsha founded ShopVibe with a vision to transform online shopping into a more personalized experience.'
     },
     {
-      name: 'Michael Chen',
-      role: 'CTO',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80',
-      bio: 'Michael leads our technology team, bringing 10+ years of experience in e-commerce platforms and a passion for creating seamless user experiences.'
-    },
-    {
-      name: 'Priya Patel',
-      role: 'Head of Design',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80',
-      bio: "Priya ensures that every aspect of ShopVibe's visual identity and user interface is beautiful, intuitive, and reflects our brand values."
-    },
-    {
-      name: 'David Wilson',
-      role: 'Operations Director',
-      image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&q=80',
-      bio: 'David oversees our global operations, making sure that every product reaches our customers efficiently and sustainably.'
+      name: 'Dilshan Yapa',
+      role: 'Founder',
+      image: 'https://scontent.fcmb2-2.fna.fbcdn.net/v/t39.30808-6/480267262_1254960259320858_4900664094280162593_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeF_dfKu8xVu3Z6E9tyRzExAPCilk9--8Mo8KKWT377wyhoY3LM6Gy8U-c4xwo07zIMDuxVly4q639IyX-9IHDcg&_nc_ohc=kQPzhQqSUl8Q7kNvwE4u0bt&_nc_oc=AdljKszBZMdyRXkFHiw-47rDIesFjX5K3X1AI6T7vDtoVqQl18cBekqhP820Zk9Dszw&_nc_zt=23&_nc_ht=scontent.fcmb2-2.fna&_nc_gid=kx6ct6QGjGyj_xj_ADCHJA&oh=00_AfTiQ5hIkVNyB9vlEpwHOAjSX-BwYP6teaAy6tQVkvX64A&oe=6876FDBD',
+      bio: 'With over 15 years in retail technology, Dilshan founded ShopVibe with a vision to transform online shopping into a more personalized experience.'
     }
   ];
 
