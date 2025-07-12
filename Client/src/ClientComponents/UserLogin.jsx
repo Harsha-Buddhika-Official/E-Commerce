@@ -114,7 +114,7 @@ export default function Login({ onSwitchToSeller }) {
               </label>
             </div>
             <Link 
-              to="/forgot-password" 
+              to="/user/forgot-password" 
               className="text-sm text-purple-300 hover:text-purple-200 transition-colors"
             >
               Forgot password?

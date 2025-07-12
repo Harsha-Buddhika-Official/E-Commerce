@@ -1,7 +1,6 @@
 import './App.css'
 import SignUp from './SignUp'
 import Login from './Login'
-import ForgotPassword from './ForgotPassword'
 import UserDashboard from './ClientComponents/UserDashboard'
 import SellerDashboard from './SallerComponents/SellerDashboard'
 import AddProduct from './AddProduct'
@@ -9,6 +8,9 @@ import UserSignUp from './ClientComponents/UserSignUp'
 import SellerSignup from './SallerComponents/SellerSignup'
 import UserLogin from './ClientComponents/UserLogin'
 import SellerLogin from './SallerComponents/SellerLogin'
+// Import forgot password components
+import UserForgotPassword from './ClientComponents/UserForgotPassword'
+import SellerForgotPassword from './SallerComponents/SellerForgotPassword'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
@@ -42,11 +44,17 @@ function App() {
           <Route path='/' element={<Homepage/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          
+          {/* Separate routes for user signup and login */}
           <Route path="/user/signup" element={<UserSignUp />} />
           <Route path="/user/login" element={<UserLogin />} />
+          <Route path="/user/forgot-password" element={<UserForgotPassword />} />
+          
+          {/* Separate routes for seller signup and login */}
           <Route path="/seller/signup" element={<SellerSignup />} />
           <Route path="/seller/login" element={<SellerLogin />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/seller/forgot-password" element={<SellerForgotPassword />} />
+          
           <Route path="/User-dashboard" element={<UserDashboard />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
           <Route path="/add-product" element={<AddProduct />} />

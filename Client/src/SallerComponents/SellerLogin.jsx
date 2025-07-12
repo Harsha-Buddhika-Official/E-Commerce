@@ -129,7 +129,7 @@ export default function SellerLogin({ onSwitchToUser }) {
               </label>
             </div>
             <Link 
-              to="/forgot-password" 
+              to="/seller/forgot-password" 
               className="text-sm transition-colors text-emerald-300 hover:text-emerald-200"
             >
               Forgot password?
