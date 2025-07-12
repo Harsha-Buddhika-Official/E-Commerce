@@ -113,12 +113,12 @@ export default function Login() {
                 Remember me
               </label>
             </div>
-            <a 
-              href="#" 
+            <Link 
+              to="/forgot-password" 
               className="text-sm text-purple-300 hover:text-purple-200 transition-colors"
             >
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           {/* Login Button */}

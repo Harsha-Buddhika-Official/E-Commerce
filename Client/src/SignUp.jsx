@@ -57,10 +57,10 @@ export default function SignUp() {
         <div className={`absolute top-3/4 left-1/2 w-24 h-24 sm:w-36 sm:h-36 lg:w-48 lg:h-48 ${userType === 'user' ? 'bg-indigo-500/20' : 'bg-cyan-500/20'} rounded-full blur-3xl animate-pulse delay-500`}></div>
       </div>
 
-      <div className="relative z-10 bg-white/10 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-8 w-full max-w-md lg:max-w-lg border border-white/20 shadow-2xl">
+      <div className="relative z-10 w-full max-w-md p-6 border shadow-2xl bg-white/10 backdrop-blur-lg rounded-2xl sm:rounded-3xl sm:p-8 lg:max-w-lg border-white/20">
         {/* User Type Toggle */}
         <div className="mb-4 sm:mb-6">
-          <div className="flex bg-white/10 rounded-lg sm:rounded-xl p-1">
+          <div className="flex p-1 rounded-lg bg-white/10 sm:rounded-xl">
             <button
               type="button"
               onClick={() => setUserType('user')}
@@ -70,7 +70,7 @@ export default function SignUp() {
                   : 'text-white/70 hover:text-white'
               }`}
             >
-              <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <Users className="w-3 h-3 mr-1 sm:w-4 sm:h-4 sm:mr-2" />
               Customer
             </button>
             <button
@@ -82,27 +82,27 @@ export default function SignUp() {
                   : 'text-white/70 hover:text-white'
               }`}
             >
-              <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <Briefcase className="w-3 h-3 mr-1 sm:w-4 sm:h-4 sm:mr-2" />
               Seller
             </button>
           </div>
         </div>
 
         {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
+        <div className="mb-6 text-center sm:mb-8">
           <div className="flex items-center justify-center mb-3 sm:mb-4">
             <div className={`bg-gradient-to-r ${getAccentColors()} p-2 sm:p-3 rounded-xl sm:rounded-2xl`}>
               {userType === 'user' ? (
-                <ShoppingBag className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                <ShoppingBag className="w-6 h-6 text-white sm:w-8 sm:h-8" />
               ) : (
-                <Store className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                <Store className="w-6 h-6 text-white sm:w-8 sm:h-8" />
               )}
             </div>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+          <h1 className="mb-2 text-2xl font-bold text-white sm:text-3xl">
             {userType === 'user' ? 'Join ShopVibe' : 'Start Selling'}
           </h1>
-          <p className="text-white/70 text-sm sm:text-base px-2">
+          <p className="px-2 text-sm text-white/70 sm:text-base">
             {userType === 'user' 
               ? 'Create your account and start shopping' 
               : 'Join our marketplace and grow your business'
@@ -113,12 +113,12 @@ export default function SignUp() {
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
           {/* Name Fields */}
-          <div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4'>
+          <div className='flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4'>
             {/* First Name */}
             <div className='flex-1'>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <User className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
                 </div>
                 <input
                   type="text"
@@ -131,7 +131,7 @@ export default function SignUp() {
                 />
               </div>
               {errors.firstName && (
-                <div className="flex items-center mt-1 text-red-300 text-xs">
+                <div className="flex items-center mt-1 text-xs text-red-300">
                   <AlertCircle className="w-3 h-3 mr-1" />
                   {errors.firstName.message}
                 </div>
@@ -152,7 +152,7 @@ export default function SignUp() {
                 />
               </div>
               {errors.lastName && (
-                <div className="flex items-center mt-1 text-red-300 text-xs">
+                <div className="flex items-center mt-1 text-xs text-red-300">
                   <AlertCircle className="w-3 h-3 mr-1" />
                   {errors.lastName.message}
                 </div>
@@ -165,8 +165,8 @@ export default function SignUp() {
             <div className="space-y-4 sm:space-y-6">
               {/* Business Name */}
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Building className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <Building className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
                 </div>
                 <input
                   type="text"
@@ -177,8 +177,8 @@ export default function SignUp() {
                   })}
                 />
                 {errors.businessName && (
-                  <div className="flex items-center mt-2 text-red-300 text-xs sm:text-sm">
-                    <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                  <div className="flex items-center mt-2 text-xs text-red-300 sm:text-sm">
+                    <AlertCircle className="w-3 h-3 mr-1 sm:w-4 sm:h-4" />
                     {errors.businessName.message}
                   </div>
                 )}
@@ -186,8 +186,8 @@ export default function SignUp() {
 
               {/* Business Address */}
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <MapPin className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
                 </div>
                 <input
                   type="text"
@@ -198,8 +198,8 @@ export default function SignUp() {
                   })}
                 />
                 {errors.businessAddress && (
-                  <div className="flex items-center mt-2 text-red-300 text-xs sm:text-sm">
-                    <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                  <div className="flex items-center mt-2 text-xs text-red-300 sm:text-sm">
+                    <AlertCircle className="w-3 h-3 mr-1 sm:w-4 sm:h-4" />
                     {errors.businessAddress.message}
                   </div>
                 )}
@@ -209,8 +209,8 @@ export default function SignUp() {
 
           {/* Email */}
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Mail className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
             </div>
             <input
               type="email"
@@ -225,8 +225,8 @@ export default function SignUp() {
               })}
             />
             {errors.email && (
-              <div className="flex items-center mt-2 text-red-300 text-xs sm:text-sm">
-                <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <div className="flex items-center mt-2 text-xs text-red-300 sm:text-sm">
+                <AlertCircle className="w-3 h-3 mr-1 sm:w-4 sm:h-4" />
                 {errors.email.message}
               </div>
             )}
@@ -234,8 +234,8 @@ export default function SignUp() {
 
           {/* Phone */}
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Phone className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
             </div>
             <input
               type="tel"
@@ -250,8 +250,8 @@ export default function SignUp() {
               })}
             />
             {errors.phone && (
-              <div className="flex items-center mt-2 text-red-300 text-xs sm:text-sm">
-                <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <div className="flex items-center mt-2 text-xs text-red-300 sm:text-sm">
+                <AlertCircle className="w-3 h-3 mr-1 sm:w-4 sm:h-4" />
                 {errors.phone.message}
               </div>
             )}
@@ -259,8 +259,8 @@ export default function SignUp() {
 
           {/* Password */}
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Lock className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
             </div>
             <input
               type={showPassword ? 'text' : 'password'}
@@ -280,18 +280,18 @@ export default function SignUp() {
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+              className="absolute inset-y-0 right-0 flex items-center pr-3"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
-                <EyeOff className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+                <EyeOff className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
               ) : (
-                <Eye className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+                <Eye className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
               )}
             </button>
             {errors.password && (
-              <div className="flex items-center mt-2 text-red-300 text-xs sm:text-sm">
-                <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <div className="flex items-center mt-2 text-xs text-red-300 sm:text-sm">
+                <AlertCircle className="w-3 h-3 mr-1 sm:w-4 sm:h-4" />
                 {errors.password.message}
               </div>
             )}
@@ -299,8 +299,8 @@ export default function SignUp() {
 
           {/* Confirm Password */}
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Lock className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Lock className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
             </div>
             <input
               type={showConfirmPassword ? 'text' : 'password'}
@@ -313,18 +313,18 @@ export default function SignUp() {
             />
             <button
               type="button"
-              className="absolute inset-y-0 right-0 pr-3 flex items-center"
+              className="absolute inset-y-0 right-0 flex items-center pr-3"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             >
               {showConfirmPassword ? (
-                <EyeOff className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+                <EyeOff className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
               ) : (
-                <Eye className="h-4 w-4 sm:h-5 sm:w-5 text-white/50" />
+                <Eye className="w-4 h-4 sm:h-5 sm:w-5 text-white/50" />
               )}
             </button>
             {errors.confirmPassword && (
-              <div className="flex items-center mt-2 text-red-300 text-xs sm:text-sm">
-                <AlertCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <div className="flex items-center mt-2 text-xs text-red-300 sm:text-sm">
+                <AlertCircle className="w-3 h-3 mr-1 sm:w-4 sm:h-4" />
                 {errors.confirmPassword.message}
               </div>
             )}
@@ -340,7 +340,7 @@ export default function SignUp() {
               })}
             />
             <div className="flex-1">
-              <label className="text-xs sm:text-sm text-white/70 leading-relaxed">
+              <label className="text-xs leading-relaxed sm:text-sm text-white/70">
                 I agree to the{' '}
                 <Link to="/terms" className={`${userType === 'user' ? 'text-purple-300 hover:text-purple-200' : 'text-emerald-300 hover:text-emerald-200'} transition-colors underline`}>
                   Terms and Conditions
@@ -351,7 +351,7 @@ export default function SignUp() {
                 </Link>
               </label>
               {errors.agreeToTerms && (
-                <div className="flex items-center mt-1 text-red-300 text-xs">
+                <div className="flex items-center mt-1 text-xs text-red-300">
                   <AlertCircle className="w-3 h-3 mr-1" />
                   {errors.agreeToTerms.message}
                 </div>
@@ -370,8 +370,8 @@ export default function SignUp() {
         </form>
 
         {/* Login Link */}
-        <div className="mt-4 sm:mt-6 text-center">
-          <p className="text-white/70 text-sm">
+        <div className="mt-4 text-center sm:mt-6">
+          <p className="text-sm text-white/70">
             Already have an account?{' '}
             <Link 
               to="/login" 

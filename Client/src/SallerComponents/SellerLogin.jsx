@@ -128,12 +128,12 @@ export default function SellerLogin() {
                 Keep me signed in
               </label>
             </div>
-            <a 
-              href="#" 
+            <Link 
+              to="/forgot-password" 
               className="text-sm text-emerald-300 hover:text-emerald-200 transition-colors"
             >
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           {/* Login Button */}

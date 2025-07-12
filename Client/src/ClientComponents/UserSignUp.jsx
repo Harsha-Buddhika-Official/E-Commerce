@@ -22,23 +22,23 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
+    <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute w-64 h-64 rounded-full top-1/4 left-1/4 bg-purple-500/20 blur-3xl animate-pulse"></div>
+        <div className="absolute delay-1000 rounded-full bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 blur-3xl animate-pulse"></div>
+        <div className="absolute w-48 h-48 delay-500 rounded-full top-3/4 left-1/2 bg-indigo-500/20 blur-3xl animate-pulse"></div>
       </div>
 
-      <div className="relative z-10 bg-white/10 backdrop-blur-lg rounded-3xl p-8 max-w-md w-full border border-white/20 shadow-2xl">
+      <div className="relative z-10 w-full max-w-md p-8 border shadow-2xl bg-white/10 backdrop-blur-lg rounded-3xl border-white/20">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="mb-8 text-center">
           <div className="flex items-center justify-center mb-4">
-            <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-3 rounded-2xl">
+            <div className="p-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl">
               <ShoppingBag className="w-8 h-8 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Join ShopVibe</h1>
+          <h1 className="mb-2 text-3xl font-bold text-white">Join ShopVibe</h1>
           <p className="text-white/70">Create your account and start shopping</p>
         </div>
 
@@ -49,13 +49,13 @@ export default function SignUp() {
           {/* First Name */}
             <div className='flex-1'>
                 <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-white/50" />
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <User className="w-5 h-5 text-white/50" />
                     </div>
                     <input
                     type="text"
                     placeholder="First Name"
-                    className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                    className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     {...register('firstName', { 
                         required: 'First name is required',
                         minLength: { value: 2, message: 'First name must be at least 2 characters' }
@@ -64,7 +64,7 @@ export default function SignUp() {
                 </div>
 
                 {errors.firstName && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                     <AlertCircle className="w-4 h-4 mr-1" />
                     {errors.firstName.message}
                 </div>
@@ -74,13 +74,13 @@ export default function SignUp() {
             {/* Last Name */}
             <div className='flex-1'>
                 <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-white/50" />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <User className="w-5 h-5 text-white/50" />
                 </div>
                 <input
                     type="text"
                     placeholder="Last Name"
-                    className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                    className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     {...register('lastName', { 
                     required: 'Last name is required',
                     minLength: { value: 2, message: 'Last name must be at least 2 characters' }
@@ -89,7 +89,7 @@ export default function SignUp() {
                 </div>
 
                 {errors.lastName && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                     <AlertCircle className="w-4 h-4 mr-1" />
                     {errors.lastName.message}
                 </div>
@@ -100,13 +100,13 @@ export default function SignUp() {
           {/* Email */}
           <div>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Mail className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type="email"
                 placeholder="Email Address"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 {...register('email', { 
                   required: 'Email is required',
                   pattern: {
@@ -118,7 +118,7 @@ export default function SignUp() {
             </div>
 
             {errors.email && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
+              <div className="flex items-center mt-1 text-sm text-red-400">
                 <AlertCircle className="w-4 h-4 mr-1" />
                 {errors.email.message}
               </div>
@@ -128,13 +128,13 @@ export default function SignUp() {
           {/* Phone */}
           <div>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Phone className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Phone className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type="tel"
                 placeholder="Phone Number"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 {...register('phone', { 
                   required: 'Phone number is required',
                   pattern: {
@@ -146,7 +146,7 @@ export default function SignUp() {
             </div>
 
             {errors.phone && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
+              <div className="flex items-center mt-1 text-sm text-red-400">
                 <AlertCircle className="w-4 h-4 mr-1" />
                 {errors.phone.message}
               </div>
@@ -156,13 +156,13 @@ export default function SignUp() {
           {/* Password */}
           <div>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Lock className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
-                className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-12 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 {...register('password', { 
                   required: 'Password is required',
                   minLength: { value: 8, message: 'Password must be at least 8 characters' },
@@ -174,19 +174,19 @@ export default function SignUp() {
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
-                  <EyeOff className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <EyeOff className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 ) : (
-                  <Eye className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <Eye className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 )}
               </button>
             </div>
 
             {errors.password && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
+              <div className="flex items-center mt-1 text-sm text-red-400">
                 <AlertCircle className="w-4 h-4 mr-1" />
                 {errors.password.message}
               </div>
@@ -196,13 +196,13 @@ export default function SignUp() {
           {/* Confirm Password */}
           <div>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Lock className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 placeholder="Confirm Password"
-                className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-12 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 {...register('confirmPassword', { 
                   required: 'Please confirm your password',
                   validate: value => value === password || 'Passwords do not match'
@@ -210,19 +210,19 @@ export default function SignUp() {
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? (
-                  <EyeOff className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <EyeOff className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 ) : (
-                  <Eye className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <Eye className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 )}
               </button>
             </div>
 
             {errors.confirmPassword && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
+              <div className="flex items-center mt-1 text-sm text-red-400">
                 <AlertCircle className="w-4 h-4 mr-1" />
                 {errors.confirmPassword.message}
               </div>
@@ -234,22 +234,22 @@ export default function SignUp() {
             <input
               type="checkbox"
               id="terms"
-              className="mt-1 w-4 h-4 text-purple-600 bg-white/10 border-white/20 rounded focus:ring-purple-500 focus:ring-2"
+              className="w-4 h-4 mt-1 text-purple-600 rounded bg-white/10 border-white/20 focus:ring-purple-500 focus:ring-2"
               {...register('terms', { required: 'You must accept the terms and conditions' })}
             />
             <label htmlFor="terms" className="text-sm text-white/70">
               I agree to the{' '}
-              <a href="#" className="text-purple-300 hover:text-purple-200 underline">
+              <a href="#" className="text-purple-300 underline hover:text-purple-200">
                 Terms of Service
               </a>{' '}
               and{' '}
-              <a href="#" className="text-purple-300 hover:text-purple-200 underline">
+              <a href="#" className="text-purple-300 underline hover:text-purple-200">
                 Privacy Policy
               </a>
             </label>
           </div>
           {errors.terms && (
-            <div className="flex items-center text-red-400 text-sm">
+            <div className="flex items-center text-sm text-red-400">
               <AlertCircle className="w-4 h-4 mr-1" />
               {errors.terms.message}
             </div>
@@ -260,11 +260,11 @@ export default function SignUp() {
             type="button"
             onClick={handleSubmit(onSubmit)}
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed"
+            className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 transform bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:from-gray-600 disabled:to-gray-600 rounded-xl hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                <div className="w-5 h-5 mr-2 border-b-2 border-white rounded-full animate-spin"></div>
                 Creating Account...
               </div>
             ) : (
@@ -277,7 +277,7 @@ export default function SignUp() {
         <div className="mt-6 text-center">
           <p className="text-white/70">
             Already have an account?{' '}
-            <Link to={"/Login"} className="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
+            <Link to={"/Login"} className="font-semibold text-purple-300 transition-colors hover:text-purple-200">
               Sign in
             </Link>
           </p>

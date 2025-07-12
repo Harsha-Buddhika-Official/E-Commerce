@@ -1,6 +1,7 @@
 import './App.css'
 import SignUp from './SignUp'
 import Login from './Login'
+import ForgotPassword from './ForgotPassword'
 import UserDashboard from './ClientComponents/UserDashboard'
 import SellerDashboard from './SallerComponents/SellerDashboard'
 import AddProduct from './AddProduct'
@@ -37,6 +38,7 @@ function App() {
           <Route path='/' element={<Homepage/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/User-dashboard" element={<UserDashboard />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
           <Route path="/add-product" element={<AddProduct />} />
