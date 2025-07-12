@@ -20,6 +20,9 @@ export default function SignUp({ onSwitchToSeller }) {
   const onSubmit = (data) => {
     console.log('Form submitted:', data);
     // TODO: Add backend integration here later
+    // For now, simulate successful signup and redirect to login
+    alert('Account created successfully! Please sign in.');
+    navigate('/user/login');
   };
 
   return (

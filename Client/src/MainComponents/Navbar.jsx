@@ -9,9 +9,9 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
 
   const handleUserClick = () => {
     if (isUserLoggedIn) {
-      navigate('/User-dashboard');
+      navigate('/user-dashboard');
     } else {
-      navigate('/login');
+      navigate('/auth');
     }
   };
 
@@ -106,7 +106,7 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             {!isUserLoggedIn && (
               <button 
                 className="px-4 py-2 text-sm font-medium text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
-                onClick={() => navigate('/login')}
+                onClick={() => navigate('/auth')}
               >
                 Login
               </button>
@@ -198,7 +198,7 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
                   <button 
                     className="w-full px-3 py-2 font-medium text-left text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
                     onClick={() => {
-                      navigate('/login');
+                      navigate('/auth');
                       setIsMenuOpen(false);
                     }}
                   >

@@ -40,50 +40,50 @@ export default function SellerSignup({ onSwitchToUser }) {
     // TODO: Add backend integration for seller registration
     // For now, simulate successful signup and redirect to seller login
     alert('Seller account created successfully! Please sign in.');
-    navigate('/seller-login');
+    navigate('/seller/login');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900 flex items-center justify-center p-4">
+    <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute w-64 h-64 rounded-full top-1/4 left-1/4 bg-emerald-500/20 blur-3xl animate-pulse"></div>
+        <div className="absolute delay-1000 rounded-full bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/20 blur-3xl animate-pulse"></div>
+        <div className="absolute w-48 h-48 delay-500 rounded-full top-3/4 left-1/2 bg-cyan-500/20 blur-3xl animate-pulse"></div>
       </div>
 
-      <div className="relative z-10 bg-white/10 backdrop-blur-lg rounded-3xl p-8 max-w-2xl w-full border border-white/20 shadow-2xl">
+      <div className="relative z-10 w-full max-w-2xl p-8 border shadow-2xl bg-white/10 backdrop-blur-lg rounded-3xl border-white/20">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="mb-8 text-center">
           <div className="flex items-center justify-center mb-4">
-            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-3 rounded-2xl">
+            <div className="p-3 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl">
               <Store className="w-8 h-8 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">Become a Seller</h1>
+          <h1 className="mb-2 text-3xl font-bold text-white">Become a Seller</h1>
           <p className="text-white/70">Join ShopVibe and start selling your products</p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Personal Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {/* Full Name */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <User className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <User className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type="text"
                 placeholder="Full Name"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 {...register('fullName', { 
                   required: 'Full name is required',
                   minLength: { value: 2, message: 'Name must be at least 2 characters' }
                 })}
               />
               {errors.fullName && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                   <AlertCircle className="w-4 h-4 mr-1" />
                   {errors.fullName.message}
                 </div>
@@ -92,13 +92,13 @@ export default function SellerSignup({ onSwitchToUser }) {
 
             {/* Email */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Mail className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type="email"
                 placeholder="Business Email"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 {...register('email', { 
                   required: 'Email is required',
                   pattern: {
@@ -108,7 +108,7 @@ export default function SellerSignup({ onSwitchToUser }) {
                 })}
               />
               {errors.email && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                   <AlertCircle className="w-4 h-4 mr-1" />
                   {errors.email.message}
                 </div>
@@ -117,22 +117,22 @@ export default function SellerSignup({ onSwitchToUser }) {
           </div>
 
           {/* Business Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {/* Business Name */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Building className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Building className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type="text"
                 placeholder="Business Name"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 {...register('businessName', { 
                   required: 'Business name is required'
                 })}
               />
               {errors.businessName && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                   <AlertCircle className="w-4 h-4 mr-1" />
                   {errors.businessName.message}
                 </div>
@@ -141,19 +141,19 @@ export default function SellerSignup({ onSwitchToUser }) {
 
             {/* Phone */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Phone className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Phone className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type="tel"
                 placeholder="Phone Number"
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 {...register('phone', { 
                   required: 'Phone number is required'
                 })}
               />
               {errors.phone && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                   <AlertCircle className="w-4 h-4 mr-1" />
                   {errors.phone.message}
                 </div>
@@ -163,19 +163,19 @@ export default function SellerSignup({ onSwitchToUser }) {
 
           {/* Business Address */}
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <MapPin className="h-5 w-5 text-white/50" />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <MapPin className="w-5 h-5 text-white/50" />
             </div>
             <input
               type="text"
               placeholder="Business Address"
-              className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+              className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               {...register('address', { 
                 required: 'Business address is required'
               })}
             />
             {errors.address && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
+              <div className="flex items-center mt-1 text-sm text-red-400">
                 <AlertCircle className="w-4 h-4 mr-1" />
                 {errors.address.message}
               </div>
@@ -184,11 +184,11 @@ export default function SellerSignup({ onSwitchToUser }) {
 
           {/* Business Category */}
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Briefcase className="h-5 w-5 text-white/50" />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Briefcase className="w-5 h-5 text-white/50" />
             </div>
             <select
-              className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+              className="w-full py-3 pl-10 pr-4 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               {...register('category', { 
                 required: 'Please select a business category'
               })}
@@ -204,7 +204,7 @@ export default function SellerSignup({ onSwitchToUser }) {
               <option value="other" className="bg-gray-800">Other</option>
             </select>
             {errors.category && (
-              <div className="flex items-center mt-1 text-red-400 text-sm">
+              <div className="flex items-center mt-1 text-sm text-red-400">
                 <AlertCircle className="w-4 h-4 mr-1" />
                 {errors.category.message}
               </div>
@@ -212,16 +212,16 @@ export default function SellerSignup({ onSwitchToUser }) {
           </div>
 
           {/* Password Fields */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {/* Password */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Lock className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
-                className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-12 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 {...register('password', { 
                   required: 'Password is required',
                   minLength: { value: 8, message: 'Password must be at least 8 characters' },
@@ -233,17 +233,17 @@ export default function SellerSignup({ onSwitchToUser }) {
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
-                  <EyeOff className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <EyeOff className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 ) : (
-                  <Eye className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <Eye className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 )}
               </button>
               {errors.password && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                   <AlertCircle className="w-4 h-4 mr-1" />
                   {errors.password.message}
                 </div>
@@ -252,13 +252,13 @@ export default function SellerSignup({ onSwitchToUser }) {
 
             {/* Confirm Password */}
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-white/50" />
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Lock className="w-5 h-5 text-white/50" />
               </div>
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 placeholder="Confirm Password"
-                className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+                className="w-full py-3 pl-10 pr-12 text-white transition-all duration-300 border bg-white/10 border-white/20 rounded-xl placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 {...register('confirmPassword', { 
                   required: 'Please confirm your password',
                   validate: value => value === password || 'Passwords do not match'
@@ -266,17 +266,17 @@ export default function SellerSignup({ onSwitchToUser }) {
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? (
-                  <EyeOff className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <EyeOff className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 ) : (
-                  <Eye className="h-5 w-5 text-white/50 hover:text-white transition-colors" />
+                  <Eye className="w-5 h-5 transition-colors text-white/50 hover:text-white" />
                 )}
               </button>
               {errors.confirmPassword && (
-                <div className="flex items-center mt-1 text-red-400 text-sm">
+                <div className="flex items-center mt-1 text-sm text-red-400">
                   <AlertCircle className="w-4 h-4 mr-1" />
                   {errors.confirmPassword.message}
                 </div>
@@ -292,15 +292,15 @@ export default function SellerSignup({ onSwitchToUser }) {
                 id="terms"
                 checked={agreeToTerms}
                 onChange={(e) => setAgreeToTerms(e.target.checked)}
-                className="w-4 h-4 text-emerald-600 bg-white/10 border-white/20 rounded focus:ring-emerald-500 focus:ring-2 mt-1"
+                className="w-4 h-4 mt-1 rounded text-emerald-600 bg-white/10 border-white/20 focus:ring-emerald-500 focus:ring-2"
               />
               <label htmlFor="terms" className="text-sm text-white/70">
                 I agree to the{' '}
-                <a href="#" className="text-emerald-300 hover:text-emerald-200 underline">
+                <a href="#" className="underline text-emerald-300 hover:text-emerald-200">
                   Terms of Service
                 </a>{' '}
                 and{' '}
-                <a href="#" className="text-emerald-300 hover:text-emerald-200 underline">
+                <a href="#" className="underline text-emerald-300 hover:text-emerald-200">
                   Privacy Policy
                 </a>
               </label>
@@ -312,7 +312,7 @@ export default function SellerSignup({ onSwitchToUser }) {
                 id="business"
                 checked={businessVerified}
                 onChange={(e) => setBusinessVerified(e.target.checked)}
-                className="w-4 h-4 text-emerald-600 bg-white/10 border-white/20 rounded focus:ring-emerald-500 focus:ring-2 mt-1"
+                className="w-4 h-4 mt-1 rounded text-emerald-600 bg-white/10 border-white/20 focus:ring-emerald-500 focus:ring-2"
               />
               <label htmlFor="business" className="text-sm text-white/70">
                 I confirm that I have the legal right to sell the products I plan to list
@@ -324,7 +324,7 @@ export default function SellerSignup({ onSwitchToUser }) {
           <button
             type="submit"
             disabled={!agreeToTerms || !businessVerified}
-            className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100"
+            className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 transform bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 disabled:from-gray-600 disabled:to-gray-700 disabled:cursor-not-allowed rounded-xl hover:scale-105 disabled:hover:scale-100"
           >
             <div className="flex items-center justify-center">
               Create Seller Account
@@ -339,7 +339,7 @@ export default function SellerSignup({ onSwitchToUser }) {
             Already have a seller account?{' '}
             <button
               onClick={() => navigate('/seller/login')}
-              className="text-emerald-300 hover:text-emerald-200 font-semibold transition-colors bg-transparent border-none cursor-pointer underline"
+              className="font-semibold underline transition-colors bg-transparent border-none cursor-pointer text-emerald-300 hover:text-emerald-200"
             >
               Sign in here
             </button>
@@ -359,12 +359,12 @@ export default function SellerSignup({ onSwitchToUser }) {
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-6 flex items-center justify-center space-x-4 text-white/50 text-xs">
+        <div className="flex items-center justify-center mt-6 space-x-4 text-xs text-white/50">
           <div className="flex items-center">
             <Shield className="w-3 h-3 mr-1" />
             <span>Secure Registration</span>
           </div>
-          <div className="w-1 h-1 bg-white/50 rounded-full"></div>
+          <div className="w-1 h-1 rounded-full bg-white/50"></div>
           <div className="flex items-center">
             <CreditCard className="w-3 h-3 mr-1" />
             <span>Fast Payouts</span>

@@ -180,7 +180,7 @@ export default function SellerLogin({ onSwitchToUser }) {
             New seller?{' '}
             <button
               onClick={() => navigate('/seller/signup')}
-              className="font-semibold transition-colors text-emerald-300 hover:text-emerald-200 bg-transparent border-none cursor-pointer underline"
+              className="font-semibold underline transition-colors bg-transparent border-none cursor-pointer text-emerald-300 hover:text-emerald-200"
             >
               Apply to sell
             </button>
@@ -189,7 +189,7 @@ export default function SellerLogin({ onSwitchToUser }) {
             Regular customer?{' '}
             <button
               onClick={() => navigate('/user/login')}
-              className="transition-colors text-white/70 hover:text-white bg-transparent border-none cursor-pointer underline"
+              className="underline transition-colors bg-transparent border-none cursor-pointer text-white/70 hover:text-white"
             >
               Customer login
             </button>

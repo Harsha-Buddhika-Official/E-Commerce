@@ -45,9 +45,9 @@ export default function Homepage() {
 
   const handleUserClick = () => {
     if (isUserLoggedIn) {
-      navigate('/User-dashboard');
+      navigate('/user-dashboard');
     } else {
-      navigate('/login');
+      navigate('/auth');
     }
   };
 

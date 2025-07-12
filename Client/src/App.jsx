@@ -1,6 +1,5 @@
 import './App.css'
-import SignUp from './SignUp'
-import Login from './Login'
+import AuthChoice from './AuthChoice'
 import UserDashboard from './ClientComponents/UserDashboard'
 import SellerDashboard from './SallerComponents/SellerDashboard'
 import AddProduct from './AddProduct'
@@ -42,8 +41,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Homepage/>} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          <Route path='/auth' element={<AuthChoice/>} />
           
           {/* Separate routes for user signup and login */}
           <Route path="/user/signup" element={<UserSignUp />} />
@@ -55,7 +53,7 @@ function App() {
           <Route path="/seller/login" element={<SellerLogin />} />
           <Route path="/seller/forgot-password" element={<SellerForgotPassword />} />
           
-          <Route path="/User-dashboard" element={<UserDashboard />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/product/:id" element={<ProductPage />} />
