@@ -33,10 +33,10 @@ export default function AuthChoice() {
         {/* Login Options */}
         <div className="grid max-w-4xl gap-8 mx-auto md:grid-cols-2">
           {/* Customer Login */}
-          <div className="relative group">
+          <div className="relative h-full group">
             <div className="absolute inset-0 transition-opacity duration-300 opacity-25 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl blur group-hover:opacity-40"></div>
-            <div className="relative p-8 transition-all duration-300 transform border bg-white/10 backdrop-blur-lg border-white/20 rounded-3xl hover:bg-white/15 hover:scale-105">
-              <div className="text-center">
+            <div className="relative flex flex-col h-full p-8 transition-all duration-300 transform border bg-white/10 backdrop-blur-lg border-white/20 rounded-3xl hover:bg-white/15 hover:scale-105">
+              <div className="flex flex-col h-full text-center">
                 <div className="flex items-center justify-center mb-6">
                   <div className="p-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl">
                     <Users className="w-10 h-10 text-white" />
@@ -49,7 +49,7 @@ export default function AuthChoice() {
                 </p>
                 
                 {/* Benefits */}
-                <div className="mb-8 space-y-3">
+                <div className="flex-grow mb-8 space-y-3">
                   <div className="flex items-center text-sm text-white/60">
                     <div className="w-2 h-2 mr-3 bg-purple-400 rounded-full"></div>
                     <span>Browse thousands of products</span>
@@ -68,34 +68,36 @@ export default function AuthChoice() {
                   </div>
                 </div>
                 
-                <button
-                  onClick={() => navigate('/user/login')}
-                  className="w-full px-6 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl group-hover:shadow-xl"
-                >
-                  <div className="flex items-center justify-center">
-                    Continue as Customer
-                    <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </button>
-                
-                <p className="mt-4 text-sm text-white/50">
-                  New customer? 
-                  <button 
-                    onClick={() => navigate('/user/signup')}
-                    className="ml-1 text-purple-300 underline transition-colors hover:text-purple-200"
+                <div className="mt-auto">
+                  <button
+                    onClick={() => navigate('/user/login')}
+                    className="w-full px-6 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl group-hover:shadow-xl"
                   >
-                    Create account
+                    <div className="flex items-center justify-center">
+                      Continue as Customer
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </button>
-                </p>
+                  
+                  <p className="mt-4 text-sm text-white/50">
+                    New customer? 
+                    <button 
+                      onClick={() => navigate('/user/signup')}
+                      className="ml-1 text-purple-300 underline transition-colors hover:text-purple-200"
+                    >
+                      Create account
+                    </button>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Seller Login */}
-          <div className="relative group">
+          <div className="relative h-full group">
             <div className="absolute inset-0 transition-opacity duration-300 opacity-25 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur group-hover:opacity-40"></div>
-            <div className="relative p-8 transition-all duration-300 transform border bg-white/10 backdrop-blur-lg border-white/20 rounded-3xl hover:bg-white/15 hover:scale-105">
-              <div className="text-center">
+            <div className="relative flex flex-col h-full p-8 transition-all duration-300 transform border bg-white/10 backdrop-blur-lg border-white/20 rounded-3xl hover:bg-white/15 hover:scale-105">
+              <div className="flex flex-col h-full text-center">
                 <div className="flex items-center justify-center mb-6">
                   <div className="p-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl">
                     <Store className="w-10 h-10 text-white" />
@@ -108,7 +110,7 @@ export default function AuthChoice() {
                 </p>
                 
                 {/* Benefits */}
-                <div className="mb-8 space-y-3">
+                <div className="flex-grow mb-8 space-y-3">
                   <div className="flex items-center text-sm text-white/60">
                     <div className="w-2 h-2 mr-3 rounded-full bg-emerald-400"></div>
                     <span>Manage inventory & products</span>
@@ -127,25 +129,27 @@ export default function AuthChoice() {
                   </div>
                 </div>
                 
-                <button
-                  onClick={() => navigate('/seller/login')}
-                  className="w-full px-6 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-xl group-hover:shadow-xl"
-                >
-                  <div className="flex items-center justify-center">
-                    Access Seller Portal
-                    <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </button>
-                
-                <p className="mt-4 text-sm text-white/50">
-                  Want to sell? 
-                  <button 
-                    onClick={() => navigate('/seller/signup')}
-                    className="ml-1 underline transition-colors text-emerald-300 hover:text-emerald-200"
+                <div className="mt-auto">
+                  <button
+                    onClick={() => navigate('/seller/login')}
+                    className="w-full px-6 py-4 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-xl group-hover:shadow-xl"
                   >
-                    Apply now
+                    <div className="flex items-center justify-center">
+                      Access Seller Portal
+                      <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </button>
-                </p>
+                  
+                  <p className="mt-4 text-sm text-white/50">
+                    Want to sell? 
+                    <button 
+                      onClick={() => navigate('/seller/signup')}
+                      className="ml-1 underline transition-colors text-emerald-300 hover:text-emerald-200"
+                    >
+                      Apply now
+                    </button>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

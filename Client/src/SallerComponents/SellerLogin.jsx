@@ -185,15 +185,6 @@ export default function SellerLogin({ onSwitchToUser }) {
               Apply to sell
             </button>
           </p>
-          <p className="mt-2 text-sm text-white/50">
-            Regular customer?{' '}
-            <button
-              onClick={() => navigate('/user/login')}
-              className="underline transition-colors bg-transparent border-none cursor-pointer text-white/70 hover:text-white"
-            >
-              Customer login
-            </button>
-          </p>
           
           {/* Switch to User Login */}
           {onSwitchToUser && (
