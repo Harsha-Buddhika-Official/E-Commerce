@@ -15,34 +15,14 @@ export default function Login() {
   // If seller is selected, render SellerLogin component
   if (userType === 'seller') {
     return (
-      <div>
-        <div className="fixed z-50 top-4 left-4">
-          <button
-            onClick={() => setUserType('user')}
-            className="px-4 py-2 text-sm font-medium text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
-          >
-            ← Back to User Login
-          </button>
-        </div>
-        <SellerLogin />
-      </div>
+      <SellerLogin onSwitchToUser={() => setUserType('user')} />
     );
   }
 
   // If user is selected, render UserLogin component  
   if (userType === 'user') {
     return (
-      <div>
-        <div className="fixed z-50 top-4 right-4">
-          <button
-            onClick={() => setUserType('seller')}
-            className="px-4 py-2 text-sm font-medium text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
-          >
-            Seller Login →
-          </button>
-        </div>
-        <UserLogin />
-      </div>
+      <UserLogin onSwitchToSeller={() => setUserType('seller')} />
     );
   }
 

@@ -19,7 +19,7 @@ import {
   CreditCard
 } from 'lucide-react';
 
-export default function SellerSignup() {
+export default function SellerSignup({ onSwitchToUser }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
@@ -337,10 +337,25 @@ export default function SellerSignup() {
         <div className="mt-8 text-center">
           <p className="text-white/70">
             Already have a seller account?{' '}
-            <Link to="/seller-login" className="text-emerald-300 hover:text-emerald-200 font-semibold transition-colors">
+            <button
+              onClick={() => navigate('/seller/login')}
+              className="text-emerald-300 hover:text-emerald-200 font-semibold transition-colors bg-transparent border-none cursor-pointer underline"
+            >
               Sign in here
-            </Link>
+            </button>
           </p>
+          
+          {/* Switch to User Signup */}
+          {onSwitchToUser && (
+            <div className="mt-4">
+              <button
+                onClick={onSwitchToUser}
+                className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 transform bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-xl hover:scale-105"
+              >
+                ← Back to User Signup
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Trust Indicators */}

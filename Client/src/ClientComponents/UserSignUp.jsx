@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { User, Mail, Lock, Eye, EyeOff, Phone, ShoppingBag, AlertCircle} from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function SignUp() {
+export default function SignUp({ onSwitchToSeller }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -277,10 +278,22 @@ export default function SignUp() {
         <div className="mt-6 text-center">
           <p className="text-white/70">
             Already have an account?{' '}
-            <Link to={"/Login"} className="font-semibold text-purple-300 transition-colors hover:text-purple-200">
+            <Link to="/user/login" className="font-semibold text-purple-300 transition-colors hover:text-purple-200">
               Sign in
             </Link>
           </p>
+          
+          {/* Switch to Seller Signup */}
+          {onSwitchToSeller && (
+            <div className="mt-4">
+              <button
+                onClick={onSwitchToSeller}
+                className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 transform bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-xl hover:scale-105"
+              >
+                Become a Seller →
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

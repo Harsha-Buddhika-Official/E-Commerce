@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ShoppingBag, CheckCircle,AlertCircle,ArrowRight,} from 'lucide-react';
 
-export default function Login() {
+export default function Login({ onSwitchToSeller }) {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
@@ -166,10 +166,22 @@ export default function Login() {
         <div className="mt-8 text-center">
           <p className="text-white/70">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
+            <Link to="/user/signup" className="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
               Sign up now
             </Link>
           </p>
+          
+          {/* Switch to Seller Login */}
+          {onSwitchToSeller && (
+            <div className="mt-4">
+              <button
+                onClick={onSwitchToSeller}
+                className="w-full px-6 py-3 font-semibold text-white transition-all duration-300 transform bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-xl hover:scale-105"
+              >
+                Seller Login →
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Trust Indicators */}

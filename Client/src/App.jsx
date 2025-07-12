@@ -5,6 +5,10 @@ import ForgotPassword from './ForgotPassword'
 import UserDashboard from './ClientComponents/UserDashboard'
 import SellerDashboard from './SallerComponents/SellerDashboard'
 import AddProduct from './AddProduct'
+import UserSignUp from './ClientComponents/UserSignUp'
+import SellerSignup from './SallerComponents/SellerSignup'
+import UserLogin from './ClientComponents/UserLogin'
+import SellerLogin from './SallerComponents/SellerLogin'
 import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
@@ -38,6 +42,10 @@ function App() {
           <Route path='/' element={<Homepage/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/user/signup" element={<UserSignUp />} />
+          <Route path="/user/login" element={<UserLogin />} />
+          <Route path="/seller/signup" element={<SellerSignup />} />
+          <Route path="/seller/login" element={<SellerLogin />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/User-dashboard" element={<UserDashboard />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
