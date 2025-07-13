@@ -146,9 +146,9 @@ export default function ProductPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 mx-auto mb-4 border-4 border-purple-600 rounded-full border-t-transparent animate-spin"></div>
           <p className="text-gray-600">Loading product details...</p>
         </div>
       </div>
@@ -157,13 +157,13 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
-          <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
+          <h2 className="mb-4 text-2xl font-bold text-gray-900">Product Not Found</h2>
+          <p className="mb-6 text-gray-600">The product you're looking for doesn't exist.</p>
           <button
             onClick={() => navigate('/')}
-            className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors"
+            className="px-6 py-3 text-white transition-colors bg-purple-600 rounded-lg hover:bg-purple-700"
           >
             Back to Home
           </button>
@@ -187,7 +187,7 @@ export default function ProductPage() {
 
   const handleBuyNow = () => {
     console.log('Buy now:', { product, quantity, selectedColor, selectedSize });
-    // Buy now logic here
+    navigate('/payment/flow')
   };
 
   return (
@@ -195,28 +195,28 @@ export default function ProductPage() {
       <Navbar />
       
       {/* Back Button */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <div className="px-4 pt-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center text-gray-600 hover:text-gray-900 transition-colors mb-6"
+          className="flex items-center mb-6 text-gray-600 transition-colors hover:text-gray-900"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           Back to Products
         </button>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="px-4 pb-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           
           {/* Left Column - Product Details */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="space-y-6 lg:col-span-2">
             
             {/* Product Images */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="p-6 bg-white shadow-sm rounded-2xl">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
                 {/* Thumbnail Images */}
-                <div className="md:col-span-1 order-2 md:order-1">
-                  <div className="flex md:flex-col gap-2">
+                <div className="order-2 md:col-span-1 md:order-1">
+                  <div className="flex gap-2 md:flex-col">
                     {product.images && product.images.length > 0 ? (
                       product.images.map((image, index) => (
                         <img
@@ -233,7 +233,7 @@ export default function ProductPage() {
                         />
                       ))
                     ) : (
-                      <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
+                      <div className="flex items-center justify-center w-20 h-20 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200">
                         <span className="text-2xl">{product.image}</span>
                       </div>
                     )}
@@ -241,13 +241,13 @@ export default function ProductPage() {
                 </div>
                 
                 {/* Main Image */}
-                <div className="md:col-span-4 order-1 md:order-2">
+                <div className="order-1 md:col-span-4 md:order-2">
                   <div className="relative">
                     {product.images && product.images[selectedImage] ? (
                       <img
                         src={product.images[selectedImage]}
                         alt={product.name}
-                        className="w-full h-96 object-cover rounded-xl"
+                        className="object-cover w-full h-96 rounded-xl"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextSibling.style.display = 'flex';
@@ -255,7 +255,7 @@ export default function ProductPage() {
                       />
                     ) : null}
                     <div 
-                      className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center"
+                      className="flex items-center justify-center w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl"
                       style={{ display: product.images && product.images[selectedImage] ? 'none' : 'flex' }}
                     >
                       <span className="text-8xl">{product.image}</span>
@@ -268,7 +268,7 @@ export default function ProductPage() {
                     >
                       <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
                     </button>
-                    <button className="absolute top-4 right-16 p-2 bg-white rounded-full text-gray-600 hover:bg-gray-100 transition-all">
+                    <button className="absolute p-2 text-gray-600 transition-all bg-white rounded-full top-4 right-16 hover:bg-gray-100">
                       <Share2 className="w-5 h-5" />
                     </button>
                   </div>
@@ -277,8 +277,8 @@ export default function ProductPage() {
             </div>
 
             {/* Product Info */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
+            <div className="p-6 bg-white shadow-sm rounded-2xl">
+              <h1 className="mb-4 text-3xl font-bold text-gray-900">{product.name}</h1>
               
               {/* Rating */}
               <div className="flex items-center gap-2 mb-4">
@@ -296,15 +296,15 @@ export default function ProductPage() {
               </div>
 
               {/* Description */}
-              <p className="text-gray-700 mb-6 leading-relaxed">{product.description}</p>
+              <p className="mb-6 leading-relaxed text-gray-700">{product.description}</p>
 
               {/* Features */}
               <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900">Key Features</h3>
+                <ul className="grid grid-cols-1 gap-2 md:grid-cols-2">
                   {product.features.map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-700">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 mr-3 bg-purple-500 rounded-full"></div>
                       {feature}
                     </li>
                   ))}
@@ -313,12 +313,12 @@ export default function ProductPage() {
 
               {/* Specifications */}
               <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Specifications</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="mb-3 text-lg font-semibold text-gray-900">Specifications</h3>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {Object.entries(product.specifications).map(([key, value]) => (
                     <div key={key} className="flex justify-between py-2 border-b border-gray-100">
                       <span className="text-gray-600">{key}:</span>
-                      <span className="text-gray-900 font-medium">{value}</span>
+                      <span className="font-medium text-gray-900">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -326,14 +326,14 @@ export default function ProductPage() {
             </div>
 
             {/* Seller Information */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+            <div className="p-6 bg-white shadow-sm rounded-2xl">
+              <h3 className="flex items-center mb-4 text-lg font-semibold text-gray-900">
                 <Store className="w-5 h-5 mr-2" />
                 Seller Information
               </h3>
               
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-blue-500">
                   <User className="w-8 h-8 text-white" />
                 </div>
                 
@@ -380,16 +380,16 @@ export default function ProductPage() {
 
           {/* Right Column - Purchase Details */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-4">
+            <div className="sticky space-y-4 top-24">
               
               {/* Price and Purchase Options */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
+              <div className="p-6 bg-white shadow-sm rounded-2xl">
                 {/* Price */}
                 <div className="mb-6">
                   <div className="flex items-baseline gap-3 mb-2">
                     <span className="text-3xl font-bold text-gray-900">${product.price}</span>
                     <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-                    <span className="bg-red-100 text-red-600 px-2 py-1 rounded-lg text-sm font-medium">
+                    <span className="px-2 py-1 text-sm font-medium text-red-600 bg-red-100 rounded-lg">
                       {product.discount}% OFF
                     </span>
                   </div>
@@ -399,18 +399,18 @@ export default function ProductPage() {
                 {/* Stock Status */}
                 <div className="mb-4">
                   {product.inStock ? (
-                    <p className="text-green-600 text-sm font-medium">
+                    <p className="text-sm font-medium text-green-600">
                       ✓ In Stock ({product.stockCount} items available)
                     </p>
                   ) : (
-                    <p className="text-red-600 text-sm font-medium">✗ Out of Stock</p>
+                    <p className="text-sm font-medium text-red-600">✗ Out of Stock</p>
                   )}
                 </div>
 
                 {/* Color Selection */}
                 {product.colors && (
                   <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-900 mb-2">Color</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Color</label>
                     <div className="flex gap-2">
                       {product.colors.map((color) => (
                         <button
@@ -432,7 +432,7 @@ export default function ProductPage() {
                 {/* Size Selection */}
                 {product.sizes && (
                   <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-900 mb-2">Size</label>
+                    <label className="block mb-2 text-sm font-medium text-gray-900">Size</label>
                     <div className="flex gap-2">
                       {product.sizes.map((size) => (
                         <button
@@ -453,8 +453,8 @@ export default function ProductPage() {
 
                 {/* Quantity */}
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-900 mb-2">Quantity</label>
-                  <div className="flex items-center border border-gray-300 rounded-lg w-32">
+                  <label className="block mb-2 text-sm font-medium text-gray-900">Quantity</label>
+                  <div className="flex items-center w-32 border border-gray-300 rounded-lg">
                     <button
                       onClick={() => handleQuantityChange('decrease')}
                       className="px-3 py-2 text-gray-600 hover:text-gray-800"
@@ -462,7 +462,7 @@ export default function ProductPage() {
                     >
                       -
                     </button>
-                    <span className="flex-1 text-center py-2 border-x border-gray-300">{quantity}</span>
+                    <span className="flex-1 py-2 text-center border-gray-300 border-x">{quantity}</span>
                     <button
                       onClick={() => handleQuantityChange('increase')}
                       className="px-3 py-2 text-gray-600 hover:text-gray-800"
@@ -477,7 +477,7 @@ export default function ProductPage() {
                 <div className="space-y-3">
                   <button
                     onClick={handleBuyNow}
-                    className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all flex items-center justify-center gap-2"
+                    className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-white transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl hover:from-purple-700 hover:to-blue-700"
                     disabled={!product.inStock}
                   >
                     <CreditCard className="w-5 h-5" />
@@ -486,7 +486,7 @@ export default function ProductPage() {
                   
                   <button
                     onClick={handleAddToCart}
-                    className="w-full bg-white border-2 border-purple-600 text-purple-600 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-all flex items-center justify-center gap-2"
+                    className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-purple-600 transition-all bg-white border-2 border-purple-600 rounded-xl hover:bg-purple-50"
                     disabled={!product.inStock}
                   >
                     <ShoppingCart className="w-5 h-5" />
@@ -496,8 +496,8 @@ export default function ProductPage() {
               </div>
 
               {/* Shipping & Services */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Shipping & Services</h3>
+              <div className="p-6 bg-white shadow-sm rounded-2xl">
+                <h3 className="mb-4 text-lg font-semibold text-gray-900">Shipping & Services</h3>
                 
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm">

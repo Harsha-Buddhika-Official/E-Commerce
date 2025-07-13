@@ -50,6 +50,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li><Link to="/customer-service" className="transition-colors hover:text-white">Customer Service</Link></li>
               <li><Link to="/return-policy" className="transition-colors hover:text-white">Return Policy</Link></li>
+              <li><Link to="/shipping" className="transition-colors hover:text-white">Shipping Info</Link></li>
               <li><Link to="/privacy-policy" className="transition-colors hover:text-white">Privacy Policy</Link></li>
               <li><Link to="/terms-of-service" className="transition-colors hover:text-white">Terms of Service</Link></li>
             </ul>

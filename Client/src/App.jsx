@@ -1,5 +1,6 @@
 import './App.css'
-import AuthChoice from './AuthChoice'
+import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
+import AuthChoice from './CommonLoginPage'
 import UserDashboard from './ClientComponents/UserDashboard'
 import SellerDashboard from './SallerComponents/SellerDashboard'
 import AddProduct from './AddProduct'
@@ -7,10 +8,8 @@ import UserSignUp from './ClientComponents/UserSignUp'
 import SellerSignup from './SallerComponents/SellerSignup'
 import UserLogin from './ClientComponents/UserLogin'
 import SellerLogin from './SallerComponents/SellerLogin'
-// Import forgot password components
 import UserForgotPassword from './ClientComponents/UserForgotPassword'
 import SellerForgotPassword from './SallerComponents/SellerForgotPassword'
-import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
 import ProductPage from './ProductPage'
@@ -21,6 +20,12 @@ import ContactPage from './SubPages/ContactPage'
 import FAQPage from './SubPages/FAQPage'
 import ShippingPage from './SubPages/ShippingPage'
 import PolicyPages from './SubPages/PolicyPages'
+import PaymentFlow from './PaymentComponents/PaymentFlow'
+import DetailsPage from './PaymentComponents/detailsPage'
+import Verification from './PaymentComponents/verification'
+import Creditcard from './PaymentComponents/Creditcard'
+import FinalPaymentPage from './PaymentComponents/FinalPaymentPage'
+import PaymentDemo from './PaymentComponents/PaymentDemo'
 import {
   Electronics,
   Fashion,
@@ -86,6 +91,14 @@ function App() {
           <Route path='/return-policy' element={<PolicyPages policyType="returns" />} />
           <Route path='/privacy-policy' element={<PolicyPages policyType="privacy" />} />
           <Route path='/terms-of-service' element={<PolicyPages policyType="terms" />} />
+
+          {/* Payment Pages */}
+          <Route path='/payment/demo' element={<PaymentDemo />} />
+          <Route path='/payment/flow' element={<PaymentFlow />} />
+          <Route path='/payment/details' element={<DetailsPage />} />
+          <Route path='/payment/verification' element={<Verification />} />
+          <Route path='/payment/creditcard' element={<Creditcard />} />
+          <Route path='/payment/final' element={<FinalPaymentPage />} />
         </Routes>
       </BrowserRouter>
     </>
