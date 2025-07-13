@@ -11,7 +11,7 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
     if (isUserLoggedIn) {
       navigate('/user-dashboard');
     } else {
-      navigate('/auth');
+      navigate('/user/login');
     }
   };
 
