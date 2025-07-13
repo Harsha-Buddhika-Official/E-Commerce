@@ -40,23 +40,29 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          {/* Main Pages */}
           <Route path='/' element={<Homepage/>} />
           <Route path='/auth' element={<AuthChoice/>} />
           
-          {/* Separate routes for user signup and login */}
+          {/* User Authentication Routes */}
           <Route path="/user/signup" element={<UserSignUp />} />
           <Route path="/user/login" element={<UserLogin />} />
           <Route path="/user/forgot-password" element={<UserForgotPassword />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
           
-          {/* Separate routes for seller signup and login */}
+          {/* Seller Authentication Routes */}
           <Route path="/seller/signup" element={<SellerSignup />} />
           <Route path="/seller/login" element={<SellerLogin />} />
           <Route path="/seller/forgot-password" element={<SellerForgotPassword />} />
-          
-          <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
+          
+          {/* Product & Shopping Routes */}
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path='/cart' element={<CartPage />} />
+          <Route path='/wishlist' element={<WishlistPage />} />
+          
+          {/* Category Routes */}
           <Route path='/categories' element={<CategoriesPage/>} />
           <Route path='/category/electronics' element={<Electronics/>} />
           <Route path='/category/fashion' element={<Fashion/>} />
@@ -68,12 +74,14 @@ function App() {
           <Route path='/category/automotive' element={<Automotive/>} />
           <Route path='/category/health-and-wellness' element={<HealthWellness/>} />
           <Route path='/category/food-and-beverages' element={<FoodBeverages/>} />
-          <Route path='/cart' element={<CartPage />} />
-          <Route path='/wishlist' element={<WishlistPage />} />
+          
+          {/* Information Pages */}
           <Route path='/about' element={<AboutPage />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/faq' element={<FAQPage />} />
           <Route path='/shipping' element={<ShippingPage />} />
+          
+          {/* Policy Pages */}
           <Route path='/customer-service' element={<PolicyPages policyType="customer" />} />
           <Route path='/return-policy' element={<PolicyPages policyType="returns" />} />
           <Route path='/privacy-policy' element={<PolicyPages policyType="privacy" />} />
