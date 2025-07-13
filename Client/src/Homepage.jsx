@@ -5,12 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './MainComponents/Navbar';
 import Slides from './MainComponents/Slides';
 import FeaturesBar from './MainComponents/FeaturesBar';
-import Categories from './Components/Categories';
 import FeaturedProducts from './MainComponents/FeaturedProducts';
 import Footer from './MainComponents/Footer';
 
-// Data Imports
-import { categories } from './Components/data';
 
 export default function Homepage() {
   const navigate = useNavigate();
