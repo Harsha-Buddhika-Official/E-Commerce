@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { categories } from '../Components/data';
@@ -6,6 +6,20 @@ import { categories } from '../Components/data';
 export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsCategoriesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleUserClick = () => {
     if (isUserLoggedIn) {
@@ -51,11 +65,10 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             <Link to="/" className="text-gray-700 transition-colors hover:text-purple-600">Home</Link>
             
             {/* Categories Dropdown */}
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
                 className="flex items-center text-gray-700 transition-colors hover:text-purple-600"
-                onBlur={() => setTimeout(() => setIsCategoriesOpen(false), 150)}
               >
                 Categories
                 <ChevronDown className={`ml-1 w-4 h-4 transition-transform ${isCategoriesOpen ? 'rotate-180' : ''}`} />
