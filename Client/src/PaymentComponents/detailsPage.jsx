@@ -18,6 +18,7 @@ const DetailsPage = () => {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('card'); // Default to card
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -116,109 +117,173 @@ const DetailsPage = () => {
     }, 2000);
   };
 
+  const renderPaymentFields = () => {
+    if (paymentMethod === 'paypal') {
+      return (
+        <div className="mb-8">
+          <h2 className="flex items-center mb-4 text-xl font-semibold">
+            <span className="mr-2">🟡</span>
+            PayPal Account Information
+          </h2>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              PayPal Email
+            </label>
+            <input
+              type="email"
+              name="paypalEmail"
+              value={formData.paypalEmail || ''}
+              onChange={handleInputChange}
+              placeholder="example@paypal.com"
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.paypalEmail ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+            {errors.paypalEmail && <p className="mt-1 text-sm text-red-500">{errors.paypalEmail}</p>}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="mb-8">
+        <h2 className="flex items-center mb-4 text-xl font-semibold">
+          <span className="mr-2">💳</span>
+          Card Information
+        </h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="md:col-span-2">
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Card Number
+            </label>
+            <input
+              type="text"
+              value={formData.cardNumber}
+              onChange={handleCardNumberChange}
+              placeholder="1234 5678 9012 3456"
+              maxLength="19"
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.cardNumber ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+            {errors.cardNumber && <p className="mt-1 text-sm text-red-500">{errors.cardNumber}</p>}
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Expiry Date
+            </label>
+            <input
+              type="text"
+              value={formData.expiryDate}
+              onChange={handleExpiryChange}
+              placeholder="MM/YY"
+              maxLength="5"
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.expiryDate ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+            {errors.expiryDate && <p className="mt-1 text-sm text-red-500">{errors.expiryDate}</p>}
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              CVV
+            </label>
+            <input
+              type="text"
+              name="cvv"
+              value={formData.cvv}
+              onChange={handleInputChange}
+              placeholder="123"
+              maxLength="4"
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.cvv ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+            {errors.cvv && <p className="mt-1 text-sm text-red-500">{errors.cvv}</p>}
+          </div>
+          <div className="md:col-span-2">
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Cardholder Name
+            </label>
+            <input
+              type="text"
+              name="cardholderName"
+              value={formData.cardholderName}
+              onChange={handleInputChange}
+              placeholder="John Doe"
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.cardholderName ? 'border-red-500' : 'border-gray-300'
+              }`}
+            />
+            {errors.cardholderName && <p className="mt-1 text-sm text-red-500">{errors.cardholderName}</p>}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
+    <div className="min-h-screen py-8 bg-gray-50">
+      <div className="max-w-4xl px-4 mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Payment Details</h1>
+        <div className="mb-8 text-center">
+          <h1 className="mb-2 text-3xl font-bold text-gray-900">Payment Details</h1>
           <p className="text-gray-600">Enter your payment information securely</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Payment Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="p-6 bg-white rounded-lg shadow-lg">
               <form onSubmit={handleSubmit}>
-                {/* Card Information */}
+                {/* Payment Method Selection */}
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold mb-4 flex items-center">
-                    <span className="mr-2">💳</span>
-                    Card Information
-                  </h2>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Card Number
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.cardNumber}
-                        onChange={handleCardNumberChange}
-                        placeholder="1234 5678 9012 3456"
-                        maxLength="19"
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors.cardNumber ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                      />
-                      {errors.cardNumber && <p className="text-red-500 text-sm mt-1">{errors.cardNumber}</p>}
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Expiry Date
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.expiryDate}
-                        onChange={handleExpiryChange}
-                        placeholder="MM/YY"
-                        maxLength="5"
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors.expiryDate ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                      />
-                      {errors.expiryDate && <p className="text-red-500 text-sm mt-1">{errors.expiryDate}</p>}
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        CVV
-                      </label>
-                      <input
-                        type="text"
-                        name="cvv"
-                        value={formData.cvv}
-                        onChange={handleInputChange}
-                        placeholder="123"
-                        maxLength="4"
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors.cvv ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                      />
-                      {errors.cvv && <p className="text-red-500 text-sm mt-1">{errors.cvv}</p>}
-                    </div>
-                    
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Cardholder Name
-                      </label>
-                      <input
-                        type="text"
-                        name="cardholderName"
-                        value={formData.cardholderName}
-                        onChange={handleInputChange}
-                        placeholder="John Doe"
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors.cardholderName ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                      />
-                      {errors.cardholderName && <p className="text-red-500 text-sm mt-1">{errors.cardholderName}</p>}
-                    </div>
+                  <h2 className="mb-4 text-xl font-semibold">Select Payment Method</h2>
+                  <div className="flex gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('card')}
+                      className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
+                        paymentMethod === 'card'
+                          ? 'bg-blue-600 text-white shadow-md'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" strokeWidth={2} d="M3 7h18M3 12h18m-7 5h7" />
+                      </svg>
+                      Card Payment
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPaymentMethod('paypal')}
+                      className={`flex-1 px-4 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
+                        paymentMethod === 'paypal'
+                          ? 'bg-blue-600 text-white shadow-md'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" strokeWidth={2} d="M3 7h18M3 12h18m-7 5h7" />
+                      </svg>
+                      PayPal
+                    </button>
                   </div>
                 </div>
 
+                {/* Payment Fields */}
+                {renderPaymentFields()}
+
                 {/* Billing Address */}
                 <div className="mb-8">
-                  <h2 className="text-xl font-semibold mb-4 flex items-center">
+                  <h2 className="flex items-center mb-4 text-xl font-semibold">
                     <span className="mr-2">🏠</span>
                     Billing Address
                   </h2>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block mb-2 text-sm font-medium text-gray-700">
                         Street Address
                       </label>
                       <input
@@ -231,11 +296,11 @@ const DetailsPage = () => {
                           errors['billingAddress.street'] ? 'border-red-500' : 'border-gray-300'
                         }`}
                       />
-                      {errors['billingAddress.street'] && <p className="text-red-500 text-sm mt-1">{errors['billingAddress.street']}</p>}
+                      {errors['billingAddress.street'] && <p className="mt-1 text-sm text-red-500">{errors['billingAddress.street']}</p>}
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block mb-2 text-sm font-medium text-gray-700">
                         City
                       </label>
                       <input
@@ -248,11 +313,11 @@ const DetailsPage = () => {
                           errors['billingAddress.city'] ? 'border-red-500' : 'border-gray-300'
                         }`}
                       />
-                      {errors['billingAddress.city'] && <p className="text-red-500 text-sm mt-1">{errors['billingAddress.city']}</p>}
+                      {errors['billingAddress.city'] && <p className="mt-1 text-sm text-red-500">{errors['billingAddress.city']}</p>}
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block mb-2 text-sm font-medium text-gray-700">
                         State
                       </label>
                       <input
@@ -266,7 +331,7 @@ const DetailsPage = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block mb-2 text-sm font-medium text-gray-700">
                         Zip Code
                       </label>
                       <input
@@ -279,11 +344,11 @@ const DetailsPage = () => {
                           errors['billingAddress.zipCode'] ? 'border-red-500' : 'border-gray-300'
                         }`}
                       />
-                      {errors['billingAddress.zipCode'] && <p className="text-red-500 text-sm mt-1">{errors['billingAddress.zipCode']}</p>}
+                      {errors['billingAddress.zipCode'] && <p className="mt-1 text-sm text-red-500">{errors['billingAddress.zipCode']}</p>}
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block mb-2 text-sm font-medium text-gray-700">
                         Country
                       </label>
                       <select
@@ -314,7 +379,7 @@ const DetailsPage = () => {
                 >
                   {isLoading ? (
                     <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 mr-3 -ml-1 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
@@ -330,10 +395,10 @@ const DetailsPage = () => {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-lg p-6 sticky top-8">
-              <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+            <div className="sticky p-6 bg-white rounded-lg shadow-lg top-8">
+              <h2 className="mb-4 text-xl font-semibold">Order Summary</h2>
               
-              <div className="space-y-3 mb-4">
+              <div className="mb-4 space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Subtotal</span>
                   <span className="font-medium">$99.99</span>
@@ -353,9 +418,9 @@ const DetailsPage = () => {
                 </div>
               </div>
 
-              <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+              <div className="p-3 mb-4 border border-green-200 rounded-lg bg-green-50">
                 <div className="flex items-center">
-                  <span className="text-green-600 mr-2">🔒</span>
+                  <span className="mr-2 text-green-600">🔒</span>
                   <span className="text-sm text-green-800">Secure SSL Encryption</span>
                 </div>
               </div>
@@ -371,7 +436,7 @@ const DetailsPage = () => {
         <div className="mt-8">
           <button 
             onClick={() => navigate('/payment/flow')}
-            className="text-blue-600 hover:text-blue-700 font-medium"
+            className="font-medium text-blue-600 hover:text-blue-700"
           >
             ← Back to Payment Method
           </button>
