@@ -94,18 +94,6 @@ const PaymentFlow = () => {
                     <p className="text-sm text-gray-600">Pay with PayPal account</p>
                   </div>
                 </div>
-                <div 
-                  className={`border-2 rounded-lg p-4 cursor-pointer transition-all duration-300 ${
-                    paymentMethod === 'google' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                  onClick={() => setPaymentMethod('google')}
-                >
-                  <div className="text-center">
-                    <div className="mb-2 text-3xl">🟠</div>
-                    <h3 className="font-medium">Google Pay</h3>
-                    <p className="text-sm text-gray-600">Quick & secure payment</p>
-                  </div>
-                </div>
               </div>
             </div>
           )}
@@ -113,7 +101,7 @@ const PaymentFlow = () => {
           {currentStep === 2 && (
             <div>
               <h2 className="mb-6 text-xl font-semibold">Payment Details</h2>
-              <p className="mb-4 text-gray-600">Selected: {paymentMethod === 'card' ? 'Credit/Debit Card' : paymentMethod === 'paypal' ? 'PayPal' : 'Google Pay'}</p>
+              <p className="mb-4 text-gray-600">Selected: {paymentMethod === 'card' ? 'Credit/Debit Card' : paymentMethod === 'paypal' ? 'PayPal' : ''}</p>
               <div className="py-8 text-center">
                 <div className="mb-4 text-6xl">📋</div>
                 <p className="text-gray-600">Payment details form will be loaded here</p>
