@@ -4,12 +4,7 @@ import {
   ArrowLeft, 
   Store, 
   User, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  CreditCard, 
-  Shield, 
-  Bell, 
+  Shield,
   Eye, 
   EyeOff,
   Camera,
@@ -87,7 +82,7 @@ export default function SellerProfileSettings() {
         <h3 className="text-xl font-semibold text-white">Personal Information</h3>
         <button
           onClick={() => setIsEditing(prev => ({ ...prev, profile: !prev.profile }))}
-          className="flex items-center px-4 py-2 text-sm transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white"
+          className="flex items-center px-4 py-2 text-sm text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
         >
           <Edit2 className="w-4 h-4 mr-2" />
           {isEditing.profile ? 'Cancel' : 'Edit'}
@@ -100,15 +95,15 @@ export default function SellerProfileSettings() {
           <div className="relative">
             <div className="w-20 h-20 overflow-hidden rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400">
               {sellerData.profileImage ? (
-                <img src={sellerData.profileImage} alt="Profile" className="w-full h-full object-cover" />
+                <img src={sellerData.profileImage} alt="Profile" className="object-cover w-full h-full" />
               ) : (
-                <div className="flex items-center justify-center w-full h-full text-white text-2xl font-bold">
+                <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white">
                   {sellerData.firstName[0]}{sellerData.lastName[0]}
                 </div>
               )}
             </div>
             {isEditing.profile && (
-              <label className="absolute bottom-0 right-0 p-1 bg-emerald-600 rounded-full cursor-pointer hover:bg-emerald-700">
+              <label className="absolute bottom-0 right-0 p-1 rounded-full cursor-pointer bg-emerald-600 hover:bg-emerald-700">
                 <Camera className="w-4 h-4 text-white" />
                 <input
                   type="file"
@@ -183,7 +178,7 @@ export default function SellerProfileSettings() {
           <div className="flex justify-end space-x-3">
             <button
               onClick={() => setIsEditing(prev => ({ ...prev, profile: false }))}
-              className="px-4 py-2 text-white/70 border border-white/20 rounded-lg hover:bg-white/10"
+              className="px-4 py-2 border rounded-lg text-white/70 border-white/20 hover:bg-white/10"
             >
               Cancel
             </button>
@@ -206,7 +201,7 @@ export default function SellerProfileSettings() {
         <h3 className="text-xl font-semibold text-white">Business Information</h3>
         <button
           onClick={() => setIsEditing(prev => ({ ...prev, business: !prev.business }))}
-          className="flex items-center px-4 py-2 text-sm transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white"
+          className="flex items-center px-4 py-2 text-sm text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
         >
           <Edit2 className="w-4 h-4 mr-2" />
           {isEditing.business ? 'Cancel' : 'Edit'}
@@ -319,7 +314,7 @@ export default function SellerProfileSettings() {
           <div className="flex justify-end space-x-3">
             <button
               onClick={() => setIsEditing(prev => ({ ...prev, business: false }))}
-              className="px-4 py-2 text-white/70 border border-white/20 rounded-lg hover:bg-white/10"
+              className="px-4 py-2 border rounded-lg text-white/70 border-white/20 hover:bg-white/10"
             >
               Cancel
             </button>
@@ -344,7 +339,7 @@ export default function SellerProfileSettings() {
           <h3 className="text-xl font-semibold text-white">Change Password</h3>
           <button
             onClick={() => setIsEditing(prev => ({ ...prev, security: !prev.security }))}
-            className="flex items-center px-4 py-2 text-sm transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white"
+            className="flex items-center px-4 py-2 text-sm text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
           >
             <Edit2 className="w-4 h-4 mr-2" />
             {isEditing.security ? 'Cancel' : 'Change Password'}
@@ -404,7 +399,7 @@ export default function SellerProfileSettings() {
             <div className="flex justify-end space-x-3">
               <button
                 onClick={() => setIsEditing(prev => ({ ...prev, security: false }))}
-                className="px-4 py-2 text-white/70 border border-white/20 rounded-lg hover:bg-white/10"
+                className="px-4 py-2 border rounded-lg text-white/70 border-white/20 hover:bg-white/10"
               >
                 Cancel
               </button>
@@ -427,7 +422,7 @@ export default function SellerProfileSettings() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-white font-medium">Email Notifications</h4>
+              <h4 className="font-medium text-white">Email Notifications</h4>
               <p className="text-sm text-white/70">Receive order updates and important messages via email</p>
             </div>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -443,7 +438,7 @@ export default function SellerProfileSettings() {
           
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-white font-medium">SMS Notifications</h4>
+              <h4 className="font-medium text-white">SMS Notifications</h4>
               <p className="text-sm text-white/70">Receive urgent alerts via text message</p>
             </div>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -459,7 +454,7 @@ export default function SellerProfileSettings() {
           
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-white font-medium">Marketing Emails</h4>
+              <h4 className="font-medium text-white">Marketing Emails</h4>
               <p className="text-sm text-white/70">Receive tips, promotions, and product updates</p>
             </div>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -475,7 +470,7 @@ export default function SellerProfileSettings() {
           
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-white font-medium">Two-Factor Authentication</h4>
+              <h4 className="font-medium text-white">Two-Factor Authentication</h4>
               <p className="text-sm text-white/70">Add an extra layer of security to your account</p>
             </div>
             <label className="relative inline-flex items-center cursor-pointer">
@@ -515,7 +510,7 @@ export default function SellerProfileSettings() {
 
       <div className="flex">
         {/* Sidebar */}
-        <aside className="w-64 bg-white/5 backdrop-blur-lg border-r border-white/20 min-h-screen">
+        <aside className="w-64 min-h-screen border-r bg-white/5 backdrop-blur-lg border-white/20">
           <nav className="p-4">
             <button
               onClick={() => setActiveSection('profile')}

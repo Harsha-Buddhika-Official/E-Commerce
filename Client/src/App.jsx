@@ -14,6 +14,7 @@ import SellerForgotPassword from './SallerComponents/SellerForgotPassword'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
 import ProductPage from './ProductPage'
+import ChatPage from './ChatPage'
 import CartPage from './ClientComponents/CartPage'
 import WishlistPage from './ClientComponents/WishlistPage'
 import AboutPage from './SubPages/AboutPage'
@@ -27,6 +28,7 @@ import Verification from './PaymentComponents/verification'
 import Creditcard from './PaymentComponents/Creditcard'
 import FinalPaymentPage from './PaymentComponents/FinalPaymentPage'
 import PaymentDemo from './PaymentComponents/PaymentDemo'
+import FloatingChatWidget from './Components/FloatingChatWidget'
 import {
   Electronics,
   Fashion,
@@ -68,6 +70,7 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path='/cart' element={<CartPage />} />
           <Route path='/wishlist' element={<WishlistPage />} />
+          <Route path='/messages' element={<ChatPage />} />
           
           {/* Category Routes */}
           <Route path='/categories' element={<CategoriesPage/>} />
@@ -102,6 +105,12 @@ function App() {
           <Route path='/payment/creditcard' element={<Creditcard />} />
           <Route path='/payment/final' element={<FinalPaymentPage />} />
         </Routes>
+        
+        {/* Floating Chat Widget - Available across all pages */}
+        <FloatingChatWidget 
+          seller={{ name: 'Support Team', verified: true }}
+          customer={{ name: 'User' }}
+        />
       </BrowserRouter>
     </>
   )

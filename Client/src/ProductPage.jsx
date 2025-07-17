@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Star, Heart, Share2, ShoppingCart, CreditCard, Truck, Shield, RotateCcw, Package, MapPin, Clock, User, Store, ArrowLeft } from 'lucide-react';
+import { Star, Heart, Share2, ShoppingCart, CreditCard, Truck, Shield, RotateCcw, Package, MapPin, Clock, User, Store, ArrowLeft, MessageCircle } from 'lucide-react';
 import { allProducts } from './Components/data';
 import Navbar from './MainComponents/Navbar';
+import ChatComponent from './Components/ChatComponent';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -14,6 +15,8 @@ export default function ProductPage() {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('purchase');
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     // Find the product from allProducts array
@@ -382,120 +385,240 @@ export default function ProductPage() {
           <div className="lg:col-span-1">
             <div className="sticky space-y-4 top-24">
               
-              {/* Price and Purchase Options */}
-              <div className="p-6 bg-white shadow-sm rounded-2xl">
-                {/* Price */}
-                <div className="mb-6">
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="text-3xl font-bold text-gray-900">${product.price}</span>
-                    <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-                    <span className="px-2 py-1 text-sm font-medium text-red-600 bg-red-100 rounded-lg">
-                      {product.discount}% OFF
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-600">Free shipping on orders over $50</p>
+              {/* Tab Navigation */}
+              <div className="bg-white shadow-sm rounded-2xl">
+                <div className="flex border-b border-gray-200">
+                  <button
+                    onClick={() => setActiveTab('purchase')}
+                    className={`flex-1 px-4 py-3 text-sm font-medium rounded-tl-2xl transition-colors ${
+                      activeTab === 'purchase'
+                        ? 'bg-purple-50 text-purple-700 border-b-2 border-purple-500'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    Purchase
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('seller')}
+                    className={`flex-1 px-4 py-3 text-sm font-medium rounded-tr-2xl transition-colors ${
+                      activeTab === 'seller'
+                        ? 'bg-purple-50 text-purple-700 border-b-2 border-purple-500'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    Seller Details
+                  </button>
                 </div>
+                
+                {/* Tab Content */}
+                <div className="p-6">
+                  {activeTab === 'purchase' && (
+                    <div className="space-y-6">
+                      {/* Price */}
+                      <div>
+                        <div className="flex items-baseline gap-3 mb-2">
+                          <span className="text-3xl font-bold text-gray-900">${product.price}</span>
+                          <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
+                          <span className="px-2 py-1 text-sm font-medium text-red-600 bg-red-100 rounded-lg">
+                            {product.discount}% OFF
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600">Free shipping on orders over $50</p>
+                      </div>
 
-                {/* Stock Status */}
-                <div className="mb-4">
-                  {product.inStock ? (
-                    <p className="text-sm font-medium text-green-600">
-                      ✓ In Stock ({product.stockCount} items available)
-                    </p>
-                  ) : (
-                    <p className="text-sm font-medium text-red-600">✗ Out of Stock</p>
+                      {/* Stock Status */}
+                      <div>
+                        {product.inStock ? (
+                          <p className="text-sm font-medium text-green-600">
+                            ✓ In Stock ({product.stockCount} items available)
+                          </p>
+                        ) : (
+                          <p className="text-sm font-medium text-red-600">✗ Out of Stock</p>
+                        )}
+                      </div>
+
+                      {/* Color Selection */}
+                      {product.colors && (
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900">Color</label>
+                          <div className="flex gap-2">
+                            {product.colors.map((color) => (
+                              <button
+                                key={color}
+                                onClick={() => setSelectedColor(color)}
+                                className={`px-3 py-1 rounded-lg border text-sm transition-all ${
+                                  selectedColor === color
+                                    ? 'border-purple-500 bg-purple-50 text-purple-700'
+                                    : 'border-gray-300 hover:border-gray-400'
+                                }`}
+                              >
+                                {color}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Size Selection */}
+                      {product.sizes && (
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900">Size</label>
+                          <div className="flex gap-2">
+                            {product.sizes.map((size) => (
+                              <button
+                                key={size}
+                                onClick={() => setSelectedSize(size)}
+                                className={`px-3 py-1 rounded-lg border text-sm transition-all ${
+                                  selectedSize === size
+                                    ? 'border-purple-500 bg-purple-50 text-purple-700'
+                                    : 'border-gray-300 hover:border-gray-400'
+                                }`}
+                              >
+                                {size}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Quantity */}
+                      <div>
+                        <label className="block mb-2 text-sm font-medium text-gray-900">Quantity</label>
+                        <div className="flex items-center w-32 border border-gray-300 rounded-lg">
+                          <button
+                            onClick={() => handleQuantityChange('decrease')}
+                            className="px-3 py-2 text-gray-600 hover:text-gray-800"
+                            disabled={quantity <= 1}
+                          >
+                            -
+                          </button>
+                          <span className="flex-1 py-2 text-center border-gray-300 border-x">{quantity}</span>
+                          <button
+                            onClick={() => handleQuantityChange('increase')}
+                            className="px-3 py-2 text-gray-600 hover:text-gray-800"
+                            disabled={quantity >= product.stockCount}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="space-y-3">
+                        <button
+                          onClick={handleBuyNow}
+                          className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-white transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl hover:from-purple-700 hover:to-blue-700"
+                          disabled={!product.inStock}
+                        >
+                          <CreditCard className="w-5 h-5" />
+                          Buy Now
+                        </button>
+                        
+                        <button
+                          onClick={handleAddToCart}
+                          className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-purple-600 transition-all bg-white border-2 border-purple-600 rounded-xl hover:bg-purple-50"
+                          disabled={!product.inStock}
+                        >
+                          <ShoppingCart className="w-5 h-5" />
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
                   )}
-                </div>
-
-                {/* Color Selection */}
-                {product.colors && (
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Color</label>
-                    <div className="flex gap-2">
-                      {product.colors.map((color) => (
-                        <button
-                          key={color}
-                          onClick={() => setSelectedColor(color)}
-                          className={`px-3 py-1 rounded-lg border text-sm transition-all ${
-                            selectedColor === color
-                              ? 'border-purple-500 bg-purple-50 text-purple-700'
-                              : 'border-gray-300 hover:border-gray-400'
-                          }`}
-                        >
-                          {color}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Size Selection */}
-                {product.sizes && (
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-medium text-gray-900">Size</label>
-                    <div className="flex gap-2">
-                      {product.sizes.map((size) => (
-                        <button
-                          key={size}
-                          onClick={() => setSelectedSize(size)}
-                          className={`px-3 py-1 rounded-lg border text-sm transition-all ${
-                            selectedSize === size
-                              ? 'border-purple-500 bg-purple-50 text-purple-700'
-                              : 'border-gray-300 hover:border-gray-400'
-                          }`}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Quantity */}
-                <div className="mb-6">
-                  <label className="block mb-2 text-sm font-medium text-gray-900">Quantity</label>
-                  <div className="flex items-center w-32 border border-gray-300 rounded-lg">
-                    <button
-                      onClick={() => handleQuantityChange('decrease')}
-                      className="px-3 py-2 text-gray-600 hover:text-gray-800"
-                      disabled={quantity <= 1}
-                    >
-                      -
-                    </button>
-                    <span className="flex-1 py-2 text-center border-gray-300 border-x">{quantity}</span>
-                    <button
-                      onClick={() => handleQuantityChange('increase')}
-                      className="px-3 py-2 text-gray-600 hover:text-gray-800"
-                      disabled={quantity >= product.stockCount}
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="space-y-3">
-                  <button
-                    onClick={handleBuyNow}
-                    className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-white transition-all bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl hover:from-purple-700 hover:to-blue-700"
-                    disabled={!product.inStock}
-                  >
-                    <CreditCard className="w-5 h-5" />
-                    Buy Now
-                  </button>
                   
-                  <button
-                    onClick={handleAddToCart}
-                    className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-purple-600 transition-all bg-white border-2 border-purple-600 rounded-xl hover:bg-purple-50"
-                    disabled={!product.inStock}
-                  >
-                    <ShoppingCart className="w-5 h-5" />
-                    Add to Cart
-                  </button>
+                  {activeTab === 'seller' && (
+                    <div className="space-y-6">
+                      {/* Seller Profile */}
+                      <div className="flex items-start gap-4">
+                        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-blue-500">
+                          <User className="w-8 h-8 text-white" />
+                        </div>
+                        
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h4 className="text-lg font-semibold text-gray-900">{product.seller.name}</h4>
+                            {product.seller.verified && (
+                              <Shield className="w-5 h-5 text-green-500" title="Verified Seller" />
+                            )}
+                          </div>
+                          
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`w-4 h-4 ${
+                                    i < Math.floor(product.seller.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                            <span className="text-sm text-gray-600">({product.seller.rating})</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Seller Stats */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="p-3 rounded-lg bg-gray-50">
+                          <div className="flex items-center mb-1">
+                            <Package className="w-4 h-4 mr-2 text-purple-600" />
+                            <span className="text-sm font-medium text-gray-900">Products</span>
+                          </div>
+                          <p className="text-lg font-bold text-purple-600">{product.seller.totalProducts}</p>
+                        </div>
+                        
+                        <div className="p-3 rounded-lg bg-gray-50">
+                          <div className="flex items-center mb-1">
+                            <Clock className="w-4 h-4 mr-2 text-purple-600" />
+                            <span className="text-sm font-medium text-gray-900">Member Since</span>
+                          </div>
+                          <p className="text-lg font-bold text-purple-600">{product.seller.memberSince}</p>
+                        </div>
+                      </div>
+                      
+                      {/* Location */}
+                      <div className="flex items-center p-3 rounded-lg bg-gray-50">
+                        <MapPin className="w-5 h-5 mr-3 text-purple-600" />
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">Location</p>
+                          <p className="text-gray-600">{product.seller.location}</p>
+                        </div>
+                      </div>
+                      
+                      {/* Contact Seller Button */}
+                      <button 
+                        onClick={() => setIsChatOpen(true)}
+                        className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-purple-600 transition-all bg-white border-2 border-purple-600 rounded-xl hover:bg-purple-50"
+                      >
+                        <MessageCircle className="w-5 h-5" />
+                        Contact Seller
+                      </button>
+                      
+                      {/* Store Policies */}
+                      <div className="pt-4 border-t border-gray-200">
+                        <h4 className="mb-3 text-sm font-semibold text-gray-900">Store Policies</h4>
+                        <div className="space-y-2 text-sm text-gray-600">
+                          <div className="flex items-center">
+                            <div className="w-2 h-2 mr-2 bg-green-500 rounded-full"></div>
+                            Ships within 1-2 business days
+                          </div>
+                          <div className="flex items-center">
+                            <div className="w-2 h-2 mr-2 bg-green-500 rounded-full"></div>
+                            30-day return policy
+                          </div>
+                          <div className="flex items-center">
+                            <div className="w-2 h-2 mr-2 bg-green-500 rounded-full"></div>
+                            Secure payment processing
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Shipping & Services */}
+              {/* Shipping & Services - Always visible */}
               <div className="p-6 bg-white shadow-sm rounded-2xl">
                 <h3 className="mb-4 text-lg font-semibold text-gray-900">Shipping & Services</h3>
                 
@@ -529,6 +652,15 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
+
+      {/* Chat Component */}
+      <ChatComponent
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(false)}
+        seller={product?.seller}
+        customer={{ name: 'John Doe' }} // Replace with actual customer data
+        productId={product?.id}
+      />
     </div>
   );
 }
