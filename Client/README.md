@@ -1,12 +1,83 @@
-# React + Vite
+# E-Commerce Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a modern E-Commerce platform built with React and Vite. It provides a seamless shopping experience for users, with features for browsing products, managing carts, and completing payments. The platform is designed to be scalable and easy to customize.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Features**:
+  - Browse products by categories
+  - Add products to cart and wishlist
+  - User authentication (Login, Signup, Forgot Password)
+  - User dashboard for managing orders and profile
 
-## Expanding the ESLint configuration
+- **Seller Features**:
+  - Seller authentication (Login, Signup, Forgot Password)
+  - Seller dashboard for managing products and orders
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Payment Features**:
+  - Multiple payment options (Credit Card, PayPal, etc.)
+  - Secure payment flow with verification
+
+- **Other Features**:
+  - Responsive design
+  - Category management
+  - FAQ, Contact, and Policy pages
+
+## Tech Stack
+
+- **Frontend**: React, Vite, Tailwind CSS
+- **Backend**: (To be integrated)
+- **State Management**: (To be integrated, e.g., Redux or Context API)
+- **Payment Integration**: PayPal, Credit Card
+
+## Getting Started
+
+Follow these steps to set up the project locally:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Harsha-Buddhika-Official/E-Commerce.git
+   ```
+
+2. Navigate to the `Client` directory:
+   ```bash
+   cd E-Commerce/Client
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open your browser and navigate to `http://localhost:5173` to view the application.
+
+## Project Structure
+
+```
+Client/
+├── public/                # Static assets
+├── src/                   # Source code
+│   ├── Components/        # Reusable components
+│   ├── MainComponents/    # Core UI components
+│   ├── PaymentComponents/ # Payment-related components
+│   ├── SallerComponents/  # Seller-related components
+│   ├── SubPages/          # Static subpages (FAQ, Contact, etc.)
+│   ├── App.jsx            # Main application file
+│   └── main.jsx           # Entry point
+├── package.json           # Project dependencies
+├── vite.config.js         # Vite configuration
+└── tailwind.config.js     # Tailwind CSS configuration
+```
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request for any feature additions or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
