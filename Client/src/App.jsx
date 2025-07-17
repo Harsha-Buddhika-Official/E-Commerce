@@ -8,6 +8,7 @@ import UserSignUp from './ClientComponents/UserSignUp'
 import SellerSignup from './SallerComponents/SellerSignup'
 import UserLogin from './ClientComponents/UserLogin'
 import SellerLogin from './SallerComponents/SellerLogin'
+import SellerProfileSettings from './SallerComponents/SellerProfileSettings'
 import UserForgotPassword from './ClientComponents/UserForgotPassword'
 import SellerForgotPassword from './SallerComponents/SellerForgotPassword'
 import Homepage from './Homepage'
@@ -60,6 +61,7 @@ function App() {
           <Route path="/seller/login" element={<SellerLogin />} />
           <Route path="/seller/forgot-password" element={<SellerForgotPassword />} />
           <Route path="/seller-dashboard" element={<SellerDashboard />} />
+          <Route path="/seller/profile-settings" element={<SellerProfileSettings />} />
           
           {/* Product & Shopping Routes */}
           <Route path="/add-product" element={<AddProduct />} />

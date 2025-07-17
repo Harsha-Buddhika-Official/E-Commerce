@@ -1,11 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store, TrendingUp, Mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft } from 'lucide-react';
+import { Store, TrendingUp, Mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft, X, Check, Clock, AlertCircle } from 'lucide-react';
+import { initialNotifications, notificationHelpers } from './notificationData';
 
 export default function SellerDashboard() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const notificationRef = useRef(null);
+
+  // Initialize notifications from imported data
+  const [notifications, setNotifications] = useState(initialNotifications);
+
+  // Close notifications dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (notificationRef.current && !notificationRef.current.contains(event.target)) {
+        setShowNotifications(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const unreadCount = notificationHelpers.getUnreadCount(notifications);
+
+  const markAsRead = (id) => {
+    setNotifications(prev => notificationHelpers.markAsRead(prev, id));
+  };
+
+  const markAllAsRead = () => {
+    setNotifications(prev => notificationHelpers.markAllAsRead(prev));
+  };
+
+  const removeNotification = (id) => {
+    setNotifications(prev => notificationHelpers.removeNotification(prev, id));
+  };
 
   // Mock data - replace with actual data from your backend
   const stats = {
@@ -184,7 +218,7 @@ export default function SellerDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900">
       {/* Header */}
-      <header className="border-b bg-white/10 backdrop-blur-lg border-white/20">
+      <header className="border-b bg-white/10 backdrop-blur-lg border-white/20 relative z-[1000]">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
@@ -199,10 +233,129 @@ export default function SellerDashboard() {
               >
                 <Menu className="w-5 h-5" />
               </button>
-              <button className="text-white/70 hover:text-white">
-                <Bell className="w-5 h-5" />
-              </button>
-              <button className="text-white/70 hover:text-white">
+              
+              {/* Notifications Dropdown */}
+              <div className="relative z-[2000]" ref={notificationRef}>
+                <button 
+                  onClick={() => setShowNotifications(!showNotifications)}
+                  className="relative transition-colors text-white/70 hover:text-white"
+                >
+                  <Bell className="w-5 h-5" />
+                  {unreadCount > 0 && (
+                    <span className="absolute flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full -top-1 -right-1">
+                      {unreadCount > 9 ? '9+' : unreadCount}
+                    </span>
+                  )}
+                </button>
+
+                {/* Notifications Dropdown */}
+                {showNotifications && (
+                  <div className="absolute right-0 mt-2 w-80 bg-gray-900/95 backdrop-blur-xl border border-white/30 rounded-xl shadow-2xl z-[9999] max-h-96 overflow-hidden ring-1 ring-white/10">
+                    {/* Header */}
+                    <div className="flex items-center justify-between p-4 border-b border-white/20 bg-white/5">
+                      <h3 className="font-semibold text-white">Notifications</h3>
+                      <div className="flex items-center space-x-2">
+                        {unreadCount > 0 && (
+                          <button
+                            onClick={markAllAsRead}
+                            className="text-xs transition-colors text-emerald-400 hover:text-emerald-300"
+                          >
+                            Mark all read
+                          </button>
+                        )}
+                        <button
+                          onClick={() => setShowNotifications(false)}
+                          className="transition-colors text-white/70 hover:text-white"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Notifications List */}
+                    <div className="overflow-y-auto max-h-80">
+                      {notifications.length === 0 ? (
+                        <div className="p-6 text-center text-white/70">
+                          <Bell className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                          <p>No notifications</p>
+                        </div>
+                      ) : (
+                        notifications.map((notification) => {
+                          const IconComponent = notification.icon;
+                          return (
+                            <div
+                              key={notification.id}
+                              className={`p-4 border-b border-white/10 hover:bg-white/5 transition-colors relative ${
+                                !notification.read ? 'bg-white/5' : ''
+                              }`}
+                            >
+                              <div className="flex items-start space-x-3">
+                                <div className={`flex-shrink-0 ${notification.color}`}>
+                                  <IconComponent className="w-5 h-5" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-start justify-between">
+                                    <div className="flex-1">
+                                      <p className="text-sm font-medium text-white truncate">
+                                        {notification.title}
+                                      </p>
+                                      <p className="mt-1 text-xs leading-relaxed text-white/70">
+                                        {notification.message}
+                                      </p>
+                                      <p className="flex items-center mt-2 text-xs text-white/50">
+                                        <Clock className="w-3 h-3 mr-1" />
+                                        {notification.time}
+                                      </p>
+                                    </div>
+                                    <div className="flex items-center ml-2 space-x-1">
+                                      {!notification.read && (
+                                        <button
+                                          onClick={() => markAsRead(notification.id)}
+                                          className="transition-colors text-emerald-400 hover:text-emerald-300"
+                                          title="Mark as read"
+                                        >
+                                          <Check className="w-3 h-3" />
+                                        </button>
+                                      )}
+                                      <button
+                                        onClick={() => removeNotification(notification.id)}
+                                        className="text-red-400 transition-colors hover:text-red-300"
+                                        title="Remove notification"
+                                      >
+                                        <X className="w-3 h-3" />
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              {!notification.read && (
+                                <div className="absolute top-4 right-4">
+                                  <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })
+                      )}
+                    </div>
+
+                    {/* Footer */}
+                    {notifications.length > 0 && (
+                      <div className="p-3 text-center border-t border-white/20">
+                        <button className="text-sm transition-colors text-emerald-400 hover:text-emerald-300">
+                          View all notifications
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <button 
+                onClick={() => navigate('/seller/profile-settings')}
+                className="text-white/70 hover:text-white"
+                title="Profile Settings"
+              >
                 <Settings className="w-5 h-5" />
               </button>
               <button className="text-white/70 hover:text-white">
