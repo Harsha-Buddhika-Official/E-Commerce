@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
-import { User, ShoppingBag, Heart, CreditCard, MapPin, Bell, Settings, Package, Star, Calendar, TrendingUp, Award, Gift, LogOut, Edit3, Eye, Truck, CheckCircle, Clock, X, Plus, Trash2, Phone, Mail, Home, Building, Sparkles, ArrowLeft } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { User, ShoppingBag, Heart, CreditCard, MapPin, Bell, Settings, Package, Star, Calendar, TrendingUp, Award, Gift, LogOut, Edit3, Eye, Truck, CheckCircle, Clock, X, Plus, Trash2, Phone, Mail, Home, Building, Sparkles, ArrowLeft, MessageCircle } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
+import CustomerChatComponent from './CustomerChatComponent';
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('overview');
   const [isEditing, setIsEditing] = useState(false);
   const [showAddAddress, setShowAddAddress] = useState(false);
+  const [searchParams] = useSearchParams();
+
+  // Handle URL parameters for direct navigation
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab && ['overview', 'orders', 'wishlist', 'messages', 'addresses', 'payments', 'notifications', 'settings'].includes(tab)) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
 
   const user = {
     name: "Alex Johnson",
@@ -130,6 +141,7 @@ export default function Dashboard() {
     { id: 'overview', label: 'Overview', icon: User },
     { id: 'orders', label: 'Orders', icon: ShoppingBag },
     { id: 'wishlist', label: 'Wishlist', icon: Heart },
+    { id: 'messages', label: 'Messages', icon: MessageCircle },
     { id: 'addresses', label: 'Addresses', icon: MapPin },
     { id: 'payments', label: 'Payments', icon: CreditCard },
     { id: 'notifications', label: 'Notifications', icon: Bell },
@@ -482,6 +494,7 @@ export default function Dashboard() {
       case 'overview': return renderOverview();
       case 'orders': return renderOrders();
       case 'wishlist': return renderWishlist();
+      case 'messages': return <div className="h-full"><CustomerChatComponent /></div>;
       case 'addresses': return renderAddresses();
       case 'payments': return renderPayments();
       case 'settings': return renderSettings();

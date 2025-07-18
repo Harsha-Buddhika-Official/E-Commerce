@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Star, Heart, Share2, ShoppingCart, CreditCard, Truck, Shield, RotateCcw, Package, MapPin, Clock, User, Store, ArrowLeft, MessageCircle } from 'lucide-react';
 import { allProducts } from './Components/data';
 import Navbar from './MainComponents/Navbar';
-import ChatComponent from './Components/ChatComponent';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -16,7 +15,6 @@ export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('purchase');
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     // Find the product from allProducts array
@@ -191,6 +189,19 @@ export default function ProductPage() {
   const handleBuyNow = () => {
     console.log('Buy now:', { product, quantity, selectedColor, selectedSize });
     navigate('/payment/flow')
+  };
+
+  const handleContactSeller = () => {
+    // Navigate to user dashboard with seller and product information
+    const params = new URLSearchParams({
+      seller: product.seller.name,
+      productId: product.id.toString(),
+      productName: product.name,
+      productPrice: product.price.toString(),
+      productImage: product.image || '📦'
+    });
+    
+    navigate(`/user-dashboard?tab=messages&${params.toString()}`);
   };
 
   return (
@@ -588,11 +599,12 @@ export default function ProductPage() {
                       
                       {/* Contact Seller Button */}
                       <button 
-                        onClick={() => setIsChatOpen(true)}
+                        onClick={handleContactSeller}
                         className="flex items-center justify-center w-full gap-2 py-3 font-semibold text-purple-600 transition-all bg-white border-2 border-purple-600 rounded-xl hover:bg-purple-50"
+                        title={`Start a conversation with ${product.seller.name}`}
                       >
                         <MessageCircle className="w-5 h-5" />
-                        Contact Seller
+                        Message {product.seller.name}
                       </button>
                       
                       {/* Store Policies */}
@@ -652,15 +664,6 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
-
-      {/* Chat Component */}
-      <ChatComponent
-        isOpen={isChatOpen}
-        onClose={() => setIsChatOpen(false)}
-        seller={product?.seller}
-        customer={{ name: 'John Doe' }} // Replace with actual customer data
-        productId={product?.id}
-      />
     </div>
   );
 }

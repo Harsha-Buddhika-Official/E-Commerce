@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Store, TrendingUp, Mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft, X, Check, Clock, AlertCircle } from 'lucide-react';
+import { Store, TrendingUp, Mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft, X, Check, Clock, AlertCircle, MessageCircle } from 'lucide-react';
 import { initialNotifications, notificationHelpers } from './notificationData';
+import SellerChatComponent from './SellerChatComponent';
 
 export default function SellerDashboard() {
   const navigate = useNavigate();
@@ -207,6 +208,13 @@ export default function SellerDashboard() {
                 </table>
               </div>
             </div>
+          </div>
+        );
+      
+      case 'messages':
+        return (
+          <div className="h-full">
+            <SellerChatComponent />
           </div>
         );
       
@@ -435,6 +443,19 @@ export default function SellerDashboard() {
               >
                 <Users className={`w-5 h-5 flex-shrink-0 ${!sidebarCollapsed ? 'mr-3' : ''}`} />
                 {!sidebarCollapsed && <span>Customers</span>}
+              </button>
+              
+              <button
+                onClick={() => setActiveTab('messages')}
+                className={`w-full flex items-center ${sidebarCollapsed ? 'px-2 justify-center' : 'px-4'} py-3 rounded-lg mb-2 transition-colors ${
+                  activeTab === 'messages' 
+                    ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30' 
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+                title={sidebarCollapsed ? 'Messages' : ''}
+              >
+                <MessageCircle className={`w-5 h-5 flex-shrink-0 ${!sidebarCollapsed ? 'mr-3' : ''}`} />
+                {!sidebarCollapsed && <span>Messages</span>}
               </button>
               
               <button

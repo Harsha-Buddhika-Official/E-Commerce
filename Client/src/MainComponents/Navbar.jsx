@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X, ChevronDown, MessageCircle } from 'lucide-react';
+import { ShoppingBag, Search, User, Heart, ShoppingCart, Menu, X, ChevronDown } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { categories } from '../Components/data';
 
@@ -102,7 +102,6 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             
             <Link to="/about" className="text-gray-700 transition-colors hover:text-purple-600">About</Link>
             <Link to="/contact" className="text-gray-700 transition-colors hover:text-purple-600">Contact</Link>
-            <Link to="/messages" className="text-gray-700 transition-colors hover:text-purple-600">Messages</Link>
             <Link to="/faq" className="text-gray-700 transition-colors hover:text-purple-600">FAQ</Link>
           </div>
 
@@ -138,11 +137,6 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
             
             <Link to="/wishlist" className="relative p-2 text-gray-700 transition-colors hover:text-purple-600">
               <Heart className="w-5 h-5" />
-            </Link>
-            <Link to="/messages" className="relative p-2 text-gray-700 transition-colors hover:text-purple-600">
-              <MessageCircle className="w-5 h-5" />
-              {/* Optional: Add unread message indicator */}
-              <span className="absolute flex items-center justify-center w-2 h-2 bg-red-500 rounded-full -top-0 -right-0"></span>
             </Link>
             <Link to="/cart" className="relative p-2 text-gray-700 transition-colors hover:text-purple-600">
               <ShoppingCart className="w-5 h-5" />
