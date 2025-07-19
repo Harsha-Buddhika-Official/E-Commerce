@@ -4,6 +4,7 @@ import AuthChoice from './CommonLoginPage'
 import UserDashboard from './ClientComponents/UserDashboard'
 import SellerDashboard from './SallerComponents/SellerDashboard'
 import AddProduct from './AddProduct'
+import EditProduct from './SallerComponents/EditProduct'
 import UserSignUp from './ClientComponents/UserSignUp'
 import SellerSignup from './SallerComponents/SellerSignup'
 import UserLogin from './ClientComponents/UserLogin'
@@ -65,6 +66,7 @@ function App() {
           
           {/* Product & Shopping Routes */}
           <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/edit-product/:id" element={<EditProduct />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path='/cart' element={<CartPage />} />
           <Route path='/wishlist' element={<WishlistPage />} />

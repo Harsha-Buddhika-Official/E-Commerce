@@ -1,15 +1,25 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Store, TrendingUp, Mail, Package, ShoppingCart, DollarSign, Users, BarChart3, Plus, Eye, Edit, Trash2, Bell, Settings, LogOut, Search, Filter, Menu, ChevronLeft, X, Check, Clock, AlertCircle, MessageCircle } from 'lucide-react';
 import { initialNotifications, notificationHelpers } from './notificationData';
 import SellerChatComponent from './SellerChatComponent';
+import SellerProductList from './SellerProductList';
 
 export default function SellerDashboard() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const notificationRef = useRef(null);
+
+  // Handle URL parameters for direct navigation
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
 
   // Initialize notifications from imported data
   const [notifications, setNotifications] = useState(initialNotifications);
@@ -60,7 +70,21 @@ export default function SellerDashboard() {
     { id: 1, name: 'Wireless Headphones', price: 99.99, stock: 25, status: 'active' },
     { id: 2, name: 'Smart Watch', price: 299.99, stock: 12, status: 'active' },
     { id: 3, name: 'Bluetooth Speaker', price: 59.99, stock: 0, status: 'out_of_stock' },
+    { id: 4, name: 'Laptop Stand', price: 45.99, stock: 18, status: 'active' },
+    { id: 5, name: 'Wireless Charger', price: 29.99, stock: 32, status: 'active' },
   ];
+
+  const handleDeleteProduct = (productId) => {
+    if (window.confirm('Are you sure you want to delete this product? This action cannot be undone.')) {
+      // In a real app, make API call to delete product
+      console.log('Deleting product:', productId);
+      alert('Product deleted successfully!');
+    }
+  };
+
+  const handleViewProduct = (productId) => {
+    navigate(`/product/${productId}`);
+  };
 
   const renderContent = () => {
     switch(activeTab) {
@@ -150,66 +174,7 @@ export default function SellerDashboard() {
         );
       
       case 'products':
-        return (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold text-white">Products</h2>
-              <button 
-                onClick={() => navigate('/add-product')}
-                className="flex items-center px-4 py-2 text-white transition-colors rounded-lg bg-emerald-600 hover:bg-emerald-700"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Add Product
-              </button>
-            </div>
-            
-            <div className="p-6 border bg-white/10 backdrop-blur-lg rounded-xl border-white/20">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-white/20">
-                      <th className="pb-3 text-left text-white/70">Product</th>
-                      <th className="pb-3 text-left text-white/70">Price</th>
-                      <th className="pb-3 text-left text-white/70">Stock</th>
-                      <th className="pb-3 text-left text-white/70">Status</th>
-                      <th className="pb-3 text-left text-white/70">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {products.map((product) => (
-                      <tr key={product.id} className="border-b border-white/10">
-                        <td className="py-3 text-white">{product.name}</td>
-                        <td className="py-3 text-white">${product.price}</td>
-                        <td className="py-3 text-white">{product.stock}</td>
-                        <td className="py-3">
-                          <span className={`px-2 py-1 rounded-full text-xs ${
-                            product.status === 'active' ? 'bg-green-500/20 text-green-400' :
-                            'bg-red-500/20 text-red-400'
-                          }`}>
-                            {product.status === 'active' ? 'Active' : 'Out of Stock'}
-                          </span>
-                        </td>
-                        <td className="py-3">
-                          <div className="flex space-x-2">
-                            <button className="text-blue-400 hover:text-blue-300">
-                              <Eye className="w-4 h-4" />
-                            </button>
-                            <button className="text-yellow-400 hover:text-yellow-300">
-                              <Edit className="w-4 h-4" />
-                            </button>
-                            <button className="text-red-400 hover:text-red-300">
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        );
+        return <SellerProductList />;
       
       case 'messages':
         return (
