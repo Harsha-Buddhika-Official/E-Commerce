@@ -65,7 +65,7 @@ Client/
 │   ├── Components/        # Reusable components
 │   ├── MainComponents/    # Core UI components
 │   ├── PaymentComponents/ # Payment-related components
-│   ├── SallerComponents/  # Seller-related components
+│   ├── SellerComponents/  # Seller-related components
 │   ├── SubPages/          # Static subpages (FAQ, Contact, etc.)
 │   ├── App.jsx            # Main application file
 │   └── main.jsx           # Entry point

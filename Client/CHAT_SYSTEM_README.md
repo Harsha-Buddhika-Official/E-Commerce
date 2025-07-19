@@ -9,7 +9,7 @@ The E-Commerce platform now features a **separated chat system** where sellers a
 
 ```
 Chat System/
-├── SallerComponents/
+├── SellerComponents/
 │   └── SellerChatComponent.jsx     # Seller-specific chat interface
 ├── ClientComponents/
 │   └── CustomerChatComponent.jsx   # Customer-specific chat interface
@@ -210,7 +210,7 @@ Chat System/
 ### **File Structure:**
 ```
 src/
-├── SallerComponents/
+├── SellerComponents/
 │   ├── SellerDashboard.jsx        # Includes Messages tab
 │   └── SellerChatComponent.jsx    # Seller chat interface
 ├── ClientComponents/  
