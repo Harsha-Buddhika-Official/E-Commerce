@@ -6,6 +6,7 @@ import { categories } from '../Components/data';
 export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -34,6 +35,19 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
     // You can add additional logout logic here (clear tokens, etc.)
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleSearchKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  };
+
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-lg">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -50,14 +64,17 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
 
           {/* Search Bar */}
           <div className="flex-1 hidden max-w-lg mx-8 md:flex">
-            <div className="relative w-full">
+            <form onSubmit={handleSearch} className="relative w-full">
               <Search className="absolute w-5 h-5 text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />
               <input
                 type="text"
                 placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleSearchKeyPress}
                 className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
-            </div>
+            </form>
           </div>
 
           {/* Navigation Links */}
@@ -160,14 +177,17 @@ export default function Navbar({ isUserLoggedIn, setIsUserLoggedIn, cartItems, i
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200 sm:px-3">
               {/* Mobile Search */}
-              <div className="relative mb-3">
+              <form onSubmit={handleSearch} className="relative mb-3">
                 <Search className="absolute w-5 h-5 text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />
                 <input
                   type="text"
                   placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleSearchKeyPress}
                   className="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
-              </div>
+              </form>
               
               {/* Mobile Navigation Links */}
               <a href="#" className="block px-3 py-2 text-gray-700 transition-colors hover:text-purple-600">Home</a>

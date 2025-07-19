@@ -15,6 +15,7 @@ import SellerForgotPassword from './SellerComponents/SellerForgotPassword'
 import Homepage from './Homepage'
 import CategoriesPage from './CategoriesPage'
 import ProductPage from './ProductPage'
+import SearchResultsPage from './SearchResultsPage'
 import CartPage from './ClientComponents/CartPage'
 import WishlistPage from './ClientComponents/WishlistPage'
 import AboutPage from './SubPages/AboutPage'
@@ -68,6 +69,7 @@ function App() {
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/edit-product/:id" element={<EditProduct />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/search" element={<SearchResultsPage />} />
           <Route path='/cart' element={<CartPage />} />
           <Route path='/wishlist' element={<WishlistPage />} />
           
