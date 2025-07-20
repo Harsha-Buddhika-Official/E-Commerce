@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  Store, 
-  User, 
-  Shield,
-  Eye, 
-  EyeOff,
-  Camera,
-  Save,
-  Edit2
-} from 'lucide-react';
+import { ArrowLeft, Store, User, Shield, Eye, EyeOff, Camera, Save, Edit2 } from 'lucide-react';
 
 export default function SellerProfileSettings() {
   const navigate = useNavigate();

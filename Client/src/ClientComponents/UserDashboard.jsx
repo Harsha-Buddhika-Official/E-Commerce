@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { User, ShoppingBag, Heart, CreditCard, MapPin, Bell, Settings, Package, Star, Calendar, TrendingUp, Award, Gift, LogOut, Edit3, Eye, Truck, CheckCircle, Clock, X, Plus, Trash2, Phone, Mail, Home, Building, Sparkles, ArrowLeft, MessageCircle } from 'lucide-react';
-import { useSearchParams } from 'react-router-dom';
+import { User, ShoppingBag, Heart, CreditCard, Bell, Settings, Package, Star, Calendar, TrendingUp, Award, Gift, LogOut, Edit3, Eye, Truck, CheckCircle, Clock, X, Plus, Trash2, Phone, Mail, Sparkles, ArrowLeft, MessageCircle } from 'lucide-react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import CustomerChatComponent from './CustomerChatComponent';
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [isEditing, setIsEditing] = useState(false);
-  const [showAddAddress, setShowAddAddress] = useState(false);
   const [searchParams] = useSearchParams();
 
   // Handle URL parameters for direct navigation
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (tab && ['overview', 'orders', 'wishlist', 'messages', 'addresses', 'payments', 'notifications', 'settings'].includes(tab)) {
+    if (tab && ['overview', 'orders', 'wishlist', 'messages', 'payments', 'notifications'].includes(tab)) {
       setActiveTab(tab);
     }
   }, [searchParams]);
@@ -79,29 +79,6 @@ export default function Dashboard() {
     }
   ];
 
-  const addresses = [
-    {
-      id: 1,
-      type: "Home",
-      name: "Alex Johnson",
-      street: "123 Main Street",
-      city: "New York",
-      state: "NY",
-      zip: "10001",
-      isDefault: true
-    },
-    {
-      id: 2,
-      type: "Work",
-      name: "Alex Johnson",
-      street: "456 Business Ave",
-      city: "New York",
-      state: "NY",
-      zip: "10002",
-      isDefault: false
-    }
-  ];
-
   const paymentMethods = [
     {
       id: 1,
@@ -142,7 +119,6 @@ export default function Dashboard() {
     { id: 'orders', label: 'Orders', icon: ShoppingBag },
     { id: 'wishlist', label: 'Wishlist', icon: Heart },
     { id: 'messages', label: 'Messages', icon: MessageCircle },
-    { id: 'addresses', label: 'Addresses', icon: MapPin },
     { id: 'payments', label: 'Payments', icon: CreditCard },
     { id: 'notifications', label: 'Notifications', icon: Bell },
     { id: 'settings', label: 'Settings', icon: Settings },
@@ -327,52 +303,6 @@ export default function Dashboard() {
     </div>
   );
 
-  const renderAddresses = () => (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-white">Your Addresses</h2>
-        <button 
-          onClick={() => setShowAddAddress(true)}
-          className="flex items-center px-4 py-2 space-x-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add Address</span>
-        </button>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {addresses.map((address) => (
-          <div key={address.id} className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center space-x-2">
-                <div className="p-2 rounded-lg bg-blue-500/20">
-                  {address.type === 'Home' ? <Home className="w-4 h-4 text-blue-400" /> : <Building className="w-4 h-4 text-blue-400" />}
-                </div>
-                <span className="font-semibold text-white">{address.type}</span>
-                {address.isDefault && (
-                  <span className="px-2 py-1 text-xs text-green-400 rounded-full bg-green-500/20">Default</span>
-                )}
-              </div>
-              <div className="flex space-x-2">
-                <button className="p-2 transition-colors text-white/70 hover:text-white">
-                  <Edit3 className="w-4 h-4" />
-                </button>
-                <button className="p-2 text-red-400 transition-colors hover:text-red-300">
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-            <div className="text-white/70">
-              <p className="font-medium text-white">{address.name}</p>
-              <p>{address.street}</p>
-              <p>{address.city}, {address.state} {address.zip}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
   const renderPayments = () => (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -414,90 +344,13 @@ export default function Dashboard() {
     </div>
   );
 
-  const renderSettings = () => (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-white">Account Settings</h2>
-      
-      <div className="p-6 text-white border bg-white/10 backdrop-blur-lg border-white/20 rounded-xl">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-white">Profile Information</h3>
-          <button 
-            onClick={() => setIsEditing(!isEditing)}
-            className="flex items-center px-4 py-2 space-x-2 text-blue-300 transition-colors hover:text-blue-200"
-          >
-            <Edit3 className="w-4 h-4" />
-            <span>{isEditing ? 'Cancel' : 'Edit'}</span>
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div>
-            <label className="block mb-2 text-sm font-medium text-white/70">Full Name</label>
-            <input
-              type="text"
-              value={user.name}
-              disabled={!isEditing}
-              className="w-full px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
-            />
-          </div>
-          
-          <div>
-            <label className="block mb-2 text-sm font-medium text-white/70">Email Address</label>
-            <input
-              type="email"
-              value={user.email}
-              disabled={!isEditing}
-              className="w-full px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
-            />
-          </div>
-          
-          <div>
-            <label className="block mb-2 text-sm font-medium text-white/70">Phone Number</label>
-            <input
-              type="tel"
-              value={user.phone}
-              disabled={!isEditing}
-              className="w-full px-4 py-2 text-white border rounded-lg bg-white/10 border-white/20 placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-white/5"
-            />
-          </div>
-          
-          <div>
-            <label className="block mb-2 text-sm font-medium text-white/70">Member Since</label>
-            <input
-              type="text"
-              value={user.memberSince}
-              disabled
-              className="w-full px-4 py-2 border rounded-lg bg-white/5 border-white/10 text-white/70"
-            />
-          </div>
-        </div>
-
-        {isEditing && (
-          <div className="flex mt-6 space-x-4">
-            <button className="px-6 py-2 text-white transition-colors bg-blue-600 rounded-lg hover:bg-blue-700">
-              Save Changes
-            </button>
-            <button 
-              onClick={() => setIsEditing(false)}
-              className="px-6 py-2 transition-colors border rounded-lg border-white/20 text-white/70 hover:bg-white/10"
-            >
-              Cancel
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-
   const renderContent = () => {
     switch (activeTab) {
       case 'overview': return renderOverview();
       case 'orders': return renderOrders();
       case 'wishlist': return renderWishlist();
       case 'messages': return <div className="h-full"><CustomerChatComponent /></div>;
-      case 'addresses': return renderAddresses();
       case 'payments': return renderPayments();
-      case 'settings': return renderSettings();
       default: return renderOverview();
     }
   };
@@ -553,7 +406,13 @@ export default function Dashboard() {
                     return (
                       <button
                         key={item.id}
-                        onClick={() => setActiveTab(item.id)}
+                        onClick={() => {
+                          if (item.id === 'settings') {
+                            navigate('/user/profile-settings');
+                          } else {
+                            setActiveTab(item.id);
+                          }
+                        }}
                         className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                           activeTab === item.id
                             ? 'bg-blue-600/20 text-blue-300 border border-blue-500/30'

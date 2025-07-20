@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { User, Mail, Lock, Eye, EyeOff, Phone, ShoppingBag, AlertCircle} from 'lucide-react';
+import { User, Mail, Lock, Eye, EyeOff, Phone, ShoppingBag, AlertCircle } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignUp({ onSwitchToSeller }) {
