@@ -18,6 +18,8 @@ import CategoriesPage from './CategoriesPage'
 import ProductPage from './ProductPage'
 import SearchResultsPage from './SearchResultsPage'
 import CartPage from './ClientComponents/CartPage'
+import CheckoutPage from './ClientComponents/CheckoutPage'
+import OrderSuccessPage from './ClientComponents/OrderSuccessPage'
 import WishlistPage from './ClientComponents/WishlistPage'
 import AboutPage from './SubPages/AboutPage'
 import ContactPage from './SubPages/ContactPage'
@@ -73,6 +75,8 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/search" element={<SearchResultsPage />} />
           <Route path='/cart' element={<CartPage />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
+          <Route path='/order-success' element={<OrderSuccessPage />} />
           <Route path='/wishlist' element={<WishlistPage />} />
           
           {/* Category Routes */}

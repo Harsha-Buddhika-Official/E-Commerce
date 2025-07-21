@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../MainComponents/Navbar';
 import Footer from '../MainComponents/Footer';
 
-export default function CartPage({ isUserLoggedIn, setIsUserLoggedIn }) {
+export default function CartPage({ isUserLoggedIn = false, setIsUserLoggedIn = () => {} }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
   // This would typically come from a global state or context in a real app
   const [cartItems, setCartItems] = useState([
     {
@@ -48,6 +49,21 @@ export default function CartPage({ isUserLoggedIn, setIsUserLoggedIn }) {
   const subtotal = calculateSubtotal();
   const total = subtotal + shipping;
   const totalItems = cartItems.reduce((count, item) => count + item.quantity, 0);
+
+  const handleCheckout = () => {
+    const orderSummary = {
+      subtotal,
+      shipping,
+      total
+    };
+    
+    navigate('/checkout', {
+      state: {
+        cartItems,
+        orderSummary
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -143,9 +159,12 @@ export default function CartPage({ isUserLoggedIn, setIsUserLoggedIn }) {
                     </div>
                   </div>
 
-                  <button className="w-full mt-6 bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center font-semibold">
+                  <button 
+                    onClick={handleCheckout}
+                    className="w-full mt-6 bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center font-semibold"
+                  >
                     <ShoppingBag className="w-5 h-5 mr-2" />
-                    Checkout
+                    Proceed to Checkout
                   </button>
 
                   <div className="mt-6 text-xs text-gray-500 space-y-2">
