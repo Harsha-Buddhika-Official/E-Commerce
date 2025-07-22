@@ -53,7 +53,7 @@ export default function UniversalCategory() {
   };
 
   const addToCart = (product) => {
-    console.log('Added to cart:', product);
+    // Backend integration for adding to cart should be implemented here
     // Add cart functionality here
   };
 

@@ -14,8 +14,7 @@ export default function UserForgotPassword() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log('User forgot password submitted:', data);
-    // TODO: Add backend integration here later
+    // Backend integration for password reset should be implemented here
     setIsSubmitted(true);
   };
 

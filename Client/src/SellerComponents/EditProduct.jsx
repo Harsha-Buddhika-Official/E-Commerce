@@ -100,7 +100,7 @@ export default function EditProduct() {
         
         setFormData(mockProduct);
       } catch (error) {
-        console.error('Error fetching product:', error);
+        // Handle error appropriately in production
       } finally {
         setLoading(false);
       }
@@ -275,14 +275,12 @@ export default function EditProduct() {
       // Mock API call - replace with actual API
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      console.log('Updated product data:', formData);
+      // Backend integration for updating product should be implemented here
       
       // Show success message or redirect
-      alert('Product updated successfully!');
       navigate('/seller-dashboard?tab=products');
     } catch (error) {
-      console.error('Error updating product:', error);
-      alert('Error updating product. Please try again.');
+      // Handle error appropriately in production
     } finally {
       setSaving(false);
     }

@@ -15,8 +15,7 @@ export default function Login({ onSwitchToSeller }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log('Login submitted:', data);
-    // TODO: Add backend integration here later
+    // Backend integration for user authentication should be implemented here
     // For now, simulate successful login and redirect to user dashboard
     navigate('/user-dashboard');
   };

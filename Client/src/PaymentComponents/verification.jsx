@@ -52,7 +52,7 @@ const Verification = () => {
     const code = verificationCode.join('');
     
     if (code.length !== 6) {
-      alert('Please enter the complete 6-digit code');
+      // Show proper error notification instead of alert
       return;
     }
 

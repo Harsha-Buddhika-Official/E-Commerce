@@ -32,8 +32,7 @@ export default function CategoryManager() {
       reviews: parseInt(newProduct.reviews)
     };
     
-    console.log('New Product to Add:', product);
-    // Here you would typically make an API call to your backend
+    // Backend integration for adding product should be implemented here
     // For now, we'll just update the local state
     setProducts([...products, product]);
     

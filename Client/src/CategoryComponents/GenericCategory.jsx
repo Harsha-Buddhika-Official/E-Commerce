@@ -21,7 +21,7 @@ export default function GenericCategory({ categoryName, categoryIcon, categoryCo
   };
 
   const addToCart = (product) => {
-    console.log('Added to cart:', product);
+    // Backend integration for adding to cart should be implemented here
     // Add cart functionality here
   };
 

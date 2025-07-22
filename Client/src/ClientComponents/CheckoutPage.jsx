@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, CreditCard, Truck, Shield, MapPin, User, Phone, Mail } from 'lucide-react';
+import { ArrowLeft, CreditCard, Truck, Shield, MapPin } from 'lucide-react';
 import Navbar from '../MainComponents/Navbar';
 import Footer from '../MainComponents/Footer';
 
@@ -55,14 +55,25 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
 
   const validateShipping = () => {
     const newErrors = {};
-    if (!shippingInfo.firstName) newErrors.firstName = 'First name is required';
-    if (!shippingInfo.lastName) newErrors.lastName = 'Last name is required';
-    if (!shippingInfo.email) newErrors.email = 'Email is required';
-    if (!shippingInfo.phone) newErrors.phone = 'Phone number is required';
-    if (!shippingInfo.address) newErrors.address = 'Address is required';
-    if (!shippingInfo.city) newErrors.city = 'City is required';
-    if (!shippingInfo.state) newErrors.state = 'State is required';
-    if (!shippingInfo.zipCode) newErrors.zipCode = 'ZIP code is required';
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[\+]?[\d\s\-\(\)]{10,}$/;
+    
+    if (!shippingInfo.firstName.trim()) newErrors.firstName = 'First name is required';
+    if (!shippingInfo.lastName.trim()) newErrors.lastName = 'Last name is required';
+    if (!shippingInfo.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(shippingInfo.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    if (!shippingInfo.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!phoneRegex.test(shippingInfo.phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+    if (!shippingInfo.address.trim()) newErrors.address = 'Address is required';
+    if (!shippingInfo.city.trim()) newErrors.city = 'City is required';
+    if (!shippingInfo.state.trim()) newErrors.state = 'State is required';
+    if (!shippingInfo.zipCode.trim()) newErrors.zipCode = 'ZIP code is required';
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -70,10 +81,35 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
 
   const validatePayment = () => {
     const newErrors = {};
-    if (!paymentInfo.cardNumber) newErrors.cardNumber = 'Card number is required';
-    if (!paymentInfo.expiryDate) newErrors.expiryDate = 'Expiry date is required';
-    if (!paymentInfo.cvv) newErrors.cvv = 'CVV is required';
-    if (!paymentInfo.cardName) newErrors.cardName = 'Cardholder name is required';
+    const cardNumberRegex = /^\d{13,19}$/;
+    const expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    const cvvRegex = /^\d{3,4}$/;
+    
+    const cleanCardNumber = paymentInfo.cardNumber.replace(/\s/g, '');
+    
+    if (!paymentInfo.cardNumber.trim()) {
+      newErrors.cardNumber = 'Card number is required';
+    } else if (!cardNumberRegex.test(cleanCardNumber)) {
+      newErrors.cardNumber = 'Please enter a valid card number';
+    }
+    
+    if (!paymentInfo.expiryDate.trim()) {
+      newErrors.expiryDate = 'Expiry date is required';
+    } else if (!expiryRegex.test(paymentInfo.expiryDate)) {
+      newErrors.expiryDate = 'Please enter a valid expiry date (MM/YY)';
+    }
+    
+    if (!paymentInfo.cvv.trim()) {
+      newErrors.cvv = 'CVV is required';
+    } else if (!cvvRegex.test(paymentInfo.cvv)) {
+      newErrors.cvv = 'Please enter a valid CVV';
+    }
+    
+    if (!paymentInfo.cardName.trim()) {
+      newErrors.cardName = 'Cardholder name is required';
+    } else if (paymentInfo.cardName.trim().length < 2) {
+      newErrors.cardName = 'Please enter a valid cardholder name';
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -96,8 +132,8 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
   const handlePlaceOrder = async () => {
     setIsProcessing(true);
     
-    // Simulate API call
     try {
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Clear cart and redirect to success page
@@ -109,7 +145,7 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
         }
       });
     } catch (error) {
-      console.error('Order failed:', error);
+      // Handle error appropriately in production
       setIsProcessing(false);
     }
   };
@@ -121,37 +157,38 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
       setPaymentInfo(prev => ({ ...prev, [field]: value }));
     }
     
-    // Clear error when user starts typing
+    // Clear specific error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
     }
   };
 
   const formatCardNumber = (value) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-    const matches = v.match(/\d{4,16}/g);
-    const match = matches && matches[0] || '';
+    const cleaned = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    const match = cleaned.match(/\d{4,16}/g);
+    
+    if (!match || !match[0]) return cleaned;
+    
+    const matchedValue = match[0];
     const parts = [];
     
-    for (let i = 0, len = match.length; i < len; i += 4) {
-      parts.push(match.substring(i, i + 4));
+    for (let i = 0; i < matchedValue.length; i += 4) {
+      parts.push(matchedValue.substring(i, i + 4));
     }
     
-    if (parts.length) {
-      return parts.join(' ');
-    } else {
-      return v;
-    }
+    return parts.length ? parts.join(' ') : cleaned;
   };
 
   const renderShippingForm = () => (
     <div className="space-y-6">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <label className="block mb-2 text-sm font-medium text-gray-700">
+          <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-gray-700">
             First Name *
           </label>
           <input
+            id="firstName"
+            name="firstName"
             type="text"
             value={shippingInfo.firstName}
             onChange={(e) => handleInputChange('shipping', 'firstName', e.target.value)}
@@ -159,15 +196,19 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
               errors.firstName ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="John"
+            aria-describedby={errors.firstName ? "firstName-error" : undefined}
+            aria-invalid={!!errors.firstName}
           />
-          {errors.firstName && <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>}
+          {errors.firstName && <p id="firstName-error" className="mt-1 text-xs text-red-500" role="alert">{errors.firstName}</p>}
         </div>
         
         <div>
-          <label className="block mb-2 text-sm font-medium text-gray-700">
+          <label htmlFor="lastName" className="block mb-2 text-sm font-medium text-gray-700">
             Last Name *
           </label>
           <input
+            id="lastName"
+            name="lastName"
             type="text"
             value={shippingInfo.lastName}
             onChange={(e) => handleInputChange('shipping', 'lastName', e.target.value)}
@@ -175,17 +216,21 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
               errors.lastName ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="Doe"
+            aria-describedby={errors.lastName ? "lastName-error" : undefined}
+            aria-invalid={!!errors.lastName}
           />
-          {errors.lastName && <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>}
+          {errors.lastName && <p id="lastName-error" className="mt-1 text-xs text-red-500" role="alert">{errors.lastName}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <label className="block mb-2 text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
             Email Address *
           </label>
           <input
+            id="email"
+            name="email"
             type="email"
             value={shippingInfo.email}
             onChange={(e) => handleInputChange('shipping', 'email', e.target.value)}
@@ -193,15 +238,19 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
               errors.email ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="john@example.com"
+            aria-describedby={errors.email ? "email-error" : undefined}
+            aria-invalid={!!errors.email}
           />
-          {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+          {errors.email && <p id="email-error" className="mt-1 text-xs text-red-500" role="alert">{errors.email}</p>}
         </div>
         
         <div>
-          <label className="block mb-2 text-sm font-medium text-gray-700">
+          <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-700">
             Phone Number *
           </label>
           <input
+            id="phone"
+            name="phone"
             type="tel"
             value={shippingInfo.phone}
             onChange={(e) => handleInputChange('shipping', 'phone', e.target.value)}
@@ -209,8 +258,10 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
               errors.phone ? 'border-red-500' : 'border-gray-300'
             }`}
             placeholder="+1 (555) 123-4567"
+            aria-describedby={errors.phone ? "phone-error" : undefined}
+            aria-invalid={!!errors.phone}
           />
-          {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
+          {errors.phone && <p id="phone-error" className="mt-1 text-xs text-red-500" role="alert">{errors.phone}</p>}
         </div>
       </div>
 
@@ -444,7 +495,11 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
     </div>
   );
 
-  const totalItems = cartItems.reduce((count, item) => count + item.quantity, 0);
+  // Calculate total items using useMemo for performance
+  const totalItems = React.useMemo(() => 
+    cartItems.reduce((count, item) => count + item.quantity, 0), 
+    [cartItems]
+  );
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
@@ -549,12 +604,15 @@ export default function CheckoutPage({ isUserLoggedIn = false, setIsUserLoggedIn
                     <button
                       onClick={handlePlaceOrder}
                       disabled={isProcessing}
-                      className={`px-6 py-2 rounded-lg font-medium transition-colors ${
+                      className={`px-6 py-2 rounded-lg font-medium transition-colors flex items-center justify-center ${
                         isProcessing
                           ? 'bg-gray-400 text-white cursor-not-allowed'
                           : 'bg-green-600 text-white hover:bg-green-700'
                       }`}
                     >
+                      {isProcessing && (
+                        <div className="mr-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      )}
                       {isProcessing ? 'Processing...' : 'Place Order'}
                     </button>
                   )}

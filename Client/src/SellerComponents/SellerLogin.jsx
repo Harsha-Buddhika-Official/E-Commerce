@@ -15,8 +15,7 @@ export default function SellerLogin({ onSwitchToUser }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log('Seller login submitted:', data);
-    // TODO: Add backend integration for seller authentication
+    // Backend integration for seller authentication should be implemented here
     // For now, simulate successful login and redirect to seller dashboard
     navigate('/seller-dashboard');
   };

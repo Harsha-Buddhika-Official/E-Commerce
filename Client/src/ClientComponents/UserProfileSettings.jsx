@@ -164,8 +164,7 @@ export default function UserProfileSettings() {
   };
 
   const handleSave = (section) => {
-    // TODO: Add API call to save data
-    console.log(`Saving ${section} data:`, userData);
+    // Backend integration for saving user data should be implemented here
     toggleEdit(section);
     // Show success message
   };

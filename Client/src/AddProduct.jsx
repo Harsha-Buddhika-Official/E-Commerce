@@ -210,8 +210,7 @@ export default function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Product data:', formData);
-    // TODO: Add API call to save product
+    // Backend integration for saving product should be implemented here
     // For now, just navigate back to dashboard
     navigate('/seller-dashboard');
   };

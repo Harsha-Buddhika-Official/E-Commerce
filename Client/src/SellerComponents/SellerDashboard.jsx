@@ -76,9 +76,8 @@ export default function SellerDashboard() {
 
   const handleDeleteProduct = (productId) => {
     if (window.confirm('Are you sure you want to delete this product? This action cannot be undone.')) {
-      // In a real app, make API call to delete product
-      console.log('Deleting product:', productId);
-      alert('Product deleted successfully!');
+      // Backend integration for deleting product should be implemented here
+      // Show success message or handle error appropriately
     }
   };
 

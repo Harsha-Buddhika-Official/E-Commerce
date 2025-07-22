@@ -104,7 +104,7 @@ export default function SellerProductList() {
   const handleDeleteProduct = (productId, productName) => {
     if (window.confirm(`Are you sure you want to delete "${productName}"? This action cannot be undone.`)) {
       setProducts(prev => prev.filter(p => p.id !== productId));
-      alert('Product deleted successfully!');
+      // Show success message - replace with proper notification system
     }
   };
 

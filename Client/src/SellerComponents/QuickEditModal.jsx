@@ -30,7 +30,7 @@ export default function QuickEditModal({ product, isOpen, onClose, onSave }) {
       onSave({ ...product, ...formData });
       onClose();
     } catch (error) {
-      console.error('Error updating product:', error);
+      // Handle error appropriately in production
     } finally {
       setSaving(false);
     }

@@ -52,8 +52,7 @@ export default function SellerProfileSettings() {
   };
 
   const handleSave = (section) => {
-    // Here you would typically send the data to your backend
-    console.log('Saving section:', section, sellerData);
+    // Backend integration for saving seller data should be implemented here
     setIsEditing(prev => ({ ...prev, [section]: false }));
     // You might want to show a success message here
   };

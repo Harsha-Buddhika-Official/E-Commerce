@@ -20,10 +20,8 @@ export default function SellerSignup({ onSwitchToUser }) {
   const password = watch('password');
 
   const onSubmit = (data) => {
-    console.log('Seller signup submitted:', data);
-    // TODO: Add backend integration for seller registration
+    // Backend integration for seller registration should be implemented here
     // For now, simulate successful signup and redirect to seller login
-    alert('Seller account created successfully! Please sign in.');
     navigate('/seller/login');
   };
 

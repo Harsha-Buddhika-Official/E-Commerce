@@ -182,12 +182,12 @@ export default function ProductPage() {
   };
 
   const handleAddToCart = () => {
-    console.log('Added to cart:', { product, quantity, selectedColor, selectedSize });
+    // Backend integration for adding to cart should be implemented here
     // Add to cart logic here
   };
 
   const handleBuyNow = () => {
-    console.log('Buy now:', { product, quantity, selectedColor, selectedSize });
+    // Backend integration for buy now functionality should be implemented here
     navigate('/payment/flow')
   };
 
